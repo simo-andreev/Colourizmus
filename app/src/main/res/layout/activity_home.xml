@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/screenBase"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/screenBase"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.colourizmus.HomeActivity"
     android:padding="16dp"
-    >
+    tools:context="com.colourizmus.HomeActivity">
 
     <TextView
         android:id="@+id/welcome_text_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="26sp"
-        android:text="@string/welcome_message"
         android:gravity="center"
-        android:textAlignment="center"/>
+        android:text="@string/welcome_message"
+        android:textAlignment="center"
+        android:textSize="26sp" />
 
 
     <Button
-        android:id="@+id/proceed_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="72sp"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:text="@string/proceed"
-        android:background="@color/colorPrimaryDark"
-        />
+        android:id="@+id/proceedButton"
+        style="@style/ProceedButton"
+        android:text="@string/proceed" />
 
 
 </LinearLayout>

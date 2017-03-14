@@ -22,7 +22,7 @@
             <SeekBar
                 android:id="@+id/alphaSlider"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
@@ -39,7 +39,7 @@
             <SeekBar
                 android:id="@+id/redSlider"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout style="@style/ChannelSlider">
@@ -50,7 +50,7 @@
             <SeekBar
                 android:id="@+id/greenSlider"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout style="@style/ChannelSlider">
@@ -61,7 +61,7 @@
             <SeekBar
                 android:id="@+id/blueSlider"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
@@ -69,11 +69,22 @@
             style="@style/HorizontalDivide"
             android:layout_margin="6dip" />
 
+        <TextView
+            android:id="@+id/hexadecValue"
+            style="@style/SliderLabel"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="#hexadec   |   argb#"/>
+
     </LinearLayout>
 
     <View
         android:id="@+id/colorBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
+
 
 </LinearLayout>

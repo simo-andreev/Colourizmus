@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         TextView welcomeMessage = (TextView) findViewById(R.id.welcome_text_field);
-        proceedBtn = (Button) findViewById(R.id.proceed_button);
+        proceedBtn = (Button) findViewById(R.id.proceedButton);
 
         userInfo = getSharedPreferences("UserData", MODE_PRIVATE);
         name = userInfo.getString("name", null);

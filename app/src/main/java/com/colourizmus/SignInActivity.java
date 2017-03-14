@@ -52,8 +52,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
-
-
+        
         proceedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
