@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/Checkers"
+    android:backgroundTint="@color/colorAccent"
+    android:backgroundTintMode="src_atop"
+    android:orientation="vertical"
     tools:context="com.colourizmus.ColourCreatorActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/ChannelSlider">
+            <TextView
+                style="@style/SliderLabel"
+                android:text="a" />
+
+            <SeekBar
+                android:id="@+id/alphaSlider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+        <View
+            style="@style/HorizontalDivide"
+            android:layout_margin="6dip" />
+
+
+        <LinearLayout style="@style/ChannelSlider">
+            <TextView
+                style="@style/SliderLabel"
+                android:text="R" />
+
+            <SeekBar
+                android:id="@+id/redSlider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/ChannelSlider">
+            <TextView
+                style="@style/SliderLabel"
+                android:text="G" />
+
+            <SeekBar
+                android:id="@+id/greenSlider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/ChannelSlider">
+            <TextView
+                style="@style/SliderLabel"
+                android:text="B" />
+
+            <SeekBar
+                android:id="@+id/blueSlider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+        <View
+            style="@style/HorizontalDivide"
+            android:layout_margin="6dip" />
+
+    </LinearLayout>
+</LinearLayout>

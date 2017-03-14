@@ -71,7 +71,7 @@
 
         </RadioGroup>
 
-        <View style="@style/Divide" />
+        <View style="@style/HorizontalDivide" />
 
     </LinearLayout>
 
