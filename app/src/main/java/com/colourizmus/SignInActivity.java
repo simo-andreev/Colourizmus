@@ -75,6 +75,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 Intent i = new Intent(SignInActivity.this, HomeActivity.class);
                 startActivity(i);
+                onDestroy();
             }
         });
     }

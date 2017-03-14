@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="64dip" />
 
-        <View style="@style/Divide" />
+        <View style="@style/HorizontalDivide" />
 
         <TextView
             android:layout_width="match_parent"

@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/Checkers"
-    android:backgroundTint="@color/colorAccent"
-    android:backgroundTintMode="src_atop"
+    android:background="@drawable/checkers"
     android:orientation="vertical"
     tools:context="com.colourizmus.ColourCreatorActivity">
 
@@ -72,4 +70,10 @@
             android:layout_margin="6dip" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/colorBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>
