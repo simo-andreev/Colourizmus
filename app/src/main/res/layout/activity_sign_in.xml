@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@color/bkgrndColor"
+    android:gravity="center"
+
+    android:orientation="vertical"
+    android:padding="16dip"
+    tools:context="com.colourizmus.SignInActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/askForName"
+            android:textAlignment="center"
+            android:textColor="#090900"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="64dip" />
+
+        <View style="@style/Divide" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/askForGender"
+            android:textAlignment="center"
+            android:textColor="#090900"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/genderRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp">
+
+
+            <RadioButton
+                android:id="@+id/LadyRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/iAmLady" />
+
+            <RadioButton
+                android:id="@+id/LordRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/iAmLord" />
+
+
+        </RadioGroup>
+
+        <View style="@style/Divide" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/proceedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/proceed"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="72sp"/>
+
+</LinearLayout>

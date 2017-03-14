@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Colourizmus</string>
+    <string name="proceed">PROCEED</string>
+    <string name="welcome_message">Welcome sir-and/or-lady\n</string>
+
+    <string name="askForName">If it would not be a bother, would sir-or-madam provide us with a name, as to be referred to by?</string>
+    <string name="askForGender">Would master happen to be a Lady or Lord?</string>
+    <string name="iAmLady">I am a gracious Lady</string>
+    <string name="iAmLord">I am a noble Lord</string>
+    <string name="lady">Lady</string>
+    <string name="lord">Lord</string>
+
+    <string name="notSignedIn">Please Sign In.</string>
 </resources>
