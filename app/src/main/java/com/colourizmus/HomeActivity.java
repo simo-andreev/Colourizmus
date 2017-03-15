@@ -2,7 +2,6 @@ package com.colourizmus;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     public static String name;
     public static String gender;
 
+    TextView welcomeMessage;
     Button proceedBtn;
 
     @Override
@@ -24,24 +24,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        TextView welcomeMessage = (TextView) findViewById(R.id.welcome_text_field);
+        welcomeMessage = (TextView) findViewById(R.id.welcome_text_field);
         proceedBtn = (Button) findViewById(R.id.proceedButton);
 
         userInfo = getSharedPreferences("UserData", MODE_PRIVATE);
         name = userInfo.getString("name", null);
         gender = userInfo.getString("gender", null);
 
-
-        if (name == null || gender == null || name.isEmpty() || !(gender.equals(getString(R.string.lady)) || gender.equals(getString(R.string.lord)))) {
-            Toast.makeText(this, getString(R.string.notSignedIn), Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, SignInActivity.class);
-            startActivity(i);
-        }
-
-        name = userInfo.getString("name", "oh fuck...");
-        gender = userInfo.getString("gender", "oh fuck...");
-        //TODO - extract String literal to strings.xml for better flexibility!
-        welcomeMessage.setText("Welcome " + gender + " " + name + "!");
 
         proceedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +46,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         Log.e(this.toString(), "main.onStart(...)");
 
+        if (name == null || gender == null || name.isEmpty() || !(gender.equals(getString(R.string.lady)) || gender.equals(getString(R.string.lord)))) {
+            Toast.makeText(this, getString(R.string.notSignedIn), Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, SignInActivity.class);
+            startActivity(i);
+        }
+
+
     }
 
     @Override
@@ -64,6 +60,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onResume();
         Log.e(this.toString(), "main.onResume(...)");
 
+        if (name == null || name.isEmpty())
+            name = userInfo.getString("name", "oh fuck...");
+        if (gender == null || gender.isEmpty())
+            gender = userInfo.getString("gender", "oh fuck...");
+
+        //TODO - extract String literal to strings.xml for better flexibility!
+        welcomeMessage.setText("Welcome " + gender + " " + name + "!");
     }
 
     @Override

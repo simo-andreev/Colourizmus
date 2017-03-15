@@ -2,11 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
-    android:background="@drawable/checkers"
     android:orientation="vertical"
+
     tools:context="com.colourizmus.ColourCreatorActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/custom_action_bar"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:elevation="4dp">
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,24 +23,11 @@
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-        <LinearLayout style="@style/ChannelSlider">
-            <TextView
-                style="@style/SliderLabel"
-                android:text="a" />
 
-            <SeekBar
-                android:id="@+id/alphaSlider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-        <View
-            style="@style/HorizontalDivide"
-            android:layout_margin="6dip" />
 
 
         <LinearLayout style="@style/ChannelSlider">
+
             <TextView
                 style="@style/SliderLabel"
                 android:text="R" />
@@ -43,6 +39,7 @@
         </LinearLayout>
 
         <LinearLayout style="@style/ChannelSlider">
+
             <TextView
                 style="@style/SliderLabel"
                 android:text="G" />
@@ -54,6 +51,7 @@
         </LinearLayout>
 
         <LinearLayout style="@style/ChannelSlider">
+
             <TextView
                 style="@style/SliderLabel"
                 android:text="B" />
@@ -73,9 +71,9 @@
             android:id="@+id/hexadecValue"
             style="@style/SliderLabel"
             android:layout_width="match_parent"
+            android:text="#hexadec   |   rgb#"
             android:textAlignment="center"
-            android:textSize="14sp"
-            android:text="#hexadec   |   argb#"/>
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -83,8 +81,6 @@
         android:id="@+id/colorBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 
 
 </LinearLayout>
