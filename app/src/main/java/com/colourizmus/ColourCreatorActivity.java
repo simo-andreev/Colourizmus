@@ -2,6 +2,7 @@ package com.colourizmus;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,10 +23,15 @@ public class ColourCreatorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_colour_creator);
 
         Toolbar tb = (Toolbar) findViewById(R.id.custom_action_bar);
         setSupportActionBar(tb);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
 
         colorBox = findViewById(R.id.colorBox);
         hexadec = (TextView) findViewById(R.id.hexadecValue);

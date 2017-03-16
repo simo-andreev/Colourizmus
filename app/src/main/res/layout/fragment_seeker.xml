@@ -6,17 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="com.colourizmus.ColourCreatorActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/custom_action_bar"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:elevation="4dp">
-
-    </android.support.v7.widget.Toolbar>
+    tools:context="com.colourizmus.SeekerFragment">
 
 
     <LinearLayout
@@ -25,11 +15,9 @@
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-
-
-
         <LinearLayout style="@style/ChannelSlider">
 
+            <!-- rename id -->
             <TextView
                 style="@style/SliderLabel"
                 android:text="R" />

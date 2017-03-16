@@ -16,8 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".ColourCreatorActivity"></activity>
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ColourCreatorActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_picker"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

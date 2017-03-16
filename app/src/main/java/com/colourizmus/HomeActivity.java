@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         proceedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, ColourCreatorActivity.class);
+                Intent i = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });
