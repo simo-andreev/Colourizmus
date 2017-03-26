@@ -3,15 +3,15 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    tools:context="com.colourizmus.SignInActivity"
 
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@color/colorBackgroundLight"
     android:gravity="center"
-
     android:orientation="vertical"
-    android:padding="16dip"
-    tools:context="com.colourizmus.SignInActivity">
+    android:padding="@dimen/generic_spacing_medium">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,13 +28,15 @@
             android:text="@string/prompt_ask_name"
             android:textAlignment="center"
             android:textColor="#090900"
-            android:textSize="16sp" />
+            android:textSize="@dimen/generic_text_medium" />
 
         <EditText
-            android:id="@+id/nameInput"
+            android:id="@+id/signin_input_name"
             android:layout_width="match_parent"
             android:layout_height="64dip"
-            android:textSize="18sp" />
+            android:inputType="textPersonName"
+            android:nextFocusDown="@+id/signin_radio_gender"
+            android:textSize="@dimen/generic_text_medium" />
 
         <View style="@style/HorizontalDivide" />
 
@@ -44,25 +46,25 @@
             android:text="@string/prompt_ask_gender"
             android:textAlignment="center"
             android:textColor="#090900"
-            android:textSize="16sp" />
+            android:textSize="@dimen/generic_text_medium" />
 
         <RadioGroup
-            android:id="@+id/genderRadio"
+            android:id="@+id/signin_radio_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/generic_spacing_medium">
 
 
             <RadioButton
-                android:id="@+id/LadyRadio"
+                android:id="@+id/sigin_as_lady"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/title_lady" />
 
             <RadioButton
-                android:id="@+id/LordRadio"
+                android:id="@+id/signin_as_lord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -76,8 +78,8 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/proceedButton"
+        android:id="@+id/signin_proceed"
         style="@style/ProceedButton"
-        android:text="@string/proceed" />
+        android:text="@string/action_proceed" />
 
 </LinearLayout>

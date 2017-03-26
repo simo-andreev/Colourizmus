@@ -2,6 +2,8 @@
     <string name="app_name">Colorizmus</string>
     <string name="title_activity_picker">PickerActivity</string>
 
+    <string name="main_prompt_sign_in">Please Sign In.</string>
+    <string name="welcome_title_pickers">colour pickers</string>
 
     <string name="action_proceed">PROCEED</string>
 
@@ -11,17 +13,66 @@
     <string name="prompt_ask_name">Please input a name</string>
     <string name="prompt_ask_gender">Are you a Lord or a Lady?</string>
 
+    <string name="err_invalid_name">Name given is not valid!</string>
+    <string name="err_no_radio_selected">Please select one of the given options!</string>
+    <string name="err_no_check_selected">Please select at-least one of the given options!</string>
+
     <string name="sign_in_i_am_lady">I am a gracious Lady</string>
     <string name="sign_in_i_am_lord">I am a noble Lord</string>
 
     <string name="title_lady">Lady</string>
     <string name="title_lord">Lord</string>
 
-    <string name="main_prompt_sign_in">Please Sign In.</string>
     <string name="prefs_key_user_data">USER_DATA</string>
     <string name="prefs_key_gender">GENDER</string>
     <string name="prefs_key_name">NAME</string>
-    <string name="welcome_title_pickers">colour pickers</string>
-    <string name="proceed">proceed</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="itDoneFuckedUp">well fuck...</string>
+
 
 </resources>

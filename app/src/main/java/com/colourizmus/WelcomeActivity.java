@@ -30,7 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WelcomeActivity.this, ColorizmusActivity.class));
-                Toast.makeText(WelcomeActivity.this, "WELCOME TO THE SIXT GAME VISULA HEEEEEE-E-L", Toast.LENGTH_LONG).show();
+                Toast.makeText(WelcomeActivity.this, "WELCOME TO YOUR OWN EPILEPTIC GENERATOR!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -63,9 +63,9 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (name == null || name.isEmpty())
-            name = userInfo.getString("name", "oh fuck...");
+            name = userInfo.getString(getString(R.string.prefs_key_name), getString(R.string.itDoneFuckedUp));
         if (gender == null || gender.isEmpty())
-            gender = userInfo.getString("gender", "oh fuck...");
+            gender = userInfo.getString(getString(R.string.prefs_key_gender), getString(R.string.itDoneFuckedUp));
 
         welcomeMessage.setText(getString(R.string.msg_welcome_formatted, gender, name));
     }

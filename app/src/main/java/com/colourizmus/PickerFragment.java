@@ -51,7 +51,6 @@ public class PickerFragment extends Fragment implements ColourComunicee {
         return view;
     }
 
-
     @Override
     public void observe(ColourComunicator c) {
         c.addObserver(this);
