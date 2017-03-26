@@ -1,32 +1,37 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryBase</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="HorizontalDivide">
-        <item name="android:layout_margin">16dp</item>
+        <!-- might be more suited to a @drawable -->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dip</item>
-        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:background">@color/colorDiv</item>
+        <item name="android:elevation">@dimen/generic_elevation_small</item>
     </style>
 
-    <style name="ChannelSlider">
+    <style name="ChannelSeeker">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+
         <item name="android:paddingLeft">12dp</item>
         <item name="android:paddingRight">12dp</item>
+
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="SliderLabel">
+    <style name="ChannelSeekerLabel">
         <item name="android:fontFamily">monospace</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/generic_text_large</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAlignment">viewEnd</item>
@@ -35,14 +40,38 @@
     <style name="ProceedButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">bottom</item>
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">@dimen/generic_text_huge</item>
     </style>
 
-    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="TabLayout" parent="TabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
 
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--
+    <style name="SingleButton">
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+
+    <style name="DoubleButtonHorizontal">
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+
+    <style name="DoubleButtonVertical">
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">160dp</item>
+    </style>
+    -->
 </resources>

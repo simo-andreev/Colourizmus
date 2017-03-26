@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+
+    <color name="colorPrimaryLight">#D1C4E9</color>
+    <color name="colorPrimaryBase">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+
     <color name="colorAccent">#cab61a</color>
-    <color name="bkgrndColor">#f0fff0</color>
+
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextLight">#757575</color>
+    <color name="colorTextWhite">#e3f2fd</color>
+
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDiv">#BDBDBD</color>
+
+    <color name="colorBackgroundLight">#f1f8e9</color>
+    <color name="colorBackgroundDark">#616161</color>
+
 
 </resources>

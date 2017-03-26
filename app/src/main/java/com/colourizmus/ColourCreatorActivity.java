@@ -23,7 +23,6 @@ public class ColourCreatorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_colour_creator);
 
         Toolbar tb = (Toolbar) findViewById(R.id.custom_action_bar);

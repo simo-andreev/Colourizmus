@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
-    android:background="@color/bkgrndColor"
+    android:background="@color/colorBackgroundLight"
     android:gravity="center"
 
     android:orientation="vertical"
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/askForName"
+            android:text="@string/prompt_ask_name"
             android:textAlignment="center"
             android:textColor="#090900"
             android:textSize="16sp" />
@@ -41,7 +41,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/askForGender"
+            android:text="@string/prompt_ask_gender"
             android:textAlignment="center"
             android:textColor="#090900"
             android:textSize="16sp" />
@@ -59,14 +59,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/iAmLady" />
+                android:text="@string/title_lady" />
 
             <RadioButton
                 android:id="@+id/LordRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/iAmLord" />
+                android:text="@string/title_lord" />
 
 
         </RadioGroup>

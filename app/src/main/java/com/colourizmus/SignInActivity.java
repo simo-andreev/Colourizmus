@@ -28,9 +28,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Log.e(this.toString(), "SignIn.onCreate(...)");
-
-        shPref = getSharedPreferences("UserData", MODE_PRIVATE);
+        shPref = getSharedPreferences(getString(R.string.prefs_key_user_data), MODE_PRIVATE);
 
         nameInput = (EditText) findViewById(R.id.nameInput);
         genderRadio = (RadioGroup) findViewById(R.id.genderRadio);
@@ -42,10 +40,10 @@ public class SignInActivity extends AppCompatActivity {
                 //could be ternary oprtr I guess...
                 switch (checkedId) {
                     case R.id.LadyRadio:
-                        gender = getString(R.string.lady);
+                        gender = getString(R.string.title_lady);
                         break;
                     case R.id.LordRadio:
-                        gender = getString(R.string.lord);
+                        gender = getString(R.string.title_lord);
                         break;
                     default:
                         gender = "WHAAAAAAAAAAAAAAAA?!";
@@ -68,11 +66,11 @@ public class SignInActivity extends AppCompatActivity {
                     return;
                 }
                 SharedPreferences.Editor spEdit = shPref.edit();
-                spEdit.putString("name", name);
-                spEdit.putString("gender", gender);
+                spEdit.putString(getString(R.string.prefs_key_name), name);
+                spEdit.putString(getString(R.string.prefs_key_gender), gender);
                 spEdit.commit();
 
-                Intent i = new Intent(SignInActivity.this, HomeActivity.class);
+                Intent i = new Intent(SignInActivity.this, WelcomeActivity.class);
                 startActivity(i);
                 finish();
             }
