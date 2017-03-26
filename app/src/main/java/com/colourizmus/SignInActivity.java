@@ -14,14 +14,13 @@ import android.widget.Toast;
 
 public class SignInActivity extends AppCompatActivity {
 
-    //User name and Shared prefs should maybe be passed in bundle or re-instantiated?
-    RadioGroup genderRadio;
-    Button proceedBtn;
-    EditText nameInput;
+    private RadioGroup genderRadio;
+    private Button proceedBtn;
+    private EditText nameInput;
 
-    String name;
-    String gender;
-    SharedPreferences shPref;
+    private String name;
+    private String gender;
+    private SharedPreferences shPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
-        
+
         proceedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
