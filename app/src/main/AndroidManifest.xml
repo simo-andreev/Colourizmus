@@ -20,10 +20,6 @@
         <activity android:name=".SignInActivity" />
 
         <activity
-            android:name=".ColourCreatorActivity"
-            android:parentActivityName=".WelcomeActivity" />
-
-        <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_picker"
             android:parentActivityName=".WelcomeActivity"/>

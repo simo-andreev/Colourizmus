@@ -14,64 +14,50 @@
         android:background="@color/colorBackgroundLight"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical">
-
+        <LinearLayout style="@style/ChannelPickerLayout">
+            <!--
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RED"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center"/>
+                -->
 
             <NumberPicker
                 android:id="@+id/red_picker"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"/>
+                style="@style/ChannelPicker"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical">
+        <LinearLayout style="@style/ChannelPickerLayout">
 
+            <!--
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GREEN"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center"/>
+                -->
 
             <NumberPicker
                 android:id="@+id/green_picker"
-                android:layout_width="match_parent"
-                android:layout_height="110dp" />
+                style="@style/ChannelPicker" />
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="center|bottom"
-            android:orientation="vertical">
-
+        <LinearLayout style="@style/ChannelPickerLayout">
+            <!--
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BLUE"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center"/>
+                -->
 
             <NumberPicker
                 android:id="@+id/blue_picker"
-                android:layout_width="match_parent"
-                android:layout_height="110dp" />
+                style="@style/ChannelPicker"/>
+
         </LinearLayout>
 
     </LinearLayout>

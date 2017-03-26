@@ -1,6 +1,6 @@
 package com.colourizmus;
 
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,21 +10,46 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity{
+import java.util.HashSet;
+
+//TODO - not a good cross-fragment cominication system. Allows for loos-ish coupleing but does A LOT of uneccessary chnages :/
+interface ColourComunicator {
+    public void addObserver(ColourComunicee c);
+
+    public void notifyComunicee();
+}
+
+interface ColourComunicee {
+    public void observe(ColourComunicator c);
+
+    public void react(int r, int g, int b);
+}
+
+public class MainActivity extends AppCompatActivity implements ColourComunicator {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     private ViewPager mViewPager;
+    private View colorBox;
+
+    private HashSet<ColourComunicee> observers;
+
+    private int r, g, b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        r = 0;
+        g = 0;
+        b = 0;
+
+        observers = new HashSet<>();
+
+        colorBox = findViewById(R.id.main_container);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.allahu_appbar);
         setSupportActionBar(toolbar);
@@ -38,7 +63,7 @@ public class MainActivity extends AppCompatActivity{
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.main_container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
@@ -54,11 +79,27 @@ public class MainActivity extends AppCompatActivity{
         return true;
     }
 
+    protected void setColour(int r, int g, int b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        colorBox.setBackgroundColor(Color.rgb(r, g, b));
+        notifyComunicee();
+    }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
+    @Override
+    public void addObserver(ColourComunicee c) {
+        if (c == null) return;
+        this.observers.add(c);
+    }
+
+    @Override
+    public void notifyComunicee() {
+        for (ColourComunicee c : observers)
+            c.react(r, g, b);
+    }
+
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -69,7 +110,7 @@ public class MainActivity extends AppCompatActivity{
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return SeekerFragment.newInstance("Does this even", " do anything atm?");
+                    return SeekerFragment.newInstance();
                 case 1:
                     return PickerFragment.newInstance();
                 default:
@@ -80,7 +121,6 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public int getCount() {
             return 2;
-            //HOW MANY TABS TO HAVE
         }
 
         @Override
@@ -90,11 +130,8 @@ public class MainActivity extends AppCompatActivity{
                     return "SECTION 1";
                 case 1:
                     return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
             }
             return null;
         }
     }
-
 }

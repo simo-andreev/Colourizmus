@@ -12,6 +12,7 @@
     <dimen name="generic_text_large">24sp</dimen>
     <dimen name="generic_text_huge">36sp</dimen>
     <dimen name="generic_text_ginormous">48sp</dimen>
+    <dimen name="generic_spacing_small">8dp</dimen>
 
 
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
@@ -13,8 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryBase"
-        android:orientation="vertical">
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/generic_spacing_small">
 
         <LinearLayout style="@style/ChannelSeeker">
 
@@ -24,7 +24,7 @@
                 android:text="R" />
 
             <SeekBar
-                android:id="@+id/redSlider"
+                android:id="@+id/seeker_red"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -36,7 +36,7 @@
                 android:text="G" />
 
             <SeekBar
-                android:id="@+id/greenSlider"
+                android:id="@+id/seeker_green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -48,7 +48,7 @@
                 android:text="B" />
 
             <SeekBar
-                android:id="@+id/blueSlider"
+                android:id="@+id/seeker_blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -58,20 +58,7 @@
             style="@style/HorizontalDivide"
             android:layout_margin="6dip" />
 
-        <TextView
-            android:id="@+id/hexadecValue"
-            style="@style/ChannelSeekerLabel"
-            android:layout_width="match_parent"
-            android:text="#hexadec   |   rgb#"
-            android:textAlignment="center"
-            android:textSize="14sp" />
 
     </LinearLayout>
-
-    <View
-        android:id="@+id/colorBox"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 
 </LinearLayout>
