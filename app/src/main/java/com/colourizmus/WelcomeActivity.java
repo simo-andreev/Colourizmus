@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private SharedPreferences userInfo;
     private String name;
     private String gender;
-
+    private ImageButton colorizmus;
     private TextView welcomeMessage;
     private Button proceedBtn;
 
@@ -23,6 +24,15 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        colorizmus = (ImageButton) findViewById(R.id.clourizmus);
+        colorizmus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomeActivity.this, ColorizmusActivity.class));
+                Toast.makeText(WelcomeActivity.this, "WELCOME TO THE SIXT GAME VISULA HEEEEEE-E-L", Toast.LENGTH_LONG).show();
+            }
+        });
 
         welcomeMessage = (TextView) findViewById(R.id.welcome_message);
         proceedBtn = (Button) findViewById(R.id.welcome_pickers_button);

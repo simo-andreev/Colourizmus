@@ -9,21 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SignInActivity" />
-
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_picker"
-            android:parentActivityName=".WelcomeActivity"/>
-
+            android:parentActivityName=".WelcomeActivity" />
+        <activity android:name=".ColorizmusActivity"></activity>
     </application>
 
 </manifest>
