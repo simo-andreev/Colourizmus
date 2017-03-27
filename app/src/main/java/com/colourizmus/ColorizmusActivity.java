@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.colourizmus.dbManagment.ColourDbAdapter;
+
 import java.util.Random;
 
 public class ColorizmusActivity extends AppCompatActivity {
@@ -20,10 +22,12 @@ public class ColorizmusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_colorizmus);
 
 
-        ImageView b = (ImageView) findViewById(R.id.ChristusButtinizmus);
+        final ImageView b = (ImageView) findViewById(R.id.ChristusButtinizmus);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                b.setClickable(false);
                 final Random r = new Random();
 
                 CountDownTimer cd = new CountDownTimer(7000, 66) {
@@ -34,10 +38,22 @@ public class ColorizmusActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
+                        //TODO TEMPORARY: testing mah dB instertion.
+                        ColourDbAdapter dbAdapter =  new ColourDbAdapter(ColorizmusActivity.this);
+                        dbAdapter.addCoulourEntry(1, "TEST:" + r.nextFloat());
+                        b.setClickable(true);
                     }
                 };
+
                 cd.start();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        ColourDbAdapter dbAdapter = new ColourDbAdapter(this);
+        dbAdapter.getAllFavouriteColours();
+        super.onDestroy();
     }
 }

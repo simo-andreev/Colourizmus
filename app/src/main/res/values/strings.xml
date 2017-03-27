@@ -16,6 +16,7 @@
     <string name="err_invalid_name">Name given is not valid!</string>
     <string name="err_no_radio_selected">Please select one of the given options!</string>
     <string name="err_no_check_selected">Please select at-least one of the given options!</string>
+    <string name="err_already_favourite">This colour is already in your \'favourites\' list. It is named:</string>
 
     <string name="sign_in_i_am_lady">I am a gracious Lady</string>
     <string name="sign_in_i_am_lord">I am a noble Lord</string>
