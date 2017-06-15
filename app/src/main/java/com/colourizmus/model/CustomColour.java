@@ -1,4 +1,4 @@
-package com.colourizmus;
+package com.colourizmus.model;
 
 import android.graphics.Color;
 import android.support.annotation.ColorInt;

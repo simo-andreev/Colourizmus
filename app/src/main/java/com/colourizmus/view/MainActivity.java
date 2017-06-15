@@ -1,4 +1,4 @@
-package com.colourizmus;
+package com.colourizmus.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+
+import com.colourizmus.R;
 
 import java.util.HashSet;
 

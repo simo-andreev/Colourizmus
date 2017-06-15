@@ -1,4 +1,4 @@
-package com.colourizmus;
+package com.colourizmus.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.colourizmus.R;
+import com.colourizmus.model.ColourDbAdapter;
 
 import java.util.Random;
 

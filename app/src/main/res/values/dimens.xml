@@ -1,9 +1,7 @@
 <resources>
 
+    <dimen name="generic_spacing_small">8dp</dimen>
     <dimen name="generic_spacing_medium">16dp</dimen>
-
-    <dimen name="appbar_elevation">4dp</dimen>
-    <dimen name="appbar_height">56dp</dimen>
 
     <dimen name="generic_elevation_small">2dp</dimen>
 
@@ -13,7 +11,8 @@
     <dimen name="generic_text_large">24sp</dimen>
     <dimen name="generic_text_huge">36sp</dimen>
     <dimen name="generic_text_ginormous">48sp</dimen>
-    <dimen name="generic_spacing_small">8dp</dimen>
 
+    <dimen name="appbar_elevation">4dp</dimen>
+    <dimen name="appbar_height">56dp</dimen>
 
 </resources>
