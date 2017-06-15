@@ -4,25 +4,20 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.colourizmus.dbManagment.ColourDbAdapter;
 
 import java.util.Random;
 
-public class ColorizmusActivity extends AppCompatActivity {
+public class EpilepticaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_colorizmus);
+        setContentView(R.layout.activity_epileptica);
 
 
-        final ImageView b = (ImageView) findViewById(R.id.ChristusButtinizmus);
+        final ImageView b = (ImageView) findViewById(R.id.epileptica_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,13 +28,13 @@ public class ColorizmusActivity extends AppCompatActivity {
                 CountDownTimer cd = new CountDownTimer(7000, 66) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        findViewById(R.id.ChristusLayoutrizmus).setBackgroundColor(Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+                        findViewById(R.id.activity_epileptica_base).setBackgroundColor(Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
                     }
 
                     @Override
                     public void onFinish() {
                         //TODO TEMPORARY: testing mah dB instertion.
-                        ColourDbAdapter dbAdapter =  new ColourDbAdapter(ColorizmusActivity.this);
+                        ColourDbAdapter dbAdapter = new ColourDbAdapter(EpilepticaActivity.this);
                         dbAdapter.addCoulourEntry(1, "TEST:" + r.nextFloat());
                         b.setClickable(true);
                     }

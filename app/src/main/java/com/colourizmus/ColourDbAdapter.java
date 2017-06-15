@@ -1,4 +1,4 @@
-package com.colourizmus.dbManagment;
+package com.colourizmus;
 
 import android.content.ContentValues;
 import android.content.Context;
