@@ -17,6 +17,8 @@ import java.io.Serializable;
  */
 public class LiveColour extends LiveData<Integer> implements Serializable {
 
+    //TODO ! might be considerably more resource efficient to find a way to separate the 3 col. channels. (maybe 3 LiveColour instances ?) - it would stop updating unchanged channels.
+
     //TODO - the setX methods can skip the validation if they are set to take 'byte' as a param,
     //TODO - that will also cut a bit of memory overhead,
     //TODO - on the other hand, that would expose it to throwing an error, or to lossy conversion from int to byte
@@ -26,7 +28,7 @@ public class LiveColour extends LiveData<Integer> implements Serializable {
     public LiveColour(){
         //TODO (fu-ft) might store the current colour in shPrefs, and retrieve on app restart.
         //TODO (fu-ft) might make it start as a random colour (possibly supplementary to a random UI colour, which to also make assessable).
-        setValue(new Integer(Color.WHITE));
+        setValue(new Integer(Color.BLACK));
     }
 
 
@@ -35,6 +37,7 @@ public class LiveColour extends LiveData<Integer> implements Serializable {
     public int getGreen() { return Color.green(getValue()); }
     public int getBlue() { return Color.blue(getValue()); }
 
+    //TODO - SING_CHANNEL METHODS SEEM TO GIVE WRONG RESULT ON START-UP. TEST 'DA ALPHA OUT OF THEIR ASSES!
 
     public void setRed(final int red) {
         if (red >= 0 && red < 256)

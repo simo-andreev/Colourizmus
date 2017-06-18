@@ -5,7 +5,6 @@ import android.arch.lifecycle.Observer;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +16,18 @@ import com.colourizmus.utils.Util;
 
 public class SeekerFragment extends LifecycleFragment {
 
-
     private SeekBar redSeeker, greenSeeker, blueSeeker;
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.w(Util.LOG_TAG_DEV, "onStart: =====================================================");
+        Log.w(Util.LOG_TAG_DEV, "SeekerFragment#onStart: =====================================================");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.w(Util.LOG_TAG_DEV, "onStop: =====================================================");
+        Log.w(Util.LOG_TAG_DEV, "SeekerFragment#onStop : =====================================================");
     }
 
     @Override
@@ -39,13 +37,9 @@ public class SeekerFragment extends LifecycleFragment {
         Util.LIVE_COLOR.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
-                //TODO - check shouldn't be necessary, must test, but atm leaving it to avoid a feed-back loop of updates b/w seekres <-> live_colour.
-                if (SeekerFragment.this.isVisible()) return;
-                if (redSeeker != null && greenSeeker != null && blueSeeker != null) {
-                    redSeeker.setProgress(Util.LIVE_COLOR.getRed());
-                    greenSeeker.setProgress(Util.LIVE_COLOR.getGreen());
-                    blueSeeker.setProgress(Util.LIVE_COLOR.getBlue());
-                }
+            redSeeker.setProgress(Util.LIVE_COLOR.getRed());
+            greenSeeker.setProgress(Util.LIVE_COLOR.getGreen());
+            blueSeeker.setProgress(Util.LIVE_COLOR.getBlue());
             }
         });
     }
@@ -66,12 +60,11 @@ public class SeekerFragment extends LifecycleFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (!fromUser) return;
-                int col = Color.rgb(redSeeker.getProgress(), greenSeeker.getProgress(), blueSeeker.getProgress());
-                Util.LIVE_COLOR.setColour(col);
-//                else if (seekBar == redSeeker) Util.LIVE_COLOR.setRed(progress);
-//                else if (seekBar == greenSeeker) Util.LIVE_COLOR.setGreen(progress);
-//                else if (seekBar == blueSeeker) Util.LIVE_COLOR.setBlue(progress);
-//                //TODO ^ so purdy with the one-line-ing & s**t, but not the most efficient :/
+                Util.LIVE_COLOR.setColour(Color.rgb(
+                        redSeeker.getProgress(),
+                        greenSeeker.getProgress(),
+                        blueSeeker.getProgress())
+                );
             }
 
             @Override

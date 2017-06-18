@@ -3,7 +3,6 @@ package com.colourizmus.view;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -16,48 +15,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Space;
 
 import com.colourizmus.R;
 import com.colourizmus.utils.Util;
 
-import java.util.HashSet;
 
-//TODO - not a good cross-fragment cominication system. Allows for loos-ish coupling but does A LOT of unnecessary changes :/
-interface ColourComunicator {
-    public void addObserver(ColourComunicee c);
 
-    public void notifyComunicee();
-}
+public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
-interface ColourComunicee {
-    public void observe(ColourComunicator c);
-
-    public void react(int r, int g, int b);
-}
-
-public class MainActivity extends AppCompatActivity implements ColourComunicator, LifecycleRegistryOwner {
-
-    LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
-    private SectionsPagerAdapter sectionsPagerAdapter;
+    private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
     private ViewPager viewPager;
-    private Space newColour;
-
-    private HashSet<ColourComunicee> observers;
-
-    private int r, g, b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        r = 0;
-        g = 0;
-        b = 0;
-
-        observers = new HashSet<>();
-
-        newColour = (Space) findViewById(R.id.main_new_colour_preview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.allahu_appbar);
         setSupportActionBar(toolbar);
@@ -66,13 +38,8 @@ public class MainActivity extends AppCompatActivity implements ColourComunicator
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
         viewPager = (ViewPager) findViewById(R.id.main_colour_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
@@ -92,26 +59,6 @@ public class MainActivity extends AppCompatActivity implements ColourComunicator
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
-    }
-
-    protected void setColour(int r, int g, int b) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        newColour.setBackgroundColor(Color.rgb(r, g, b));
-        notifyComunicee();
-    }
-
-    @Override
-    public void addObserver(ColourComunicee c) {
-        if (c == null) return;
-        this.observers.add(c);
-    }
-
-    @Override
-    public void notifyComunicee() {
-        for (ColourComunicee c : observers)
-            c.react(r, g, b);
     }
 
     @Override
@@ -134,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements ColourComunicator
                     return new SeekerFragment();
                 case 1:
                     Log.w(Util.LOG_TAG_DEV, "getItem: PickerFragment");
-                    return PickerFragment.newInstance();
+                    return new PickerFragment();
                 default:
                     return null;
             }
