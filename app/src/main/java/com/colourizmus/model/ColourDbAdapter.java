@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import com.colourizmus.R;
 
-/**
- * Created by simeon on 3/27/17.
- */
 
 public class ColourDbAdapter {
 
