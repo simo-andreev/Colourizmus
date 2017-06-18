@@ -94,7 +94,12 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return "SECTION " + position;
+            //TODO - extract strings
+            switch (position){
+                case 0: return "coarse";
+                case 1: return "precise";
+                default: return "seems I've fucked up somewhere....";
+            }
         }
     }
 }

@@ -10,55 +10,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackgroundLight"
+        android:layout_height="124dp"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal">
 
-        <LinearLayout style="@style/ChannelPickerLayout">
-            <!--
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RED"
-                android:layout_gravity="center"/>
-                -->
+        <NumberPicker
+            android:id="@+id/red_picker"
+            style="@style/ChannelPicker"/>
 
-            <NumberPicker
-                android:id="@+id/red_picker"
-                style="@style/ChannelPicker"/>
+        <NumberPicker
+            android:id="@+id/green_picker"
+            style="@style/ChannelPicker" />
 
-        </LinearLayout>
+        <NumberPicker
+            android:id="@+id/blue_picker"
+            style="@style/ChannelPicker"/>
 
-        <LinearLayout style="@style/ChannelPickerLayout">
-
-            <!--
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GREEN"
-                android:layout_gravity="center"/>
-                -->
-
-            <NumberPicker
-                android:id="@+id/green_picker"
-                style="@style/ChannelPicker" />
-        </LinearLayout>
-
-
-        <LinearLayout style="@style/ChannelPickerLayout">
-            <!--
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BLUE"
-                android:layout_gravity="center"/>
-                -->
-
-            <NumberPicker
-                android:id="@+id/blue_picker"
-                style="@style/ChannelPicker"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 
