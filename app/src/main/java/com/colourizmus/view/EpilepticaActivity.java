@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.colourizmus.R;
-import com.colourizmus.model.ColourDbAdapter;
 
 import java.util.Random;
 
@@ -18,7 +17,6 @@ public class EpilepticaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_epileptica);
-
 
         final ImageView b = (ImageView) findViewById(R.id.epileptica_button);
         b.setOnClickListener(new View.OnClickListener() {
@@ -35,23 +33,11 @@ public class EpilepticaActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFinish() {
-                        //TODO TEMPORARY: testing mah dB instertion.
-                        ColourDbAdapter dbAdapter = new ColourDbAdapter(EpilepticaActivity.this);
-                        dbAdapter.addCoulourEntry(1, "TEST:" + r.nextFloat());
-                        b.setClickable(true);
-                    }
+                    public void onFinish() {b.setClickable(true);}
                 };
 
                 cd.start();
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        ColourDbAdapter dbAdapter = new ColourDbAdapter(this);
-        dbAdapter.getAllFavouriteColours();
-        super.onDestroy();
     }
 }
