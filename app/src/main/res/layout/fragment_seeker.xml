@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.colourizmus.view.SeekerFragment"
+
     android:layout_width="match_parent"
-
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-
-    tools:context="com.colourizmus.view.SeekerFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -17,47 +16,35 @@
         android:paddingTop="@dimen/generic_spacing_small">
 
         <LinearLayout style="@style/ChannelSeeker">
-
-            <!-- rename id -->
             <TextView
                 style="@style/ChannelSeekerLabel"
                 android:text="R" />
-
             <SeekBar
                 android:id="@+id/seeker_red"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/ColourSeeker" />
         </LinearLayout>
 
         <LinearLayout style="@style/ChannelSeeker">
-
             <TextView
                 style="@style/ChannelSeekerLabel"
                 android:text="G" />
-
             <SeekBar
                 android:id="@+id/seeker_green"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/ColourSeeker" />
         </LinearLayout>
 
         <LinearLayout style="@style/ChannelSeeker">
-
             <TextView
                 style="@style/ChannelSeekerLabel"
                 android:text="B" />
-
             <SeekBar
                 android:id="@+id/seeker_blue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/ColourSeeker" />
         </LinearLayout>
 
-
-        <View
+        <Space
             style="@style/HorizontalDivide"
             android:layout_margin="6dip" />
-
 
     </LinearLayout>
 

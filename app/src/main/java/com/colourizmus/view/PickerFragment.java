@@ -1,5 +1,6 @@
 package com.colourizmus.view;
 
+import android.arch.lifecycle.LifecycleFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.widget.NumberPicker;
 import com.colourizmus.R;
 
 
-public class PickerFragment extends Fragment implements ColourComunicee {
+public class PickerFragment extends LifecycleFragment implements ColourComunicee {
 
     //TODO link all related fragments colour selection - both selectors themselvs and colour display to maintain same colour.
 
