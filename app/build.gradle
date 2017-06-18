@@ -7,8 +7,8 @@ android {
         applicationId "bg.o.sim.colourizmus"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 1
-        versionName "alpha-0.0.1-amaranth"
+        versionCode 2
+        versionName "alpha-0.0.2-amaranth"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
