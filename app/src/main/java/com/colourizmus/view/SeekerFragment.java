@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
-import com.colourizmus.R;
+import sim.colourizmus.R;
+import com.colourizmus.model.ColourRepository;
 import com.colourizmus.utils.Util;
 
 public class SeekerFragment extends LifecycleFragment {
@@ -34,12 +35,12 @@ public class SeekerFragment extends LifecycleFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Util.LIVE_COLOR.observe(this, new Observer<Integer>() {
+        ColourRepository.LIVE_COLOR.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
-            redSeeker.setProgress(Util.LIVE_COLOR.getRed());
-            greenSeeker.setProgress(Util.LIVE_COLOR.getGreen());
-            blueSeeker.setProgress(Util.LIVE_COLOR.getBlue());
+            redSeeker.setProgress(ColourRepository.LIVE_COLOR.getRed());
+            greenSeeker.setProgress(ColourRepository.LIVE_COLOR.getGreen());
+            blueSeeker.setProgress(ColourRepository.LIVE_COLOR.getBlue());
             }
         });
     }
@@ -60,7 +61,7 @@ public class SeekerFragment extends LifecycleFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (!fromUser) return;
-                Util.LIVE_COLOR.setColour(Color.rgb(
+                ColourRepository.LIVE_COLOR.setColour(Color.rgb(
                         redSeeker.getProgress(),
                         greenSeeker.getProgress(),
                         blueSeeker.getProgress())

@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
-import com.colourizmus.R;
+import sim.colourizmus.R;
+import com.colourizmus.model.ColourRepository;
 import com.colourizmus.utils.Util;
 
 
@@ -35,7 +36,7 @@ public class PickerFragment extends LifecycleFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Util.LIVE_COLOR.observe(this, new Observer<Integer>() {
+        ColourRepository.LIVE_COLOR.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
                 pickerRed.setValue(Color.red(integer));
@@ -60,7 +61,7 @@ public class PickerFragment extends LifecycleFragment {
         NumberPicker.OnValueChangeListener chanelListener = new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Util.LIVE_COLOR.setColour(Color.rgb(pickerRed.getValue(), pickerGreen.getValue(), pickerBlue.getValue()));
+                ColourRepository.LIVE_COLOR.setColour(Color.rgb(pickerRed.getValue(), pickerGreen.getValue(), pickerBlue.getValue()));
             }
         };
 

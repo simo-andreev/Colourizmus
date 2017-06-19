@@ -19,18 +19,11 @@ public class LiveColour extends LiveData<Integer> implements Serializable {
 
     //TODO ! might be considerably more resource efficient to find a way to separate the 3 col. channels. (maybe 3 LiveColour instances ?) - it would stop updating unchanged channels.
 
-    //TODO - the setX methods can skip the validation if they are set to take 'byte' as a param,
-    //TODO - that will also cut a bit of memory overhead,
-    //TODO - on the other hand, that would expose it to throwing an error, or to lossy conversion from int to byte
-
-
-    //TODO - might make it singleton, tho it is not strictly necessary.
-    public LiveColour(){
+    protected LiveColour(){
         //TODO (fu-ft) might store the current colour in shPrefs, and retrieve on app restart.
         //TODO (fu-ft) might make it start as a random colour (possibly supplementary to a random UI colour, which to also make assessable).
-        setValue(new Integer(Color.BLACK));
+        setValue(new Integer(0xFF000000));
     }
-
 
 
     public int getRed() { return Color.red(getValue()); }

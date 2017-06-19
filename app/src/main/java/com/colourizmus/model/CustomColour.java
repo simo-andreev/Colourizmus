@@ -7,6 +7,9 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.ColorInt;
 
+/**
+ * The CustomColour represents a single, named colour that can be marked as favourite and is persisted in on-disk database.
+ */
 @Entity ( tableName = CustomColour.TABLE, indices = @Index(value = CustomColour.COLUMN_NAME, unique = true))
 public class CustomColour {
 
@@ -16,13 +19,13 @@ public class CustomColour {
     @Ignore public static final String COLUMN_IS_FAVOURITE = "is_favourite";
 
     @PrimaryKey (autoGenerate = false)
-    @ColumnInfo ( name = COLUMN_PK)
+    @ColumnInfo (name = COLUMN_PK)
     private final @ColorInt int value;
 
-    @ColumnInfo ( name = COLUMN_NAME )
+    @ColumnInfo (name = COLUMN_NAME)
     private String name;
 
-    @ColumnInfo ( name = COLUMN_IS_FAVOURITE)
+    @ColumnInfo (name = COLUMN_IS_FAVOURITE)
     private boolean isFavourite;
 
     protected CustomColour(String name, @ColorInt int value) {
@@ -33,26 +36,26 @@ public class CustomColour {
         this.isFavourite = false;
     }
 
-    public
+
     @ColorInt
-    int getValue() {
+    protected int getValue() {
         return value;
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         if (name != null) //TODO - check for uniqueness?
             this.name = name;
     }
 
-    public boolean getIsFavourite() {
+    protected boolean getIsFavourite() {
         return isFavourite;
     }
 
-    public void setIsFavourite(boolean isFavourite) {
+    protected void setIsFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
     }
 }

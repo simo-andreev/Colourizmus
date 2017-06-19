@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.colourizmus.R;
+import sim.colourizmus.R;
 
 import java.util.Random;
 

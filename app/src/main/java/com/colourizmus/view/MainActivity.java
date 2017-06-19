@@ -16,10 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 
-import com.colourizmus.R;
+import sim.colourizmus.R;
+import com.colourizmus.model.ColourRepository;
 import com.colourizmus.utils.Util;
-
-
 
 public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
@@ -44,13 +43,15 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
-        Util.LIVE_COLOR.observe(this, new Observer<Integer>() {
+        ColourRepository.LIVE_COLOR.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
                 viewPager.setBackgroundColor(integer);
                 Log.v(Util.LOG_TAG_DEV, "LIVE_COLOUR: onChanged: " + integer);
             }
         });
+
+
     }
 
 
