@@ -21,7 +21,7 @@ public abstract class Util{
             Log.e(LOG_TAG_ERR, "Util.toast: Context or message was null!!!");
             return;
         } else {
-            Toast.makeText(c, s, length);
+            Toast.makeText(c, s, length).show();
         }
     }
 }

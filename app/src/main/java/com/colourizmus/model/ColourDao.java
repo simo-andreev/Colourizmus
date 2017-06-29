@@ -67,5 +67,6 @@ abstract class ColourDao {
     @Delete
     protected abstract int deleteColours(CustomColour ... colours);
 
+    
 
 }

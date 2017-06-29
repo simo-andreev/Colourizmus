@@ -15,4 +15,7 @@
     <dimen name="appbar_elevation">4dp</dimen>
     <dimen name="appbar_height">56dp</dimen>
 
+    <dimen name="cardview_colour_preview_size">40dp</dimen>
+    <dimen name="generic_spacing_tiny">4dp</dimen>
+
 </resources>

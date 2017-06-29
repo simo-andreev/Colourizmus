@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
-import sim.colourizmus.R;
+import com.colourizmus.R;
 import com.colourizmus.model.ColourRepository;
 import com.colourizmus.utils.Util;
 

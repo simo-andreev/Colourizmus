@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
@@ -14,6 +14,7 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tab_layout"
+        android:layout_below="@id/allahu_appbar"
         style="@style/TabLayout"
         android:elevation="@dimen/appbar_elevation"
         app:tabGravity="fill"
@@ -21,8 +22,19 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_colour_pager"
+        android:layout_below="@id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/ErrorRed" />
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:src="@mipmap/ic_launcher_round"
+        android:id="@+id/main_fab_save_colour"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        />
+
+</RelativeLayout>

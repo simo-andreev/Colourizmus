@@ -28,7 +28,7 @@ public class CustomColour {
     @ColumnInfo (name = COLUMN_IS_FAVOURITE)
     private boolean isFavourite;
 
-    protected CustomColour(String name, @ColorInt int value) {
+    public CustomColour(String name, @ColorInt int value) {
         //TODO !! VALIDATION !!
 
         this.name = name;
@@ -38,11 +38,11 @@ public class CustomColour {
 
 
     @ColorInt
-    protected int getValue() {
+    public int getValue() {
         return value;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
@@ -51,7 +51,7 @@ public class CustomColour {
             this.name = name;
     }
 
-    protected boolean getIsFavourite() {
+    public boolean getIsFavourite() {
         return isFavourite;
     }
 

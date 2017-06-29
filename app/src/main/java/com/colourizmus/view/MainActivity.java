@@ -3,8 +3,12 @@ package com.colourizmus.view;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,20 +19,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
-import sim.colourizmus.R;
+import com.colourizmus.R;
+import com.colourizmus.model.ColourDatabase;
 import com.colourizmus.model.ColourRepository;
+import com.colourizmus.model.CustomColour;
 import com.colourizmus.utils.Util;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
+    //Can't extend LifecycleActivity for compat reasons. When the new arch comps are out of alpha, the concrete implementation of LifecycleRegistryOwner methods can be skipped
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
     private ViewPager viewPager;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ColourRepository.init(getApplication());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.allahu_appbar);
         setSupportActionBar(toolbar);
@@ -36,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
+
+        fab = (FloatingActionButton) findViewById(R.id.main_fab_save_colour);
 
         viewPager = (ViewPager) findViewById(R.id.main_colour_pager);
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
@@ -51,9 +67,25 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
             }
         });
 
+        ColourRepository.saveColour(new CustomColour("VOdKA", 0xFF00f0ff));
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random rand = new Random();
+                CustomColour c = new CustomColour("TEST" + rand.nextInt(), ColourRepository.LIVE_COLOR.getValue());
+                ColourRepository.saveColour(c);
+                Util.makeShortToast(MainActivity.this, "SAVED : " + c.getValue());
+            }
+        });
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        startActivity(new Intent(this, ColourListActivity.class));
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
