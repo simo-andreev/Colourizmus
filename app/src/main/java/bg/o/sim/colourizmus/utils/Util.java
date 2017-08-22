@@ -1,4 +1,4 @@
-package com.colourizmus.utils;
+package bg.o.sim.colourizmus.utils;
 
 import android.content.Context;
 import android.util.Log;

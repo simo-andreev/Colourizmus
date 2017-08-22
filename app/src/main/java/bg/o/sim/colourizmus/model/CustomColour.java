@@ -1,4 +1,4 @@
-package com.colourizmus.model;
+package bg.o.sim.colourizmus.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

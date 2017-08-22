@@ -1,4 +1,4 @@
-package com.colourizmus.view;
+package bg.o.sim.colourizmus.view;
 
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
-import com.colourizmus.R;
-import com.colourizmus.model.ColourRepository;
-import com.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.R;
+import bg.o.sim.colourizmus.model.ColourRepository;
+import bg.o.sim.colourizmus.utils.Util;
 
 
 public class PickerFragment extends LifecycleFragment {

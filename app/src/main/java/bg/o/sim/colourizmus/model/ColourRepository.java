@@ -1,8 +1,7 @@
-package com.colourizmus.model;
+package bg.o.sim.colourizmus.model;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.DatabaseConfiguration;
 import android.arch.persistence.room.InvalidationTracker;
 import android.arch.persistence.room.Room;
 import android.os.AsyncTask;
@@ -46,9 +45,6 @@ public abstract class ColourRepository {
         dbInstance = Room.databaseBuilder(appContext, ColourDatabase.class, "bg.o.sim.colourizmus").build();
         cachedColours = dbInstance.colourDao().getAllColours();
 
-        Log.e("kkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-
-        //noinspection RestrictedApi
         invalidationTracker = new InvalidationTracker(dbInstance, CustomColour.TABLE);
         invalidationTracker.addObserver(new InvalidationTracker.Observer(CustomColour.TABLE) {
             @Override

@@ -1,4 +1,4 @@
-package com.colourizmus;
+package bg.o.sim.colourizmus;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,11 +1,11 @@
-package com.colourizmus.model;
+package bg.o.sim.colourizmus.model;
 
 import android.arch.lifecycle.LiveData;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.util.Log;
 
-import com.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.utils.Util;
 
 import java.io.Serializable;
 

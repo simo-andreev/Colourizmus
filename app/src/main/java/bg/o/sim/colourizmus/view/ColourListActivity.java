@@ -1,4 +1,4 @@
-package com.colourizmus.view;
+package bg.o.sim.colourizmus.view;
 
 import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.LifecycleOwner;
@@ -16,10 +16,10 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.colourizmus.R;
-import com.colourizmus.model.ColourRepository;
-import com.colourizmus.model.CustomColour;
-import com.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.R;
+import bg.o.sim.colourizmus.model.ColourRepository;
+import bg.o.sim.colourizmus.model.CustomColour;
+import bg.o.sim.colourizmus.utils.Util;
 
 import java.util.List;
 
