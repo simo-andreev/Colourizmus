@@ -1,10 +1,8 @@
-package com.colourizmus.view;
+package bg.o.sim.colourizmus.view;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,11 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.colourizmus.R;
-import com.colourizmus.model.ColourDatabase;
-import com.colourizmus.model.ColourRepository;
-import com.colourizmus.model.CustomColour;
-import com.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.R;
+import bg.o.sim.colourizmus.model.ColourRepository;
+import bg.o.sim.colourizmus.model.CustomColour;
+import bg.o.sim.colourizmus.utils.Util;
 
 import java.util.Random;
 

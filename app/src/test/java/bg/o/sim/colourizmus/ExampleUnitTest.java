@@ -1,4 +1,4 @@
-package com.colourizmus;
+package bg.o.sim.colourizmus;
 
 import org.junit.Test;
 

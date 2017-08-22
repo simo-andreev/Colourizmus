@@ -1,4 +1,4 @@
-package com.colourizmus.view;
+package bg.o.sim.colourizmus.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 
-import com.colourizmus.R;
 
 import java.util.Random;
+
+import bg.o.sim.colourizmus.R;
 
 public class EpilepticaActivity extends AppCompatActivity {
 
