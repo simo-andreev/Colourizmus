@@ -1,21 +1,49 @@
 <resources>
 
-    <dimen name="generic_spacing_small">8dp</dimen>
-    <dimen name="generic_spacing_medium">16dp</dimen>
+    <!--::::::::::::::::::::SPACING::::::::::::::::::::-->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_huge">56dp</dimen>
 
-    <dimen name="generic_elevation_small">2dp</dimen>
+    <!--====================SPACING=====================-->
 
-    <dimen name="generic_text_tiny">8sp</dimen>
-    <dimen name="generic_text_small">12sp</dimen>
-    <dimen name="generic_text_medium">16sp</dimen>
-    <dimen name="generic_text_large">24sp</dimen>
-    <dimen name="generic_text_huge">36sp</dimen>
-    <dimen name="generic_text_ginormous">48sp</dimen>
 
-    <dimen name="appbar_elevation">4dp</dimen>
-    <dimen name="appbar_height">56dp</dimen>
 
-    <dimen name="cardview_colour_preview_size">40dp</dimen>
-    <dimen name="generic_spacing_tiny">4dp</dimen>
+    <!--:::::::::::::::::::ELEVATION::::::::::::::::::::-->
+    <dimen name="elevation_small">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_large">8dp</dimen>
+    <dimen name="elevation_huge">16dp</dimen>
 
+    <!--===================ELEVATION====================-->
+
+
+
+    <!--:::::::::::::::::::TEXT-SIZE::::::::::::::::::::-->
+    <dimen name="text_tiny">8sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_huge">38sp</dimen>
+    <dimen name="text_ginormous">56sp</dimen>
+
+    <!--===================TEXT-SIZE====================-->
+
+
+
+    <!--:::::::::::::::::APPBARU-AKBAR::::::::::::::::::-->
+    <dimen name="allahu_appbar_elevation">4dp</dimen>
+    <dimen name="allahu_appbar_height">56dp</dimen>
+    <!--=================APPBARU-AKBAR==================-->
+
+    
+    
+    <!--::::::::::::::::::VIEW-SIZING:::::::::::::::::::-->
+    <dimen name="preview_window_small">24dp</dimen>
+    <dimen name="preview_window_normal">40dp</dimen>
+    <dimen name="preview_window_large">64dp</dimen>
+
+    <!--::::::::::::::::::VIEW-SIZING:::::::::::::::::::-->
 </resources>

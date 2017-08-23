@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    tools:context=".view.ColourCreationActivity">
 
     <include
         android:id="@+id/allahu_appbar"
@@ -14,27 +14,27 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tab_layout"
-        android:layout_below="@id/allahu_appbar"
         style="@style/TabLayout"
-        android:elevation="@dimen/appbar_elevation"
+        android:layout_below="@id/allahu_appbar"
+        android:elevation="@dimen/allahu_appbar_elevation"
         app:tabGravity="fill"
         app:tabMode="fixed" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_colour_pager"
-        android:layout_below="@id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/main_tab_layout"
         android:background="@color/ErrorRed" />
 
     <android.support.design.widget.FloatingActionButton
-        android:src="@mipmap/ic_launcher_round"
         android:id="@+id/main_fab_save_colour"
-        android:adjustViewBounds="true"
+        android:layout_width="@dimen/preview_window_large"
+        android:layout_height="@dimen/preview_window_large"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/spacing_large"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_fav_false" />
 
 </RelativeLayout>

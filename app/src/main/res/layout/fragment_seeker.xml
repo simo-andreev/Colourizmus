@@ -14,7 +14,7 @@
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:paddingTop="@dimen/generic_spacing_small">
+        android:paddingTop="@dimen/spacing_small">
 
         <LinearLayout style="@style/ChannelSeeker">
             <TextView

@@ -3,36 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/generic_spacing_tiny"
-    android:layout_marginRight="@dimen/generic_spacing_tiny"
-    android:layout_marginTop="@dimen/generic_spacing_small"
+    android:layout_marginLeft="@dimen/spacing_tiny"
+    android:layout_marginRight="@dimen/spacing_tiny"
+    android:layout_marginTop="@dimen/spacing_small"
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:padding="@dimen/generic_spacing_small">
+        android:padding="@dimen/spacing_small">
 
         <ImageView
             android:id="@+id/cardview_colour_preview"
-            android:layout_width="@dimen/cardview_colour_preview_size"
-            android:layout_height="@dimen/cardview_colour_preview_size" />
+            android:layout_width="@dimen/preview_window_normal"
+            android:layout_height="@dimen/preview_window_normal"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/cardview_colour_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/cardview_colour_favourite"
+            app:layout_constraintStart_toEndOf="@id/cardview_colour_preview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <CheckBox
             android:id="@+id/cardview_colour_favourite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@drawable/checkbox_favourite" />
+            android:button="@drawable/checkbox_favourite"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

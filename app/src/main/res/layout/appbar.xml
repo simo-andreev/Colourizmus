@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
-
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/allahu_appbar"
-
     android:layout_width="match_parent"
-    android:layout_height="@dimen/appbar_height"
-
+    android:layout_height="@dimen/allahu_appbar_height"
     android:background="@color/colorPrimaryDark"
-    android:elevation="@dimen/appbar_elevation"
-
-    android:theme="@style/AppTheme"
-
-    android:titleTextColor="@color/colorTextLight" />
+    android:elevation="@dimen/allahu_appbar_elevation" />
+    <!--android:theme="@style/AppTheme"-->
+    <!--android:titleTextColor="@color/colorTextLight" -->

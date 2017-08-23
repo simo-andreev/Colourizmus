@@ -15,7 +15,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dip</item>
         <item name="android:background">@color/colorDiv</item>
-        <item name="android:elevation">@dimen/generic_elevation_small</item>
+        <item name="android:elevation">@dimen/elevation_small</item>
     </style>
 
     <style name="ChannelSeeker">
@@ -32,7 +32,7 @@
 
     <style name="ChannelSeekerLabel">
         <item name="android:fontFamily">monospace</item>
-        <item name="android:textSize">@dimen/generic_text_large</item>
+        <item name="android:textSize">@dimen/text_large</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAlignment">viewEnd</item>
@@ -44,7 +44,7 @@
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">@dimen/generic_text_huge</item>
+        <item name="android:textSize">@dimen/text_huge</item>
     </style>
 
     <style name="TabLayout" parent="TabLayout">
