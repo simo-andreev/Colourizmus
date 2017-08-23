@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.ColorInt;
 
 /**
- * The CustomColour represents a single, named colour that can be marked as favourite and is persisted in on-disk database.
+ * The {@link CustomColour} represents a single, named colour that can be marked as favourite and is persisted in on-disk database.
  */
 @Entity ( tableName = CustomColour.TABLE, indices = @Index(value = CustomColour.COLUMN_NAME, unique = true))
 public class CustomColour {

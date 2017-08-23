@@ -40,13 +40,13 @@ public class ColourCreationActivity extends AppCompatActivity implements Lifecyc
 
         setSupportActionBar(findViewById(R.id.allahu_appbar));
 		getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-        
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab_save_colour);
 
-        mCreationMethodViewPager = (ViewPager) findViewById(R.id.main_colour_pager);
+        mCreationMethodViewPager = (ViewPager) findViewById(R.id.colour_creation_pager);
         mCreationMethodViewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.colour_creation_tab_layout);
         tabLayout.setupWithViewPager(mCreationMethodViewPager);
 
         ColourRepository.LIVE_COLOR.observe(this, new Observer<Integer>() {
@@ -59,14 +59,11 @@ public class ColourCreationActivity extends AppCompatActivity implements Lifecyc
 
         ColourRepository.saveColour(new CustomColour("TEST", 0xFF00f0ff));
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        fab.setOnClickListener(v -> {
                 Random rand = new Random();
                 CustomColour c = new CustomColour("TEST" + rand.nextInt(), ColourRepository.LIVE_COLOR.getValue());
                 ColourRepository.saveColour(c);
                 Util.makeShortToast(ColourCreationActivity.this, "SAVED : " + c.getValue());
-            }
         });
 
     }

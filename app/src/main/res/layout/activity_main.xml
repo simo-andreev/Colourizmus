@@ -13,7 +13,7 @@
         layout="@layout/appbar" />
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/main_tab_layout"
+        android:id="@+id/colour_creation_tab_layout"
         style="@style/TabLayout"
         android:layout_below="@id/allahu_appbar"
         android:elevation="@dimen/allahu_appbar_elevation"
@@ -21,10 +21,10 @@
         app:tabMode="fixed" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/main_colour_pager"
+        android:id="@+id/colour_creation_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/main_tab_layout"
+        android:layout_below="@id/colour_creation_tab_layout"
         android:background="@color/ErrorRed" />
 
     <android.support.design.widget.FloatingActionButton
