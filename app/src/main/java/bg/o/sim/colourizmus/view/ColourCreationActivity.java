@@ -12,9 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,12 +25,11 @@ import bg.o.sim.colourizmus.utils.Util;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+public class ColourCreationActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
     //Can't extend LifecycleActivity for compat reasons. When the new arch comps are out of alpha, the concrete implementation of LifecycleRegistryOwner methods can be skipped
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
-    private ViewPager viewPager;
-    private FloatingActionButton fab;
+    private ViewPager mCreationMethodViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,30 +38,26 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
 
         ColourRepository.init(getApplication());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.allahu_appbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(findViewById(R.id.allahu_appbar));
+		getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab_save_colour);
 
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
-
-        fab = (FloatingActionButton) findViewById(R.id.main_fab_save_colour);
-
-        viewPager = (ViewPager) findViewById(R.id.main_colour_pager);
-        viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
+        mCreationMethodViewPager = (ViewPager) findViewById(R.id.main_colour_pager);
+        mCreationMethodViewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(mCreationMethodViewPager);
 
         ColourRepository.LIVE_COLOR.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
-                viewPager.setBackgroundColor(integer);
+                mCreationMethodViewPager.setBackgroundColor(integer);
                 Log.v(Util.LOG_TAG_DEV, "LIVE_COLOUR: onChanged: " + integer);
             }
         });
 
-        ColourRepository.saveColour(new CustomColour("VOdKA", 0xFF00f0ff));
+        ColourRepository.saveColour(new CustomColour("TEST", 0xFF00f0ff));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
                 Random rand = new Random();
                 CustomColour c = new CustomColour("TEST" + rand.nextInt(), ColourRepository.LIVE_COLOR.getValue());
                 ColourRepository.saveColour(c);
-                Util.makeShortToast(MainActivity.this, "SAVED : " + c.getValue());
+                Util.makeShortToast(ColourCreationActivity.this, "SAVED : " + c.getValue());
             }
         });
 
@@ -107,10 +100,8 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Log.w(Util.LOG_TAG_DEV, "getItem: SeekerFragment");
                     return new SeekerFragment();
                 case 1:
-                    Log.w(Util.LOG_TAG_DEV, "getItem: PickerFragment");
                     return new PickerFragment();
                 default:
                     return null;

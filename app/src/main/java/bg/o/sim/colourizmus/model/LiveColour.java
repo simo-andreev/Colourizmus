@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * An implementation of the {@link LiveData} class, made for storing a colour.
- * Intended for the ColourCreation fragments of the {@link com/colourizmus/view/MainActivity.java}.
+ * Intended for the ColourCreation fragments of the {@link com/colourizmus/view/ColourCreationActivity.java}.
  * It should allow a more efficient synchronisation of the current value, than the previous Communicator system,
  * due to the Lifecycle awareness of the LiveData type.
  */
