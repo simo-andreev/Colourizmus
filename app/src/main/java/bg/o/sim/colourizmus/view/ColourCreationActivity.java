@@ -39,7 +39,7 @@ public class ColourCreationActivity extends AppCompatActivity implements Lifecyc
         ColourRepository.init(getApplication());
 
         setSupportActionBar(findViewById(R.id.allahu_appbar));
-		getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+	getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab_save_colour);
 
