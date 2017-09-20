@@ -27,8 +27,8 @@
             android:id="@+id/cardview_colour_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@id/cardview_colour_favourite"
-            app:layout_constraintStart_toEndOf="@id/cardview_colour_preview"
+            app:layout_constraintEnd_toStartOf="@+id/cardview_colour_favourite"
+            app:layout_constraintStart_toEndOf="@+id/cardview_colour_preview"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

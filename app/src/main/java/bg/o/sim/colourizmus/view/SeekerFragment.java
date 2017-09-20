@@ -1,47 +1,31 @@
 package bg.o.sim.colourizmus.view;
 
-import android.arch.lifecycle.LifecycleFragment;
-import android.arch.lifecycle.Observer;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import bg.o.sim.colourizmus.R;
-import bg.o.sim.colourizmus.model.ColourRepository;
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.model.CR;
 
-public class SeekerFragment extends LifecycleFragment {
+public class SeekerFragment extends Fragment {
 
-    private SeekBar redSeeker, greenSeeker, blueSeeker;
+    private SeekBar mRedSeeker, mGreenSeeker, mBlueSeeker;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.w(Util.LOG_TAG_DEV, "SeekerFragment#onStart: =====================================================");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.w(Util.LOG_TAG_DEV, "SeekerFragment#onStop : =====================================================");
+    public static SeekerFragment newInstance() {
+        return new SeekerFragment();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        ColourRepository.LIVE_COLOR.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-            redSeeker.setProgress(ColourRepository.LIVE_COLOR.getRed());
-            greenSeeker.setProgress(ColourRepository.LIVE_COLOR.getGreen());
-            blueSeeker.setProgress(ColourRepository.LIVE_COLOR.getBlue());
-            }
+        CR.LIVE_COLOR.observe(this, onChange -> {
+            mRedSeeker.setProgress(CR.LIVE_COLOR.getRed());
+            mGreenSeeker.setProgress(CR.LIVE_COLOR.getGreen());
+            mBlueSeeker.setProgress(CR.LIVE_COLOR.getBlue());
         });
     }
 
@@ -49,38 +33,36 @@ public class SeekerFragment extends LifecycleFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_seeker, container, false);
 
-        redSeeker = (SeekBar) view.findViewById(R.id.seeker_red);
-        greenSeeker = (SeekBar) view.findViewById(R.id.seeker_green);
-        blueSeeker = (SeekBar) view.findViewById(R.id.seeker_blue);
+        mRedSeeker = view.findViewById(R.id.seeker_red);
+        mGreenSeeker = view.findViewById(R.id.seeker_green);
+        mBlueSeeker = view.findViewById(R.id.seeker_blue);
 
-        redSeeker.setMax(255);
-        greenSeeker.setMax(255);
-        blueSeeker.setMax(255);
+        mRedSeeker.setMax(255);
+        mGreenSeeker.setMax(255);
+        mBlueSeeker.setMax(255);
 
-        SeekBar.OnSeekBarChangeListener chanelListener = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (!fromUser) return;
-                ColourRepository.LIVE_COLOR.setColour(Color.rgb(
-                        redSeeker.getProgress(),
-                        greenSeeker.getProgress(),
-                        blueSeeker.getProgress())
-                );
-            }
+        mRedSeeker.setOnSeekBarChangeListener((ChannelListener) (seekBar, progress, fromUser) -> {
+            if (fromUser) CR.LIVE_COLOR.setRed(progress);
+        });
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+        mGreenSeeker.setOnSeekBarChangeListener((ChannelListener) (seekBar, progress, fromUser) -> {
+            if (fromUser) CR.LIVE_COLOR.setGreen(progress);
+        });
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        };
-
-        redSeeker.setOnSeekBarChangeListener(chanelListener);
-        greenSeeker.setOnSeekBarChangeListener(chanelListener);
-        blueSeeker.setOnSeekBarChangeListener(chanelListener);
+        mBlueSeeker.setOnSeekBarChangeListener((ChannelListener) (seekBar, progress, fromUser) -> {
+            if (fromUser) CR.LIVE_COLOR.setBlue(progress);
+        });
 
         return view;
+    }
+
+    /** I know this seems pointless *BUT* it allows me to lambdize the listeners abouve! ( ͡° ͜ʖ ͡°) **/
+    private interface ChannelListener extends SeekBar.OnSeekBarChangeListener {
+        @Override
+        void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser);
+        @Override
+        default void onStartTrackingTouch(SeekBar seekBar) {}
+        @Override
+        default void onStopTrackingTouch(SeekBar seekBar) {}
     }
 }

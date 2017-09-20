@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Colorizmus</string>
+
+    <string name="FUCK">well... I dun fucked up…</string>
+
     <string name="title_activity_picker">PickerActivity</string>
 
     <string name="main_prompt_sign_in">Please Sign In.</string>
@@ -29,7 +32,8 @@
     <string name="prefs_key_name">NAME</string>
 
 
-    <string name="itDoneFuckedUp">well fuck...</string>
+    <string name="coarse">Coarse</string>
+    <string name="precise">Precise</string>
 
 
 </resources>

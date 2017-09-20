@@ -2,19 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--TODO: items were unused-->
-    <!--<item-->
-        <!--android:id="@+id/search_bar"-->
-        <!--android:icon="@android:drawable/ic_menu_search"-->
-        <!--android:title="search"-->
-        <!--app:actionViewClass="android.support.v7.widget.SearchView"-->
-        <!--app:showAsAction="ifRoom|collapseActionView" />-->
-
     <item
         android:id="@+id/appbar_favourites"
         android:icon="@android:drawable/star_big_on"
         android:title="favourites"
         app:showAsAction="never" />
-
 
 </menu>

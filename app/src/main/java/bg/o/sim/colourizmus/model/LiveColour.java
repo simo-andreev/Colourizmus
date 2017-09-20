@@ -17,12 +17,9 @@ import java.io.Serializable;
  */
 public class LiveColour extends LiveData<Integer> implements Serializable {
 
-    //TODO ! might be considerably more resource efficient to find a way to separate the 3 col. channels. (maybe 3 LiveColour instances ?) - it would stop updating unchanged channels.
-
-    protected LiveColour(){
+    LiveColour(){
         //TODO (fu-ft) might store the current colour in shPrefs, and retrieve on app restart.
-        //TODO (fu-ft) might make it start as a random colour (possibly supplementary to a random UI colour, which to also make assessable).
-        setValue(new Integer(0xFF000000));
+        setValue(0xFF000000);
     }
 
 

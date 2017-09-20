@@ -25,11 +25,11 @@ abstract class ColourDao {
 
     /**
      * Retrieves all colors marked as 'favourite' from the SQLite Db.
-     *
      * @return array of all the colours marked as favourite.
      */
     @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_IS_FAVOURITE + " = 1 ")
     protected abstract CustomColour[] getFavouriteColours();
+
 
     @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_PK + " = :value")
     protected abstract CustomColour getColour(int value);
@@ -50,6 +50,15 @@ abstract class ColourDao {
     protected abstract long[] insertColours(CustomColour ... colours);
 
     /**
+     * Insert new items in the SQLite persistence Db.
+     *
+     * @param colours item(s) which to insert
+     * @return array of the RowIds of the newly-created rows.
+     */
+    @Insert (onConflict = IGNORE) //TODO - consider another onConflict strategy.
+    protected abstract long insertColour(CustomColour colours);
+
+    /**
      * Modify content of existing rows.
      *
      * @param colour item which to change.
@@ -66,7 +75,5 @@ abstract class ColourDao {
      */
     @Delete
     protected abstract int deleteColours(CustomColour ... colours);
-
-    
 
 }
