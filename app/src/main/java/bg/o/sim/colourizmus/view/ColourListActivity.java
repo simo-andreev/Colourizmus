@@ -1,9 +1,7 @@
 package bg.o.sim.colourizmus.view;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,11 +66,11 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
     public void onBindViewHolder(ColourViewHolder holder, int position) {
         CustomColour c = CR.getCachedColours().getValue().get(position);
 
-        holder.favouriteCheckbox.setTag(c);
+        holder.mIsFavourite.setTag(c);
 
-        holder.colourPreview.setBackgroundColor(c.getValue());
-        holder.colourName.setText(c.getName());
-        holder.favouriteCheckbox.setChecked(c.getIsFavourite());
+        holder.mPreview.setBackgroundColor(c.getValue());
+        holder.mName.setText(c.getName());
+        holder.mIsFavourite.setChecked(c.getIsFavourite());
     }
 
     @Override
@@ -81,17 +79,17 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
     }
 
     static class ColourViewHolder extends RecyclerView.ViewHolder {
-        private ImageView colourPreview;
-        private TextView colourName;
-        private CheckBox favouriteCheckbox;
+        private final ImageView mPreview;
+        private final TextView mName;
+        private final CheckBox mIsFavourite;
 
         ColourViewHolder(CardView v, CheckBox.OnCheckedChangeListener checkListener) {
             super(v);
-            colourPreview = v.findViewById(R.id.cardview_colour_preview);
-            colourName = v.findViewById(R.id.cardview_colour_name);
-            favouriteCheckbox = v.findViewById(R.id.cardview_colour_favourite);
+            mPreview = v.findViewById(R.id.cardview_colour_preview);
+            mName = v.findViewById(R.id.cardview_colour_name);
+            mIsFavourite = v.findViewById(R.id.cardview_colour_favourite);
 
-            favouriteCheckbox.setOnCheckedChangeListener(checkListener);
+            mIsFavourite.setOnCheckedChangeListener(checkListener);
         }
     }
 }

@@ -19,17 +19,17 @@
             android:id="@+id/cardview_colour_preview"
             android:layout_width="@dimen/preview_window_normal"
             android:layout_height="@dimen/preview_window_normal"
-            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/cardview_colour_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/cardview_colour_favourite"
             app:layout_constraintStart_toEndOf="@+id/cardview_colour_preview"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <CheckBox

@@ -24,7 +24,9 @@
     <!--:::::::::::::::::::TEXT-SIZE::::::::::::::::::::-->
     <dimen name="text_tiny">8sp</dimen>
     <dimen name="text_small">12sp</dimen>
+    <dimen name="text_med_low">14sp</dimen>
     <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_med_high">18sp</dimen>
     <dimen name="text_large">24sp</dimen>
     <dimen name="text_huge">38sp</dimen>
     <dimen name="text_ginormous">56sp</dimen>

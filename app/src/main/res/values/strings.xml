@@ -34,6 +34,12 @@
 
     <string name="coarse">Coarse</string>
     <string name="precise">Precise</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="colour_name">colour name</string>
+    <string name="mark_as_favourite">Mark colour as favourite?</string>
+    <string name="saved">%s saved</string>
+    <string name="create_new_colour">Name and save thine colour</string>
 
 
 </resources>

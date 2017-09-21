@@ -15,6 +15,7 @@ import java.util.List;
  */
 public final class CR {
 
+    // TODO: 9/21/17 = Check if using a LruCache and observe LiveData list localy! 
     public static final LiveColour LIVE_COLOR = new LiveColour();
     private static ColourDao sColourDao;
     private static LiveData<List<CustomColour>> cachedColours;

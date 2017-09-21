@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,12 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.Random;
-
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
-import bg.o.sim.colourizmus.model.CustomColour;
-import bg.o.sim.colourizmus.utils.Util;
 
 public class ColourCreationActivity extends AppCompatActivity {
 
@@ -30,10 +27,6 @@ public class ColourCreationActivity extends AppCompatActivity {
         CR.init(getApplication());
 
         setSupportActionBar(findViewById(R.id.allahu_appbar));
-
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-
-        FloatingActionButton fab = findViewById(R.id.main_fab_save_colour);
 
         mCreationMethodViewPager = findViewById(R.id.colour_creation_pager);
         mCreationMethodViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -74,13 +67,10 @@ public class ColourCreationActivity extends AppCompatActivity {
             mCreationMethodViewPager.setBackgroundColor(integer);
         });
 
-        CR.saveColour(new CustomColour("TEST", 0xFF00f0ff));
-
+        FloatingActionButton fab = findViewById(R.id.main_fab_save_colour);
         fab.setOnClickListener(v -> {
-            Random rand = new Random();
-            CustomColour c = new CustomColour("TEST" + rand.nextInt(), CR.LIVE_COLOR.getValue());
-            CR.saveColour(c);
-            Util.makeShortToast(ColourCreationActivity.this, "SAVED : " + c.getValue());
+            DialogFragment dialogFragment = new SaveColourDialogue();
+            dialogFragment.show(getSupportFragmentManager(), SaveColourDialogue.TAG);
         });
 
     }
