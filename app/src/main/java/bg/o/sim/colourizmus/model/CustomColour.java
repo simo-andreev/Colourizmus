@@ -14,13 +14,13 @@ import android.support.annotation.ColorInt;
 public class CustomColour {
 
     @Ignore
-    public static final String TABLE = "colour";
+    static final String TABLE = "colour";
     @Ignore
-    public static final String COLUMN_PK = "value";
+    static final String COLUMN_PK = "value";
     @Ignore
-    public static final String COLUMN_NAME = "name";
+    static final String COLUMN_NAME = "name";
     @Ignore
-    public static final String COLUMN_IS_FAVOURITE = "is_favourite";
+    static final String COLUMN_IS_FAVOURITE = "is_favourite";
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = COLUMN_PK)
@@ -60,5 +60,11 @@ public class CustomColour {
 
     public void setIsFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.value;
+
     }
 }

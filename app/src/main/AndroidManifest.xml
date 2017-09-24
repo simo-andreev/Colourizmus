@@ -3,6 +3,7 @@
     package="bg.o.sim.colourizmus">
 
     <application
+        android:name=".model.DasApplikation"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +22,7 @@
         </activity>
 
         <activity android:name=".view.EpilepticaActivity" />
-        <activity android:name=".view.ColourListActivity"/>
+        <activity android:name=".view.ColourListActivity" />
     </application>
 
 </manifest>

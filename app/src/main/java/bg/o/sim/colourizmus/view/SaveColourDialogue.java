@@ -9,10 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
-
-import java.util.zip.CRC32;
 
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
@@ -54,7 +51,7 @@ public class SaveColourDialogue extends DialogFragment {
             col.setIsFavourite(isFavourite);
             CR.saveColour(col);
 
-            Util.makeShortToast(getActivity(), getString(R.string.saved, name));
+            Util.toastShort(getActivity(), getString(R.string.saved, name));
 
             dialog.dismiss();
         });

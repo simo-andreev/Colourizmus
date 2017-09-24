@@ -24,8 +24,6 @@ public class ColourCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CR.init(getApplication());
-
         setSupportActionBar(findViewById(R.id.allahu_appbar));
 
         mCreationMethodViewPager = findViewById(R.id.colour_creation_pager);

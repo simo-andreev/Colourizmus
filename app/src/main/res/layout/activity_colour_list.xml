@@ -10,6 +10,12 @@
         android:id="@+id/allahu_appbar"
         layout="@layout/appbar" />
 
+    <Button
+        android:id="@+id/TEST_DATA_GEN_BUTTON"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="generate test data"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_recycler"
         android:layout_width="match_parent"

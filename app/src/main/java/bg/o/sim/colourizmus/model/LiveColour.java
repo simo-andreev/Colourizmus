@@ -3,59 +3,40 @@ package bg.o.sim.colourizmus.model;
 import android.arch.lifecycle.LiveData;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
-import android.util.Log;
 
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.view.ColourCreationActivity;
 
 import java.io.Serializable;
 
 /**
- * An implementation of the {@link LiveData} class, made for storing a colour.
- * Intended for the ColourCreation fragments of the {@link com/colourizmus/view/ColourCreationActivity.java}.
+ * An implementation of the {@link LiveData} class, made for storing a single colour.
+ * Intended for the ColourCreation fragments of the {@link ColourCreationActivity}.
  * It should allow a more efficient synchronisation of the current value, than the previous Communicator system,
  * due to the Lifecycle awareness of the LiveData type.
  */
 public class LiveColour extends LiveData<Integer> implements Serializable {
 
     LiveColour(){
-        //TODO (fu-ft) might store the current colour in shPrefs, and retrieve on app restart.
         setValue(0xFF000000);
     }
-
 
     public int getRed() { return Color.red(getValue()); }
     public int getGreen() { return Color.green(getValue()); }
     public int getBlue() { return Color.blue(getValue()); }
 
-    //TODO - SING_CHANNEL METHODS SEEM TO GIVE WRONG RESULT ON START-UP. TEST 'DA ALPHA OUT OF THEIR ASSES!
 
     public void setRed(final int red) {
-        if (red >= 0 && red < 256)
-            setValue(Color.rgb(red, getGreen(), getBlue()));
-        else
-            Log.e(Util.LOG_TAG_ERR, "LIVE_COLOUR.setRed(int red) -> invalid value passed for red! [" + red + "]");
+        setValue(Color.rgb(red, getGreen(), getBlue()));
     }
     public void setGreen(final int green) {
-        if (green >= 0 && green < 256)
-            setValue(Color.rgb(getRed(), green, getBlue()));
-        else
-            Log.e(Util.LOG_TAG_ERR, "LIVE_COLOUR.setGreen(int green) -> invalid value passed for red! [" + green + "]");
+        setValue(Color.rgb(getRed(), green, getBlue()));
     }
     public void setBlue(final int blue) {
-        if (blue >= 0 && blue < 256)
-            setValue(Color.rgb(getRed(), getGreen(), blue));
-        else
-            Log.e(Util.LOG_TAG_ERR, "LIVE_COLOUR.setBlue(int blue) -> invalid value passed for red! [" + blue + "]");
+        setValue(Color.rgb(getRed(), getGreen(), blue));
     }
 
     @Override
-    protected void setValue(Integer value) {
-        //TODO validate based on ' int color = (A & 0xff) << 24 | (R & 0xff) << 16 | (G & 0xff) << 16 | (B & 0xff); '
+    protected void setValue(@ColorInt Integer value) {
         super.setValue(value);
-    }
-
-    public void setColour(@ColorInt int colour){
-        this.setValue(colour);
-        Log.e(Util.LOG_TAG_DEV, "setColour: " + colour);
     }
 }

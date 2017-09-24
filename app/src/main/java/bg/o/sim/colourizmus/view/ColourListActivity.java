@@ -1,6 +1,7 @@
 package bg.o.sim.colourizmus.view;
 
 import android.arch.lifecycle.LifecycleOwner;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -8,11 +9,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Random;
 
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
@@ -33,6 +38,17 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new RecyclerAdapter(this, this));
+
+
+        Button b = findViewById(R.id.TEST_DATA_GEN_BUTTON);
+        b.setOnClickListener(view -> {
+            Random r = new Random();
+
+            for (int i = 0; i < 100; i++)
+                CR.saveColour(new CustomColour("Test " + i, Color.rgb(r.nextInt(),r.nextInt(),r.nextInt())));
+
+            Util.toastLong(ColourListActivity.this, "DONE!");
+        });
     }
 
     @Override
