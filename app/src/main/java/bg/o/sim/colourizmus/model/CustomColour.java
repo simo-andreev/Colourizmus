@@ -7,11 +7,13 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.ColorInt;
 
+import java.io.Serializable;
+
 /**
  * The {@link CustomColour} represents a single, named colour that can be marked as favourite and is persisted in on-disk database.
  */
 @Entity(tableName = CustomColour.TABLE, indices = @Index(value = CustomColour.COLUMN_NAME, unique = true))
-public class CustomColour {
+public class CustomColour implements Serializable {
 
     @Ignore
     static final String TABLE = "colour";
@@ -65,6 +67,5 @@ public class CustomColour {
     @Override
     public int hashCode() {
         return this.value;
-
     }
 }

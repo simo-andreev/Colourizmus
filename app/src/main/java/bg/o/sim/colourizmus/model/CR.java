@@ -30,7 +30,7 @@ public abstract class CR {
     //the currently active colour
     public static final LiveColour LIVE_COLOR = new LiveColour();
     private static ColourDatabase sDatabase;
-    private static LiveData cachedColours;
+    private static LiveData<List<CustomColour>> cachedColours;
 
 
     /**
@@ -47,7 +47,8 @@ public abstract class CR {
         new SaveTask().execute(colour);
     }
 
-    public static void setColourFavorite(final CustomColour colour) {
+    public static void setColourFavorite(final CustomColour colour, boolean isChecked) {
+        colour.setIsFavourite(isChecked);
         new UpdateTask().execute(colour);
     }
 

@@ -17,6 +17,7 @@
     <color name="colorBackgroundLight">#f1f8e9</color>
     <color name="colorBackgroundDark">#616161</color>
 
+    <color name="nill">#00000000</color>
 
     <color name="ErrorRed">#FFC90000</color>
 

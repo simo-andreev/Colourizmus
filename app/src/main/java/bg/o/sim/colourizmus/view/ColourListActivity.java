@@ -1,6 +1,8 @@
 package bg.o.sim.colourizmus.view;
 
 import android.arch.lifecycle.LifecycleOwner;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import bg.o.sim.colourizmus.R;
@@ -24,7 +27,7 @@ import bg.o.sim.colourizmus.model.CR;
 import bg.o.sim.colourizmus.model.CustomColour;
 import bg.o.sim.colourizmus.utils.Util;
 
-public class ColourListActivity extends AppCompatActivity implements CheckBox.OnCheckedChangeListener{
+public class ColourListActivity extends AppCompatActivity implements CheckBox.OnCheckedChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
         mRecyclerView.setVerticalScrollBarEnabled(true);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new RecyclerAdapter(this, this));
+        mRecyclerView.setAdapter(new RecyclerAdapter(this, getLayoutInflater(), this));
 
 
         Button b = findViewById(R.id.TEST_DATA_GEN_BUTTON);
@@ -45,7 +48,7 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
             Random r = new Random();
 
             for (int i = 0; i < 100; i++)
-                CR.saveColour(new CustomColour("Test " + i, Color.rgb(r.nextInt(),r.nextInt(),r.nextInt())));
+                CR.saveColour(new CustomColour("Test " + r.nextGaussian(), Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256))));
 
             Util.toastLong(ColourListActivity.this, "DONE!");
         });
@@ -57,32 +60,39 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
         if (c == null)
             Log.e(Util.LOG_TAG_ERR, "onCheckedChanged: com/colourizmus/view/ColourListActivity.java:49 : button tag was nill!!!");
 
-        CR.setColourFavorite(c);
+        CR.setColourFavorite(c, isChecked);
     }
 
 }
 
 
-class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHolder>{
+class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHolder> {
 
-    private CompoundButton.OnCheckedChangeListener checkListener;
+    private final LayoutInflater mInflater;
+    private final Context mContext;
 
-    RecyclerAdapter(LifecycleOwner lifecycleOwner, CheckBox.OnCheckedChangeListener checkListener) {
+    RecyclerAdapter(LifecycleOwner lifecycleOwner, LayoutInflater inflater, Context context) {
+        this.mInflater = inflater;
+        this.mContext = context;
         CR.getCachedColours().observe(lifecycleOwner, cacheObserver -> RecyclerAdapter.this.notifyDataSetChanged());
-        this.checkListener = checkListener;
+        setHasStableIds(true);
     }
 
     @Override
     public RecyclerAdapter.ColourViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_colour_row, parent, false);
-        return new ColourViewHolder(v, checkListener);
+        return new ColourViewHolder(mInflater.inflate(R.layout.card_colour_row, parent, false), mContext);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return CR.getCachedColours().getValue().get(position).getValue();
     }
 
     @Override
     public void onBindViewHolder(ColourViewHolder holder, int position) {
         CustomColour c = CR.getCachedColours().getValue().get(position);
 
-        holder.mIsFavourite.setTag(c);
+        holder.rootView.setTag(c);
 
         holder.mPreview.setBackgroundColor(c.getValue());
         holder.mName.setText(c.getName());
@@ -91,21 +101,28 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
 
     @Override
     public int getItemCount() {
-        return CR.getCachedColours().getValue() == null ? 0 : CR.getCachedColours().getValue().size();
+        return CR.getCachedColours().getValue() != null ? CR.getCachedColours().getValue().size() : 0;
     }
 
     static class ColourViewHolder extends RecyclerView.ViewHolder {
+        private final View rootView;
         private final ImageView mPreview;
         private final TextView mName;
         private final CheckBox mIsFavourite;
 
-        ColourViewHolder(CardView v, CheckBox.OnCheckedChangeListener checkListener) {
-            super(v);
-            mPreview = v.findViewById(R.id.cardview_colour_preview);
-            mName = v.findViewById(R.id.cardview_colour_name);
-            mIsFavourite = v.findViewById(R.id.cardview_colour_favourite);
+        ColourViewHolder(View holderView, Context c) {
+            super(holderView);
 
-            mIsFavourite.setOnCheckedChangeListener(checkListener);
+            rootView = holderView;
+            mPreview = holderView.findViewById(R.id.cardview_colour_preview);
+            mName = holderView.findViewById(R.id.cardview_colour_name);
+            mIsFavourite = holderView.findViewById(R.id.cardview_colour_favourite);
+
+            holderView.setOnClickListener(view -> {
+                Intent i = new Intent(c, ColourDetailsActivity.class);
+                i.putExtra(Util.EXTRA_COLOUR, ((Serializable)rootView.getTag()));
+                c.startActivity(i);
+            });
         }
     }
 }

@@ -23,6 +23,7 @@
 
         <activity android:name=".view.EpilepticaActivity" />
         <activity android:name=".view.ColourListActivity" />
+        <activity android:name=".view.ColourDetailsActivity" />
     </application>
 
 </manifest>
