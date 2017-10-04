@@ -26,8 +26,7 @@ public class CustomColour implements Serializable {
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = COLUMN_PK)
-    private final @ColorInt
-    int value;
+    private final @ColorInt int value;
 
     @ColumnInfo(name = COLUMN_NAME)
     private String name;

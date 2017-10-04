@@ -1,138 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/spacing_medium"
-    tools:context=".view.ColourDetailsActivity">
+<layout>
 
-    <!--<TextView-->
-        <!--android:id="@+id/colour_name"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center" />-->
-
-    <android.support.v7.widget.CardView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/allahu_appbar_height"
-        app:cardCornerRadius="8dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.ColourDetailsActivity">
 
-        <View
+
+        <include
             android:id="@+id/colour_preview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v7.widget.CardView>
+            layout="@layout/card_colour_list_preview" />
 
-
-
-    <TextView
-        android:id="@+id/complimentary_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/allahu_appbar_height"
-        app:cardCornerRadius="8dp">
-
-        <View
+        <include
             android:id="@+id/complimentary_preview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v7.widget.CardView>
+            layout="@layout/card_colour_list_preview" />
 
+        <include
+            android:id="@+id/paletteA"
+            layout="@layout/card_colour_list_preview" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
+        <include
+            android:id="@+id/paletteB"
+            layout="@layout/card_colour_list_preview" />
 
+        <include
+            android:id="@+id/paletteC"
+            layout="@layout/card_colour_list_preview" />
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/allahu_appbar_height"
-        app:cardCornerRadius="8dp">
+        <include
+            android:id="@+id/paletteD"
+            layout="@layout/card_colour_list_preview" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:id="@+id/palleteA_0"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteA_1"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteA_2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteA_3"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteA_4"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/allahu_appbar_height"
-        app:cardCornerRadius="8dp">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:id="@+id/palleteB_0"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteB_1"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteB_2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteB_3"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <View
-                android:id="@+id/palleteB_4"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+    </LinearLayout>
+</layout>
