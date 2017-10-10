@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "bg.o.sim.colourizmus"
@@ -31,41 +31,41 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs =
-                    [
-                            'src/main/res/layout/rows',
-                            'src/main/res/layout/screens',
-                            'src/main/res/layout',
-                            'src/main/res'
-                    ]
+            res.srcDirs = [
+                    'src/main/res/layout/screens',
+                    'src/main/res/layout',
+                    'src/main/res'
+            ]
         }
     }
 }
 
-ext.inDevDepVersion = '1.0.0-alpha9-1'
+ext.inDevDepVersion = '1.0.0-beta2'
 ext.stableDepVersion = '26.1.0'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile "com.android.support:design:$stableDepVersion"
-    compile "com.android.support:support-v4:$stableDepVersion"
-    compile "com.android.support:palette-v7:$stableDepVersion"
-    compile "com.android.support:appcompat-v7:$stableDepVersion"
-    compile "com.android.support:cardview-v7:$stableDepVersion"
-    compile "com.android.support:recyclerview-v7:$stableDepVersion"
+    //SUPPORT BIBLIO-TECH-A   ᕕ( ᐛ )ᕗ
+    implementation "com.android.support:support-v4:$stableDepVersion"
+    implementation "com.android.support:appcompat-v7:$stableDepVersion"
 
+    //DESIGN STUFFSES
+    implementation "com.android.support:design:$stableDepVersion"
+    implementation "com.android.support:palette-v7:$stableDepVersion"
+    implementation "com.android.support:cardview-v7:$stableDepVersion"
+    implementation "com.android.support:recyclerview-v7:$stableDepVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta2'
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    // ARCHITECTURE THINGIES
+    implementation "android.arch.lifecycle:common-java8:$inDevDepVersion"
+    implementation "android.arch.lifecycle:extensions:$inDevDepVersion"
 
-    compile "android.arch.lifecycle:runtime:1.0.0"
-    compile "android.arch.lifecycle:extensions:$inDevDepVersion"
-    compile "android.arch.persistence.room:runtime:$inDevDepVersion"
-
-    annotationProcessor "android.arch.lifecycle:compiler:$inDevDepVersion"
+    // FEELS ROOMY MAN    http://i0.kym-cdn.com/photos/images/newsfeed/000/971/132/49d.gif
+    implementation "android.arch.persistence.room:runtime:$inDevDepVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$inDevDepVersion"
 
     testCompile 'junit:junit:4.12'
