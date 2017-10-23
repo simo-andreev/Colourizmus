@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
 import bg.o.sim.colourizmus.R;
-import bg.o.sim.colourizmus.model.CR;
+
+import static bg.o.sim.colourizmus.model.CR.LIVE_COLOR;
 
 
 public class PickerFragment extends Fragment {
@@ -25,10 +26,10 @@ public class PickerFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        CR.LIVE_COLOR.observe(this, integer -> {
-            pickerRed.setValue(Color.red(integer));
-            pickerGreen.setValue(Color.green(integer));
-            pickerBlue.setValue(Color.blue(integer));
+        LIVE_COLOR.observe(this, integer -> {
+            pickerRed.setValue(LIVE_COLOR.getRed());
+            pickerGreen.setValue(LIVE_COLOR.getGreen());
+            pickerBlue.setValue(LIVE_COLOR.getBlue());
         });
     }
 
@@ -44,9 +45,9 @@ public class PickerFragment extends Fragment {
         pickerGreen.setMaxValue(255);
         pickerBlue.setMaxValue(255);
 
-        pickerRed.setOnValueChangedListener((picker, oldVal, newVal) -> CR.LIVE_COLOR.setRed(newVal));
-        pickerGreen.setOnValueChangedListener((picker, oldVal, newVal) -> CR.LIVE_COLOR.setRed(newVal));
-        pickerBlue.setOnValueChangedListener((picker, oldVal, newVal) -> CR.LIVE_COLOR.setRed(newVal));
+        pickerRed.setOnValueChangedListener((picker, oldVal, newVal) -> LIVE_COLOR.setRed(newVal));
+        pickerGreen.setOnValueChangedListener((picker, oldVal, newVal) -> LIVE_COLOR.setGreen(newVal));
+        pickerBlue.setOnValueChangedListener((picker, oldVal, newVal) -> LIVE_COLOR.setBlue(newVal));
 
         return view;
     }

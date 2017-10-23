@@ -1,8 +1,11 @@
 package bg.o.sim.colourizmus.utils;
 
+import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 
 /**
@@ -25,5 +28,23 @@ public abstract class Util {
 
     private static void toast(Context c, String s, int length) {
         Toast.makeText(c, s, length).show();
+    }
+
+    /**
+     * Shows a {@link Toast} on the UI thread.
+     */
+    public static void toastOnUiThread(Activity activity, final String text) {
+        if (activity != null) {
+            activity.runOnUiThread(() -> Toast.makeText(activity, text, Toast.LENGTH_SHORT).show());
+        }
+    }
+
+    // TODO: 19.10.17 document
+    public static boolean havePermissions(Context context, String... permissions) {
+        for (String permission : permissions)
+            if (!(ContextCompat.checkSelfPermission(context, permission) == PERMISSION_GRANTED))
+                return false;
+
+        return true;
     }
 }
