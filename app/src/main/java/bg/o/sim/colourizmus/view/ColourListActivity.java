@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -63,6 +62,10 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
         CR.setColourFavorite(c, isChecked);
     }
 
+    public static void start(Context context) {
+        Intent starter = new Intent(context, ColourListActivity.class);
+        context.startActivity(starter);
+    }
 }
 
 

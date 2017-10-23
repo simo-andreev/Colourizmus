@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Colorizmus</string>
 
-    <string name="FUCK">well... I dun fucked up…</string>
+    <string name="FUCK">well… I dun fucked up…</string>
 
     <string name="title_activity_picker">PickerActivity</string>
 
