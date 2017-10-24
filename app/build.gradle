@@ -28,16 +28,6 @@ android {
     dataBinding {
         enabled = true
     }
-
-    sourceSets {
-        main {
-            res.srcDirs = [
-                    'src/main/res/layout/screens',
-                    'src/main/res/layout',
-                    'src/main/res'
-            ]
-        }
-    }
 }
 
 ext.inDevDepVersion = '1.0.0-rc1'

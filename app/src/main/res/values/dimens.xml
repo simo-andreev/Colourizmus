@@ -1,4 +1,11 @@
 <resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
 
     <!--::::::::::::::::::::SPACING::::::::::::::::::::-->
     <dimen name="spacing_tiny">4dp</dimen>
@@ -40,12 +47,13 @@
     <dimen name="allahu_appbar_height">56dp</dimen>
     <!--=================APPBARU-AKBAR==================-->
 
-    
-    
+
+
     <!--::::::::::::::::::VIEW-SIZING:::::::::::::::::::-->
     <dimen name="preview_window_small">24dp</dimen>
     <dimen name="preview_window_normal">40dp</dimen>
     <dimen name="preview_window_large">64dp</dimen>
 
     <!--::::::::::::::::::VIEW-SIZING:::::::::::::::::::-->
+
 </resources>

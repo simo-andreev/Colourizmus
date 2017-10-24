@@ -51,7 +51,7 @@ public class SaveColourDialogue extends DialogFragment {
             col.setIsFavourite(isFavourite);
             CR.saveColour(col);
 
-            Util.toastShort(getActivity(), getString(R.string.saved, name));
+            Util.toastShort(getActivity(), getString(R.string.msg_saved, name));
 
             dialog.dismiss();
         });
