@@ -35,14 +35,11 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
 
         RecyclerView mRecyclerView = findViewById(R.id.list_recycler);
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setVerticalScrollBarEnabled(true);
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new RecyclerAdapter(this, getLayoutInflater(), this));
 
-
         Button b = findViewById(R.id.TEST_DATA_GEN_BUTTON);
+
         b.setOnClickListener(view -> {
             Random r = new Random();
 
