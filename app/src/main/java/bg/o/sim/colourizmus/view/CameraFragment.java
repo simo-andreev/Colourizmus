@@ -60,7 +60,7 @@ import bg.o.sim.colourizmus.utils.Util;
 
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) //Cam2 is not backwardscompatible. Will have to reimplement everything for old CameraAPI. EVERY . SINGLE . FUCKING . THING...
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) //Cam2 is not backwards compatible. Will have to reimplement everything for old CameraAPI. EVERY . SINGLE . FUCKING . THING...
 public class CameraFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int REQUEST_CAMERA_PERMISSION = 1;
@@ -89,7 +89,7 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
     private static final int MAX_PREVIEW_HEIGHT = 1080;
     private static final int MAX_PREVIEW_WIDTH = 1920;
 
-    /**  {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a {@link TextureView}.*/
+    /** {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a {@link TextureView}.*/
     private final TextureView.SurfaceTextureListener mSurfaceTextureListener
             = new TextureView.SurfaceTextureListener() {
 
@@ -302,8 +302,10 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
         List<Size> bigEnough = new ArrayList<>();
         // Collect the supported resolutions that are smaller than the preview Surface
         List<Size> notBigEnough = new ArrayList<>();
+
         int w = aspectRatio.getWidth();
         int h = aspectRatio.getHeight();
+
         for (Size option : choices) {
             if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight &&
                     option.getHeight() == option.getWidth() * h / w) {
@@ -339,7 +341,7 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         view.findViewById(R.id.picture).setOnClickListener(mClickListener);
-        view.findViewById(R.id.info).setOnClickListener(mClickListener);
+//        view.findViewById(R.id.info).setOnClickListener(mClickListener);
         mTextureView = view.findViewById(R.id.texture);
     }
 
@@ -404,7 +406,6 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
             for (String cameraId : manager.getCameraIdList()) {
                 CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
 
-                // We don't use a front facing camera in this sample.
                 Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
                 if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
                     continue;
@@ -465,9 +466,7 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
                 // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
                 // garbage capture data.
-                mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
-                        rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
-                        maxPreviewHeight, largest);
+                mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class), rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth, maxPreviewHeight, largest);
 
                 // We fit the aspect ratio of TextureView to the size of preview we picked.
                 int orientation = getResources().getConfiguration().orientation;
@@ -492,21 +491,23 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
         } catch (NullPointerException e) {
             // Currently an NPE is thrown when the Camera2API is used but not supported on the
             // device this code runs.
-            ErrorDialog.newInstance("To err is camera. To rage is divine!").show(getChildFragmentManager(), this.getClass().getName());
+            ErrorDialog.newInstance("To err is camera. To r@ge is divine!").show(getChildFragmentManager(), this.getClass().getName());
         }
     }
 
     /** Opens the camera specified by {@link CameraFragment#mCameraId}. */
     private void openCamera(int width, int height) {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestCameraPermission();
             return;
         }
+
         setUpCameraOutputs(width, height);
         configureTransform(width, height);
         Activity activity = getActivity();
+
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
+
         try {
             if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
