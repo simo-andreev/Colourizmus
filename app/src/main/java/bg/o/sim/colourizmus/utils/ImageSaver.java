@@ -23,12 +23,14 @@ public class ImageSaver implements Runnable {
         this.mFile = file;
     }
 
-    // TODO: 26.10.17 I'm not 100% sure what on Alla's good, flat, earth is going on 'ere!
     @Override
     public void run() {
-        if (Util.makeFile(mFile, false)){
-            return;
-            // TODO: 26.10.17 - notify somehow.
+        try {
+            if (Util.makeFile(mFile, false)){
+                return; // TODO: 26.10.17 - notify somehow.
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();

@@ -18,18 +18,29 @@
 
         <activity
             android:name=".view.DashboardActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.ColourCreationActivity" />
-        <activity android:name=".view.EpilepticaActivity" />
-        <activity android:name=".view.ColourListActivity" />
-        <activity android:name=".view.ColourDetailsActivity" />
-        <activity android:name=".view.CameraActivity">
+        <activity
+            android:name=".view.ColourCreationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EpilepticaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ColourListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ColourDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CameraActivity"
+            android:screenOrientation="portrait">
             <!-- TODO - add a camera intent filter -->
         </activity>
     </application>
