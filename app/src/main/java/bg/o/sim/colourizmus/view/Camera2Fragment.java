@@ -7,6 +7,8 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -26,6 +28,8 @@ import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.util.Size;
 import android.view.LayoutInflater;
@@ -34,13 +38,17 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.lang.annotation.Retention;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import bg.o.sim.colourizmus.R;
+import bg.o.sim.colourizmus.databinding.CardColourListPreviewBinding;
+import bg.o.sim.colourizmus.model.CustomColour;
 import bg.o.sim.colourizmus.utils.Util;
 
 import static android.Manifest.permission.CAMERA;
@@ -51,6 +59,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class Camera2Fragment extends Fragment {
 
+    private ImageView mColourPreview;
 
     /** Camera states: */
     @Retention(CLASS)
@@ -111,6 +120,7 @@ public class Camera2Fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         this.mCaptureButton = view.findViewById(R.id.fragment_camera2_capure_button);
         this.mTextureView = view.findViewById(R.id.fragment_camera2_preview_surface);
+        this.mColourPreview = view.findViewById(R.id.fragment_camera2_single_colour_preview);
 
         instantiateCallbacks();
     }
@@ -348,8 +358,31 @@ public class Camera2Fragment extends Fragment {
             public void onSurfaceTextureUpdated(SurfaceTexture surface) {
                 // TODO: 30.10.17 grab pallete;
                 Log.i("TAAAG", "SURFACE UPDATED!");
+                displayPalette(mTextureView.getBitmap());
             }
         };
+    }
+
+
+    private void displayPalette(Bitmap bmp) {
+        Palette.Builder paletteBuilder = new Palette.Builder(bmp);
+        paletteBuilder.maximumColorCount(6);
+        Palette palette = paletteBuilder.generate();
+
+        mColourPreview.setBackgroundColor(palette.getDominantColor(Color.RED));
+
+//        CustomColour[] coloursInPlay = {
+//                new CustomColour("does NOT matter", palette.getDominantColor(Color.BLUE)),
+//                new CustomColour("does NOT matter", palette.getMutedColor(Color.BLUE)),
+//                new CustomColour("does NOT matter", palette.getVibrantColor(Color.BLUE)),
+//                new CustomColour("does NOT matter", palette.getDarkMutedColor(Color.BLUE)),
+//                new CustomColour("does NOT matter", palette.getDominantColor(Color.BLUE)),
+//                new CustomColour("does NOT matter", palette.getDominantColor(Color.BLUE))
+//        };
+
+
+
+//        CardColourListPreviewBinding.bind(mPalettePreview).setColourList(Arrays.asList(coloursInPlay));
     }
 
 
