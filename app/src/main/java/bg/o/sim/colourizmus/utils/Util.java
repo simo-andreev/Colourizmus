@@ -19,6 +19,8 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 public final class Util {
 
 
+    public static final int REQUEST_CODE_CAMERA_PERMISSION = 1_000_000_000;
+
     private Util(){}
 
     public static final String DB_NAME = "bg.o.sim.colourizmus.db";

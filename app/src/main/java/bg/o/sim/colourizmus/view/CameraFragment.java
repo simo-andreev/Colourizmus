@@ -69,6 +69,13 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
     @IntDef({STATE_PREVIEW, STATE_WAITING_LOCK, STATE_WAITING_PRECAPTURE, STATE_WAITING_NON_PRECAPTURE, STATE_PICTURE_TAKEN})
     @interface CamState{}
 
+    /** Camera states: */
+    private static final int STATE_PREVIEW = 0;
+    private static final int STATE_WAITING_LOCK = 1;
+    private static final int STATE_WAITING_PRECAPTURE = 2;
+    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
+    private static final int STATE_PICTURE_TAKEN = 4;
+
     /** Conversion from screen rotation to JPEG orientation. */
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
@@ -77,13 +84,6 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
         ORIENTATIONS.append(Surface.ROTATION_180, 270);
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
-
-    /** Camera states: */
-    private static final int STATE_PREVIEW = 0;
-    private static final int STATE_WAITING_LOCK = 1;
-    private static final int STATE_WAITING_PRECAPTURE = 2;
-    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
-    private static final int STATE_PICTURE_TAKEN = 4;
 
     /** Max preview dimensions that guaranteed by Camera2 API */
     private static final int MAX_PREVIEW_HEIGHT = 1080;
@@ -575,8 +575,7 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
             Surface surface = new Surface(texture);
 
             // We set up a CaptureRequest.Builder with the output Surface.
-            mPreviewRequestBuilder
-                    = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewRequestBuilder.addTarget(surface);
 
             // Here, we create a CameraCaptureSession for camera preview.
