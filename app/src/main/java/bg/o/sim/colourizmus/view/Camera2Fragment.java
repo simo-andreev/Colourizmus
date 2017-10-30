@@ -53,6 +53,13 @@ public class Camera2Fragment extends Fragment {
     private CameraCaptureSession.StateCallback mSessionStateCallback;
     private CameraCaptureSession.CaptureCallback mSessionCaptureCallback;
 
+    public Camera2Fragment(){}
+
+    public static Camera2Fragment newInstance() {
+        return new Camera2Fragment();
+    }
+    
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_camera2, container, false);
