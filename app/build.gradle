@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "bg.o.sim.colourizmus"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 2
         versionName "alpha-0.1.0-bergenia"
@@ -30,7 +30,7 @@ android {
     }
 }
 
-ext.inDevDepVersion = '1.0.0-rc1'
+ext.inDevDepVersion = '1.0.0'
 ext.stableDepVersion = '26.1.0'
 
 dependencies {
@@ -48,7 +48,7 @@ dependencies {
     compile "com.android.support:palette-v7:$stableDepVersion"
     compile "com.android.support:cardview-v7:$stableDepVersion"
     compile "com.android.support:recyclerview-v7:$stableDepVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta3'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
 
     // ARCHITECTURE THINGIES
     compile "android.arch.lifecycle:common-java8:$inDevDepVersion"
