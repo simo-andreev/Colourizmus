@@ -17,19 +17,56 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/spectre_gradient2"
+        android:clickable="true"
+        android:foreground="@drawable/ripple_orange"
         app:layout_constraintBottom_toTopOf="@+id/dashboard_button_colour_creation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@id/include" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/dashboard_label_gallery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/asimov"
+        android:gravity="center"
+        android:text="Saved colours"
+        android:textAllCaps="true"
+        android:textColor="#A0bebebe"
+        android:textSize="@dimen/text_huge"
+        android:textStyle="bold"
+        app:fontFamily="@font/asimov"
+        app:layout_constraintBottom_toBottomOf="@id/dashboard_button_gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dashboard_button_gallery" />
 
     <ImageButton
         android:id="@+id/dashboard_button_colour_creation"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/spectre_gradient"
+        android:foreground="@drawable/ripple_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashboard_button_gallery" />
+        app:layout_constraintTop_toBottomOf="@id/dashboard_button_gallery" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/dashboard_label_colour_creation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/asimov"
+        android:gravity="center"
+        android:text="Creation screen"
+        android:textAllCaps="true"
+        android:textColor="#A0bebebe"
+        android:textSize="@dimen/text_huge"
+        android:textStyle="bold"
+        app:fontFamily="@font/asimov"
+        app:layout_constraintBottom_toBottomOf="@id/dashboard_button_colour_creation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dashboard_button_colour_creation" />
 
 </android.support.constraint.ConstraintLayout>
