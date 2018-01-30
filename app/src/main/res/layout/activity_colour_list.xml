@@ -12,10 +12,23 @@
         layout="@layout/appbar" />
 
     <Button
+        android:id="@+id/TEST_DATA_REM_BUTTON"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spectre_gradient"
+        android:foreground="@drawable/ripple_black"
+        android:text="remove all data"
+        android:textColor="@color/colorTextWhite" />
+
+    <Button
         android:id="@+id/TEST_DATA_GEN_BUTTON"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="generate test data" />
+        android:background="@drawable/spectre_gradient2"
+        android:foreground="@drawable/ripple_white"
+        android:text="generate test data"
+        android:textColor="@color/colorTextWhite" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_recycler"

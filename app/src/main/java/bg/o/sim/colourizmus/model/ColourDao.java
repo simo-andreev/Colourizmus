@@ -40,6 +40,10 @@ abstract class ColourDao {
     @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_NAME + " LIKE '%' || :name || '%'")
     protected abstract CustomColour[] searchForColours(String name);
 
+
+    @Query("DELETE FROM " + CustomColour.TABLE)
+    protected abstract void deleteAllColours();
+
     /**
      * Insert new items in the SQLite persistence Db.
      *

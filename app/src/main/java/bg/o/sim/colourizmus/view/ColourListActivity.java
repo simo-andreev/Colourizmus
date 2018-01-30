@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -38,14 +37,17 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new RecyclerAdapter(this, getLayoutInflater(), this));
 
-        Button b = findViewById(R.id.TEST_DATA_GEN_BUTTON);
-
-        b.setOnClickListener(view -> {
+        findViewById(R.id.TEST_DATA_GEN_BUTTON).setOnClickListener(view -> {
             Random r = new Random();
 
             for (int i = 0; i < 100; i++)
                 CR.saveColour(new CustomColour("Test " + r.nextGaussian(), Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256))));
 
+            Util.toastLong(ColourListActivity.this, "DONE!");
+        });
+
+        findViewById(R.id.TEST_DATA_REM_BUTTON).setOnClickListener(view -> {
+            CR.deleteAllColours();
             Util.toastLong(ColourListActivity.this, "DONE!");
         });
     }
