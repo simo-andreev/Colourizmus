@@ -4,7 +4,7 @@
         <variable
             name="colourList"
             type="java.util.List&lt;bg.o.sim.colourizmus.model.CustomColour>"/>
-            <!-- the '&lt;' thingie is a '<' in disguise, because XML escaping is just fugly... (ﾉ☉ヮ⚆)ﾉ ⌒*:･ﾟ✧ -->
+            <!-- the '&lt;' thingie is a '<' in disguise. Because XML escaping is just plain fugly... (ﾉ☉ヮ⚆)ﾉ ⌒*:･ﾟ✧ -->
     </data>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

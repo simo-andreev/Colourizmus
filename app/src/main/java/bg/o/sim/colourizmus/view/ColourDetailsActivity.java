@@ -1,14 +1,21 @@
 package bg.o.sim.colourizmus.view;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 import bg.o.sim.colourizmus.R;
@@ -28,9 +35,10 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(Util.EXTRA_COLOUR))
             colourInPlay = (CustomColour) getIntent().getSerializableExtra(Util.EXTRA_COLOUR);
+        else if (getIntent().hasExtra(Util.EXTRA_PICTURE_URI))
+            colourInPlay = loadPassedPhoto(getIntent());
         else
             colourInPlay = new CustomColour("temp", CR.LIVE_COLOR.getValue());
-
 
         float[] colInHSV = new float[3];
         Color.colorToHSV(colourInPlay.getValue(), colInHSV);
@@ -130,7 +138,42 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void bind(CardView view, CustomColour ... colours) {
+    private CustomColour loadPassedPhoto(Intent intent) {
+        Uri uri = intent.getParcelableExtra(Util.EXTRA_PICTURE_URI);
+        Bitmap bitmap;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+        } catch (IOException e) {
+            Toast.makeText(this, "aaaaah, fml....", Toast.LENGTH_SHORT).show();
+            throw new RuntimeException(e);
+        }
+
+        Palette palette =  new Palette.Builder(bitmap).generate();
+
+        @ColorInt int defCol = ContextCompat.getColor(this, R.color.error_red);
+
+        CustomColour colourToBeInPlay = new CustomColour("temp", palette.getDominantColor(defCol));
+
+        CustomColour[] photoColours = new CustomColour[3];
+        photoColours[0] = new CustomColour("nope1", palette.getMutedColor(defCol));
+        photoColours[1] = new CustomColour("nope0", palette.getDominantColor(defCol));
+        photoColours[2] = new CustomColour("nope2", palette.getVibrantColor(defCol));
+
+        ImageView photo = findViewById(R.id.photo_preview);
+
+        if (intent.hasExtra(Util.EXTRA_PICTURE_THUMB))
+            bitmap = intent.getParcelableExtra(Util.EXTRA_PICTURE_THUMB);
+        else
+            Toast.makeText(this, "no fucking thumb m7!", Toast.LENGTH_SHORT).show();
+
+        photo.setImageBitmap(bitmap);
+
+        bind(findViewById(R.id.photo_swatch), photoColours);
+
+        return colourToBeInPlay;
+    }
+
+    private void bind(CardView view, CustomColour... colours) {
         CardColourListPreviewBinding.bind(view).setColourList(Arrays.asList(colours));
     }
 }

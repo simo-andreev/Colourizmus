@@ -1,27 +1,39 @@
 package bg.o.sim.colourizmus.view;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
 
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
+import bg.o.sim.colourizmus.utils.Util;
 
 public class ColourCreationActivity extends AppCompatActivity {
 
     private ViewPager mCreationMethodViewPager;
+    private Uri mImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +42,15 @@ public class ColourCreationActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.allahu_appbar));
 
-        findViewById(R.id.release_da_kamrakken).setOnClickListener(v -> CameraActivity.start(ColourCreationActivity.this));
+        findViewById(R.id.release_da_kamrakken).setOnClickListener(v -> {
+            /*v -> CameraActivity.start(ColourCreationActivity.this)*/
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, Util.REQUEST_IMAGE_PERMISSION);
+            } else {
+                takePhoto();
+            }
+        });
 
         mCreationMethodViewPager = findViewById(R.id.colour_creation_pager);
         mCreationMethodViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -72,10 +92,9 @@ public class ColourCreationActivity extends AppCompatActivity {
         });
 
         FloatingActionButton fab = findViewById(R.id.main_fab_save_colour);
-        fab.setOnClickListener(v -> {
-            DialogFragment dialogFragment = new SaveColourDialogue();
-            dialogFragment.show(getSupportFragmentManager(), SaveColourDialogue.TAG);
-        });
+        fab.setOnClickListener(v ->
+                new SaveColourDialogue().show(getSupportFragmentManager(), SaveColourDialogue.TAG)
+        );
 
     }
 
@@ -95,5 +114,62 @@ public class ColourCreationActivity extends AppCompatActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, ColourCreationActivity.class);
         context.startActivity(starter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case Util.REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    Intent intent = new Intent(this, ColourDetailsActivity.class);
+
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+                    intent.putExtra(Util.EXTRA_PICTURE_URI, mImageUri);
+                    intent.putExtra(Util.EXTRA_PICTURE_THUMB, imageBitmap);
+
+                    startActivity(intent);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == Util.REQUEST_IMAGE_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                takePhoto();
+            } else {
+                Toast.makeText(this, "Y U NO GIB PRMISHNZ? :@", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void takePhoto() {
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            String auth = getString(R.string.file_provider_auth);
+
+            File file;
+
+            try {
+                file = Util.getImageFile(ColourCreationActivity.this, true);
+            } catch (IOException e) {
+                Log.e(Util.LOG_TAG_ERR, "onCreate: ", e);
+                Toast.makeText(this, "Ooops.! Somethang dun fucked up. Sorry '(8_8)", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            mImageUri = FileProvider.getUriForFile(this, auth, file);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+
+            startActivityForResult(takePictureIntent, Util.REQUEST_IMAGE_CAPTURE);
+        } else {
+            Toast.makeText(this, "You have no camera dummy (^.^)", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
