@@ -76,7 +76,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
     RecyclerAdapter(LifecycleOwner lifecycleOwner, LayoutInflater inflater, Context context) {
         this.mInflater = inflater;
         this.mContext = context;
-        CR.getCachedColours().observe(lifecycleOwner, cacheObserver -> RecyclerAdapter.this.notifyDataSetChanged());
+        CR.sCachedColours.observe(lifecycleOwner, cacheObserver -> RecyclerAdapter.this.notifyDataSetChanged());
         setHasStableIds(true);
     }
 
@@ -87,12 +87,12 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
 
     @Override
     public long getItemId(int position) {
-        return CR.getCachedColours().getValue().get(position).getValue();
+        return CR.sCachedColours.getValue().get(position).getValue();
     }
 
     @Override
     public void onBindViewHolder(ColourViewHolder holder, int position) {
-        CustomColour c = CR.getCachedColours().getValue().get(position);
+        CustomColour c = CR.sCachedColours.getValue().get(position);
 
         holder.rootView.setTag(c);
 
@@ -103,7 +103,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
 
     @Override
     public int getItemCount() {
-        return CR.getCachedColours().getValue() != null ? CR.getCachedColours().getValue().size() : 0;
+        return CR.sCachedColours.getValue() != null ? CR.sCachedColours.getValue().size() : 0;
     }
 
     static class ColourViewHolder extends RecyclerView.ViewHolder {

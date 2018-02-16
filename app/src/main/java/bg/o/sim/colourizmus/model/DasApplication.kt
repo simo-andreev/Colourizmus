@@ -4,12 +4,11 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import bg.o.sim.colourizmus.utils.DB_NAME
 
-
 class DasApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CR.innit(Room.databaseBuilder(this, ColourDatabase::class.java, DB_NAME).build())
+        init(Room.databaseBuilder(this, ColourDatabase::class.java, DB_NAME).build())
     }
 
 //    // This is called when the overall system is running low on memory,
