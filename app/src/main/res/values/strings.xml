@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="file_provider_auth">bg.o.sim.colourizmus.fileprovider</string>
-    <string name="app_name">Colorizmus</string>
+    <string name="file_provider_auth">bg.o.sim.colourizmus_kotlin.fileprovider</string>
+    <string name="app_name">Kolourizmus</string>
     <string name="FUCK">well… I dun fucked up…</string>
 
 
