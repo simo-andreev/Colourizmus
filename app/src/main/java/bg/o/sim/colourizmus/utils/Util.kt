@@ -51,7 +51,7 @@ fun Activity.getImageFile(): File {
     val imageFileName = "COLOURIZMUS_$timestamp"
     val storageDir: File = this.getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES)
 
-    return File.createTempFile(imageFileName, ".jpeg", storageDir)
+    return File.createTempFile(imageFileName, ".jpg", storageDir)
 }
 
 

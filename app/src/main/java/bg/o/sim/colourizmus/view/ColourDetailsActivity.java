@@ -19,10 +19,10 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import bg.o.sim.colourizmus.R;
-import bg.o.sim.colourizmus.databinding.CardColourListPreviewBinding;
 import bg.o.sim.colourizmus.model.CR;
 import bg.o.sim.colourizmus.model.CustomColour;
 import bg.o.sim.colourizmus.utils.UtilKt;
+import bg.o.sim.colourizmus.utils.ViewBindAdapter;
 
 public class ColourDetailsActivity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
         else if (getIntent().hasExtra(UtilKt.EXTRA_PICTURE_URI))
             colourInPlay = loadPassedPhoto(getIntent());
         else
-            colourInPlay = new CustomColour("temp", CR.LIVE_COLOUR.getValue());
+            colourInPlay = new CustomColour(CR.LIVE_COLOUR.getValue(), "temp");
 
         float[] colInHSV = new float[3];
         Color.colorToHSV(colourInPlay.getValue(), colInHSV);
@@ -48,7 +48,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
         Color.colorToHSV(colourInPlay.getValue(), colInHSV);
         colInHSV[0] = (colInHSV[0] + 180) % 360;
         int cmplColourInt = Color.HSVToColor(colInHSV);
-        CustomColour complimentary = new CustomColour("Complimentary", cmplColourInt);
+        CustomColour complimentary = new CustomColour(cmplColourInt, "Complimentary");
         bind(findViewById(R.id.complimentary_preview), complimentary);
 
 
@@ -59,7 +59,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
         CustomColour[] coloursInPlay = new CustomColour[5];
         for (byte i = 0; i < 5; i++) {
             colInHSV[1] += 0.2;
-            coloursInPlay[i] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+            coloursInPlay[i] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
         }
         bind(findViewById(R.id.paletteA), coloursInPlay);
 
@@ -73,7 +73,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
         coloursInPlay = new CustomColour[5];
         for (byte i = 0; i < 5; i++) {
             colInHSV[2] += 0.16;
-            coloursInPlay[i] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+            coloursInPlay[i] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
         }
         bind(findViewById(R.id.paletteB), coloursInPlay);
 
@@ -82,7 +82,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
         Color.colorToHSV(colourInPlay.getValue(), colInHSV);
         coloursInPlay = new CustomColour[3];
         for (byte i = 0; i < 3; i++) {
-            coloursInPlay[i] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+            coloursInPlay[i] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
             colInHSV[0] = (colInHSV[0] + 120) % 360;
         }
         bind(findViewById(R.id.paletteC), coloursInPlay);
@@ -91,10 +91,10 @@ public class ColourDetailsActivity extends AppCompatActivity {
         coloursInPlay = new CustomColour[6];
 
         colInHSV[0] = (colInHSV[0] - 10) % 360;
-        coloursInPlay[0] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+        coloursInPlay[0] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
 
         colInHSV[0] = (colInHSV[0] + 20) % 360;
-        coloursInPlay[1] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+        coloursInPlay[1] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
 
 
         colInHSV[0] = (colInHSV[0] - 10) % 360;
@@ -102,9 +102,9 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
 
         colInHSV[0] = (colInHSV[0] - 10) % 360;
-        coloursInPlay[2] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+        coloursInPlay[2] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
         colInHSV[0] = (colInHSV[0] + 20) % 360;
-        coloursInPlay[3] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+        coloursInPlay[3] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
 
 
         colInHSV[0] = (colInHSV[0] - 10) % 360;
@@ -112,9 +112,9 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
 
         colInHSV[0] = (colInHSV[0] - 10) % 360;
-        coloursInPlay[4] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+        coloursInPlay[4] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
         colInHSV[0] = (colInHSV[0] + 20) % 360;
-        coloursInPlay[5] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
+        coloursInPlay[5] = new CustomColour(Color.HSVToColor(colInHSV), "does NOT matter");
 
         bind(findViewById(R.id.paletteD), coloursInPlay);
     }
@@ -133,12 +133,12 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
         @ColorInt int defCol = ContextCompat.getColor(this, R.color.error_red);
 
-        CustomColour colourToBeInPlay = new CustomColour("temp", palette.getDominantColor(defCol));
+        CustomColour colourToBeInPlay = new CustomColour(palette.getDominantColor(defCol), "temp");
 
         CustomColour[] photoColours = new CustomColour[3];
-        photoColours[0] = new CustomColour("nope1", palette.getMutedColor(defCol));
-        photoColours[1] = new CustomColour("nope0", palette.getDominantColor(defCol));
-        photoColours[2] = new CustomColour("nope2", palette.getVibrantColor(defCol));
+        photoColours[0] = new CustomColour(palette.getMutedColor(defCol), "nope1");
+        photoColours[1] = new CustomColour(palette.getDominantColor(defCol), "nope1");
+        photoColours[2] = new CustomColour(palette.getVibrantColor(defCol), "nope1");
 
         ImageView photo = findViewById(R.id.photo_preview);
 
@@ -155,6 +155,6 @@ public class ColourDetailsActivity extends AppCompatActivity {
     }
 
     private void bind(CardView view, CustomColour... colours) {
-        CardColourListPreviewBinding.bind(view).setColourList(Arrays.asList(colours));
+        ViewBindAdapter.bindColourList(view.findViewById(R.id.palette_row), Arrays.asList(colours));
     }
 }

@@ -2,13 +2,12 @@ package bg.o.sim.colourizmus.utils;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
-import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.Collection;
 
-import bg.o.sim.colourizmus.databinding.PreviewSimpleColourPreviewBinding;
 import bg.o.sim.colourizmus.model.CustomColour;
 
 public abstract class ViewBindAdapter {
@@ -17,7 +16,7 @@ public abstract class ViewBindAdapter {
 
     @BindingAdapter(APP_SPACE + "colourList")
     public static void bindColourList(ViewGroup viewGroup, Collection<CustomColour> colours) {
-        LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Context context = viewGroup.getContext();
         viewGroup.removeAllViews();
 
         if (colours == null)
@@ -30,9 +29,11 @@ public abstract class ViewBindAdapter {
         );
 
         for (CustomColour col : colours) {
-            PreviewSimpleColourPreviewBinding binding = PreviewSimpleColourPreviewBinding.inflate(inflater, viewGroup, true);
-            binding.getRoot().setLayoutParams(params);
-            binding.setColour(col);
+            View v = new View(context);
+            v.setLayoutParams(params);
+            v.setBackgroundColor(col.getValue());
+
+            viewGroup.addView(v);
         }
     }
 }

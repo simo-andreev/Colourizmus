@@ -14,7 +14,6 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
 abstract class ColourDao {
-
     /**
      * Retrieves all the colours stored in the SQLite Db.
      *

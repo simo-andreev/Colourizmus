@@ -47,8 +47,8 @@ public class SaveColourDialogue extends DialogFragment {
             @ColorInt int value = CR.LIVE_COLOUR.getValue();
             boolean isFavourite = isFavCheck.isChecked();
 
-            CustomColour col = new CustomColour(name, value);
-            col.setIsFavourite(isFavourite);
+            CustomColour col = new CustomColour(value, name);
+            col.setFavourite(isFavourite);
             CR.saveColour(col);
 
             UtilKt.toastShort(getActivity(), getString(R.string.msg_saved, name));

@@ -41,7 +41,7 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
             Random r = new Random();
 
             for (int i = 0; i < 100; i++)
-                CR.saveColour(new CustomColour("Test " + r.nextGaussian(), Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256))));
+                CR.saveColour(new CustomColour(Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256)), "Test " + r.nextGaussian()));
 
             UtilKt.toastLong(ColourListActivity.this, "DONE!");
         });
@@ -98,7 +98,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
 
         holder.mPreview.setBackgroundColor(c.getValue());
         holder.mName.setText(c.getName());
-        holder.mIsFavourite.setChecked(c.getIsFavourite());
+        holder.mIsFavourite.setChecked(c.isFavourite());
     }
 
     @Override
