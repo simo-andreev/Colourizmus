@@ -23,7 +23,7 @@ import java.util.Random;
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
 import bg.o.sim.colourizmus.model.CustomColour;
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.utils.UtilKt;
 
 public class ColourListActivity extends AppCompatActivity implements CheckBox.OnCheckedChangeListener {
 
@@ -43,12 +43,12 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
             for (int i = 0; i < 100; i++)
                 CR.saveColour(new CustomColour("Test " + r.nextGaussian(), Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256))));
 
-            Util.toastLong(ColourListActivity.this, "DONE!");
+            UtilKt.toastLong(ColourListActivity.this, "DONE!");
         });
 
         findViewById(R.id.TEST_DATA_REM_BUTTON).setOnClickListener(view -> {
             CR.deleteAllColours();
-            Util.toastLong(ColourListActivity.this, "DONE!");
+            UtilKt.toastLong(ColourListActivity.this, "DONE!");
         });
     }
 
@@ -56,7 +56,7 @@ public class ColourListActivity extends AppCompatActivity implements CheckBox.On
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         CustomColour c = (CustomColour) buttonView.getTag();
         if (c == null)
-            Log.e(Util.LOG_TAG_ERR, "onCheckedChanged: com/colourizmus/view/ColourListActivity.java:49 : button tag was nill!!!");
+            Log.e(UtilKt.LOG_TAG_ERR, "onCheckedChanged: com/colourizmus/view/ColourListActivity.java:49 : button tag was nill!!!");
 
         CR.setColourFavorite(c, isChecked);
     }
@@ -122,7 +122,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ColourViewHol
 
             holderView.setOnClickListener(view -> {
                 Intent i = new Intent(c, ColourDetailsActivity.class);
-                i.putExtra(Util.EXTRA_COLOUR, ((Serializable)rootView.getTag()));
+                i.putExtra(UtilKt.EXTRA_COLOUR, ((Serializable)rootView.getTag()));
                 c.startActivity(i);
             });
         }

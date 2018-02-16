@@ -22,7 +22,7 @@ import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.databinding.CardColourListPreviewBinding;
 import bg.o.sim.colourizmus.model.CR;
 import bg.o.sim.colourizmus.model.CustomColour;
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.utils.UtilKt;
 
 public class ColourDetailsActivity extends AppCompatActivity {
 
@@ -33,9 +33,9 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
         CustomColour colourInPlay;
 
-        if (getIntent().hasExtra(Util.EXTRA_COLOUR))
-            colourInPlay = (CustomColour) getIntent().getSerializableExtra(Util.EXTRA_COLOUR);
-        else if (getIntent().hasExtra(Util.EXTRA_PICTURE_URI))
+        if (getIntent().hasExtra(UtilKt.EXTRA_COLOUR))
+            colourInPlay = (CustomColour) getIntent().getSerializableExtra(UtilKt.EXTRA_COLOUR);
+        else if (getIntent().hasExtra(UtilKt.EXTRA_PICTURE_URI))
             colourInPlay = loadPassedPhoto(getIntent());
         else
             colourInPlay = new CustomColour("temp", CR.LIVE_COLOR.getValue());
@@ -139,7 +139,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
     }
 
     private CustomColour loadPassedPhoto(Intent intent) {
-        Uri uri = intent.getParcelableExtra(Util.EXTRA_PICTURE_URI);
+        Uri uri = intent.getParcelableExtra(UtilKt.EXTRA_PICTURE_URI);
         Bitmap bitmap;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -161,8 +161,8 @@ public class ColourDetailsActivity extends AppCompatActivity {
 
         ImageView photo = findViewById(R.id.photo_preview);
 
-        if (intent.hasExtra(Util.EXTRA_PICTURE_THUMB))
-            bitmap = intent.getParcelableExtra(Util.EXTRA_PICTURE_THUMB);
+        if (intent.hasExtra(UtilKt.EXTRA_PICTURE_THUMB))
+            bitmap = intent.getParcelableExtra(UtilKt.EXTRA_PICTURE_THUMB);
         else
             Toast.makeText(this, "no fucking thumb m7!", Toast.LENGTH_SHORT).show();
 

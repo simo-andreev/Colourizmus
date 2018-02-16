@@ -28,7 +28,7 @@ import java.io.IOException;
 
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.utils.UtilKt;
 
 public class ColourCreationActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class ColourCreationActivity extends AppCompatActivity {
             /*v -> CameraActivity.start(ColourCreationActivity.this)*/
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, Util.REQUEST_IMAGE_PERMISSION);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, UtilKt.REQUEST_IMAGE_PERMISSION);
             } else {
                 takePhoto();
             }
@@ -119,15 +119,15 @@ public class ColourCreationActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case Util.REQUEST_IMAGE_CAPTURE:
+            case UtilKt.REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
                     Intent intent = new Intent(this, ColourDetailsActivity.class);
 
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-                    intent.putExtra(Util.EXTRA_PICTURE_URI, mImageUri);
-                    intent.putExtra(Util.EXTRA_PICTURE_THUMB, imageBitmap);
+                    intent.putExtra(UtilKt.EXTRA_PICTURE_URI, mImageUri);
+                    intent.putExtra(UtilKt.EXTRA_PICTURE_THUMB, imageBitmap);
 
                     startActivity(intent);
                 }
@@ -137,7 +137,7 @@ public class ColourCreationActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == Util.REQUEST_IMAGE_PERMISSION) {
+        if (requestCode == UtilKt.REQUEST_IMAGE_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 takePhoto();
             } else {
@@ -156,9 +156,9 @@ public class ColourCreationActivity extends AppCompatActivity {
             File file;
 
             try {
-                file = Util.getImageFile(ColourCreationActivity.this, true);
+                file = UtilKt.getImageFile(ColourCreationActivity.this);
             } catch (IOException e) {
-                Log.e(Util.LOG_TAG_ERR, "onCreate: ", e);
+                Log.e(UtilKt.LOG_TAG_ERR, "onCreate: ", e);
                 Toast.makeText(this, "Ooops.! Somethang dun fucked up. Sorry '(8_8)", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -166,7 +166,7 @@ public class ColourCreationActivity extends AppCompatActivity {
             mImageUri = FileProvider.getUriForFile(this, auth, file);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
 
-            startActivityForResult(takePictureIntent, Util.REQUEST_IMAGE_CAPTURE);
+            startActivityForResult(takePictureIntent, UtilKt.REQUEST_IMAGE_CAPTURE);
         } else {
             Toast.makeText(this, "You have no camera dummy (^.^)", Toast.LENGTH_SHORT).show();
         }

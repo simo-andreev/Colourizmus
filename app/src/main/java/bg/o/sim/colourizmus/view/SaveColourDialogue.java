@@ -14,7 +14,7 @@ import android.widget.EditText;
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
 import bg.o.sim.colourizmus.model.CustomColour;
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.utils.UtilKt;
 
 public class SaveColourDialogue extends DialogFragment {
 
@@ -51,7 +51,7 @@ public class SaveColourDialogue extends DialogFragment {
             col.setIsFavourite(isFavourite);
             CR.saveColour(col);
 
-            Util.toastShort(getActivity(), getString(R.string.msg_saved, name));
+            UtilKt.toastShort(getActivity(), getString(R.string.msg_saved, name));
 
             dialog.dismiss();
         });

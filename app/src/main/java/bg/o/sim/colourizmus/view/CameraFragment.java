@@ -56,7 +56,7 @@ import java.util.concurrent.TimeUnit;
 
 import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.utils.ImageSaver;
-import bg.o.sim.colourizmus.utils.Util;
+import bg.o.sim.colourizmus.utils.UtilKt;
 
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
@@ -609,7 +609,7 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
 
                         @Override
                         public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
-                            Util.toastOnUiThread(getActivity(), "Failed");
+                            UtilKt.toastOnUiThreadExplicit(getActivity(), "Failed");
                         }
                     }, null
             );
@@ -713,7 +713,7 @@ public class CameraFragment extends Fragment implements ActivityCompat.OnRequest
             CameraCaptureSession.CaptureCallback CaptureCallback = new CameraCaptureSession.CaptureCallback() {
                 @Override
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
-                    Util.toastOnUiThread(getActivity(), "Saved: " + mFile);
+                    UtilKt.toastOnUiThreadExplicit(getActivity(), "Failed");
                     unlockFocus();
                 }
             };

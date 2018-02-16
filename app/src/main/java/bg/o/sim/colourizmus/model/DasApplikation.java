@@ -1,17 +1,10 @@
 package bg.o.sim.colourizmus.model;
 
 import android.app.Application;
-import android.arch.lifecycle.Observer;
 import android.arch.persistence.room.Room;
-import android.support.annotation.Nullable;
 
-import java.util.List;
+import bg.o.sim.colourizmus.utils.UtilKt;
 
-import bg.o.sim.colourizmus.utils.Util;
-
-/**
- * Created by simeon on 9/24/17.
- */
 
 public class DasApplikation extends Application {
 
@@ -19,7 +12,7 @@ public class DasApplikation extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ColourDatabase database = Room.databaseBuilder(this, ColourDatabase.class, Util.DB_NAME).build();
+        ColourDatabase database = Room.databaseBuilder(this, ColourDatabase.class, UtilKt.DB_NAME).build();
         CR.innit(database);
     }
 
