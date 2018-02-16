@@ -33,7 +33,7 @@ public class SaveColourDialogue extends DialogFragment {
         Button cancel = contentView.findViewById(R.id.colour_cancel);
         Button save = contentView.findViewById(R.id.colour_save);
 
-        preview.setBackgroundColor(CR.LIVE_COLOR.getValue());
+        preview.setBackgroundColor(CR.LIVE_COLOUR.getValue());
 
         cancel.setOnClickListener((view) -> dialog.cancel());
         save.setOnClickListener(view -> {
@@ -44,7 +44,7 @@ public class SaveColourDialogue extends DialogFragment {
             }
 
             String name = nameInput.getText().toString();
-            @ColorInt int value = CR.LIVE_COLOR.getValue();
+            @ColorInt int value = CR.LIVE_COLOUR.getValue();
             boolean isFavourite = isFavCheck.isChecked();
 
             CustomColour col = new CustomColour(name, value);

@@ -87,7 +87,8 @@ public class ColourCreationActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.colour_creation_tab_layout);
         tabLayout.setupWithViewPager(mCreationMethodViewPager);
 
-        CR.LIVE_COLOR.observe(this, integer -> {
+        mCreationMethodViewPager.setBackgroundColor(CR.LIVE_COLOUR.getValue());
+        CR.LIVE_COLOUR.observe(this, integer -> {
             mCreationMethodViewPager.setBackgroundColor(integer);
         });
 

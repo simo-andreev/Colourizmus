@@ -38,7 +38,7 @@ public class ColourDetailsActivity extends AppCompatActivity {
         else if (getIntent().hasExtra(UtilKt.EXTRA_PICTURE_URI))
             colourInPlay = loadPassedPhoto(getIntent());
         else
-            colourInPlay = new CustomColour("temp", CR.LIVE_COLOR.getValue());
+            colourInPlay = new CustomColour("temp", CR.LIVE_COLOUR.getValue());
 
         float[] colInHSV = new float[3];
         Color.colorToHSV(colourInPlay.getValue(), colInHSV);
@@ -117,25 +117,6 @@ public class ColourDetailsActivity extends AppCompatActivity {
         coloursInPlay[5] = new CustomColour("does NOT matter", Color.HSVToColor(colInHSV));
 
         bind(findViewById(R.id.paletteD), coloursInPlay);
-
-//        Bitmap bmp = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_4444);
-//        Canvas canvas = new Canvas(bmp);
-//        canvas.drawColor(colourInPlay.getValue());
-//
-//        coloursInPlay = new CustomColour[6];
-//        Palette.Builder paletteBuilder = new Palette.Builder(bmp);
-//        paletteBuilder.maximumColorCount(6);
-//        Palette palette = paletteBuilder.generate();
-//
-//        coloursInPlay[0] = new CustomColour("does NOT matter", palette.getDominantColor(colourInPlay.getValue()));
-//        coloursInPlay[1] = new CustomColour("does NOT matter", palette.getMutedColor(colourInPlay.getValue()));
-//        coloursInPlay[2] = new CustomColour("does NOT matter", palette.getVibrantColor(colourInPlay.getValue()));
-//        coloursInPlay[3] = new CustomColour("does NOT matter", palette.getDarkMutedColor(colourInPlay.getValue()));
-//        coloursInPlay[4] = new CustomColour("does NOT matter", palette.getDominantColor(colourInPlay.getValue()));
-//        coloursInPlay[5] = new CustomColour("does NOT matter", palette.getDominantColor(colourInPlay.getValue()));
-//
-//        bind(findViewById(R.id.paletteE), coloursInPlay);
-
     }
 
     private CustomColour loadPassedPhoto(Intent intent) {

@@ -22,10 +22,10 @@ public class SeekerFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        CR.LIVE_COLOR.observe(this, onChange -> {
-            mRedSeeker.setProgress(CR.LIVE_COLOR.getRed());
-            mGreenSeeker.setProgress(CR.LIVE_COLOR.getGreen());
-            mBlueSeeker.setProgress(CR.LIVE_COLOR.getBlue());
+        CR.LIVE_COLOUR.observe(this, onChange -> {
+            mRedSeeker.setProgress(CR.LIVE_COLOUR.getRed());
+            mGreenSeeker.setProgress(CR.LIVE_COLOUR.getGreen());
+            mBlueSeeker.setProgress(CR.LIVE_COLOUR.getBlue());
         });
     }
 
@@ -42,15 +42,15 @@ public class SeekerFragment extends Fragment {
         mBlueSeeker.setMax(255);
 
         mRedSeeker.setOnSeekBarChangeListener((ChannelListener) (seekBar, progress, fromUser) -> {
-            if (fromUser) CR.LIVE_COLOR.setRed(progress);
+            if (fromUser) CR.LIVE_COLOUR.setRed(progress);
         });
 
         mGreenSeeker.setOnSeekBarChangeListener((ChannelListener) (seekBar, progress, fromUser) -> {
-            if (fromUser) CR.LIVE_COLOR.setGreen(progress);
+            if (fromUser) CR.LIVE_COLOUR.setGreen(progress);
         });
 
         mBlueSeeker.setOnSeekBarChangeListener((ChannelListener) (seekBar, progress, fromUser) -> {
-            if (fromUser) CR.LIVE_COLOR.setBlue(progress);
+            if (fromUser) CR.LIVE_COLOUR.setBlue(progress);
         });
 
         return view;
