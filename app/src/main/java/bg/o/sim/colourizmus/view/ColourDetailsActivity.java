@@ -22,7 +22,7 @@ import bg.o.sim.colourizmus.R;
 import bg.o.sim.colourizmus.model.CR;
 import bg.o.sim.colourizmus.model.CustomColour;
 import bg.o.sim.colourizmus.utils.UtilKt;
-import bg.o.sim.colourizmus.utils.ViewBindAdapter;
+import bg.o.sim.colourizmus.utils.ViewBindAdapterKt;
 
 public class ColourDetailsActivity extends AppCompatActivity {
 
@@ -155,6 +155,6 @@ public class ColourDetailsActivity extends AppCompatActivity {
     }
 
     private void bind(CardView view, CustomColour... colours) {
-        ViewBindAdapter.bindColourList(view.findViewById(R.id.palette_row), Arrays.asList(colours));
+        ViewBindAdapterKt.bindColourList(view.findViewById(R.id.palette_row), colours);
     }
 }
