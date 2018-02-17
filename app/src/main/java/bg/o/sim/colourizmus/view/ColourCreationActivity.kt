@@ -59,7 +59,7 @@ class ColourCreationActivity : AppCompatActivity() {
         })
 
         main_fab_save_colour.setOnClickListener {
-            SaveColourDialogue().show(supportFragmentManager, SaveColourDialogue.TAG)
+            SaveColourDialogue().show(fragmentManager, SaveColourDialogue.TAG)
         }
     }
 
