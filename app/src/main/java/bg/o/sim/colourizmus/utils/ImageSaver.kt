@@ -4,11 +4,8 @@ import android.media.Image
 
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 
-/**
- * Saves a JPEG [Image] into the specified [File].
- */
+/** Saves a JPEG [Image] into the specified [File]. */
 class ImageSaver(private val mImage: Image, private val mFile: File) : Runnable {
 
     override fun run() {
