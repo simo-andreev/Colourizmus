@@ -46,7 +46,7 @@ dependencies {
     })
 
     // Koooler Kode with Kotlin - kotlin standard lib
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     //SUPPORT BIBLIO-TECH-A   ᕕ( ᐛ )ᕗ
     implementation "com.android.support:support-v4:26.1.0"
