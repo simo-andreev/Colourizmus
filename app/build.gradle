@@ -9,7 +9,7 @@ android {
     buildToolsVersion "26.0.2"
 
     defaultConfig {
-        applicationId "bg.o.sim.colourizmus_kotlin"
+        applicationId "bg.o.sim.colourizmus"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 2

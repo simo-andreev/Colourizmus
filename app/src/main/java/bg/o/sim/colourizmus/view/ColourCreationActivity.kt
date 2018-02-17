@@ -15,6 +15,7 @@ import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
 import bg.o.sim.colourizmus.R
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
 import bg.o.sim.colourizmus.utils.*
@@ -62,17 +63,17 @@ class ColourCreationActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        startActivity(Intent(this, ColourListActivity::class.java))
-//        return true
-//    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.activity_dashboard_drawer, menu)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this, ColourListActivity::class.java))
         return true
     }
 
-    fun takePhoto() {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.dashboard, menu)
+        return true
+    }
+
+    private fun takePhoto() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
         if (cameraIntent.resolveActivity(packageManager) != null) {
