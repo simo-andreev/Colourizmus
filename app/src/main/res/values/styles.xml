@@ -47,11 +47,6 @@
         <item name="android:textSize">@dimen/text_huge</item>
     </style>
 
-    <style name="TabLayout" parent="TabLayout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
-    </style>
 
     <style name="ChannelPicker">
         <item name="android:layout_width">0dp</item>
@@ -66,6 +61,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>
+    </style>
+
+    <style name="TabLayout">
+        <item name="android:background">@color/colorPrimaryBase</item>
+        <item name="android:elevation">@dimen/allahu_appbar_elevation</item>
     </style>
 
 </resources>

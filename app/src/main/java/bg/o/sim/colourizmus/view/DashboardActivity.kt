@@ -1,6 +1,7 @@
 package bg.o.sim.colourizmus.view
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import bg.o.sim.colourizmus.R
@@ -10,8 +11,8 @@ class DashboardActivity : Activity() {
 
     private val mClickListener = View.OnClickListener { v ->
         when (v.id) {
-            R.id.dashboard_button_colour_creation -> ColourCreationActivity.start(this)
-            R.id.dashboard_button_gallery -> ColourListActivity.start(this)
+            R.id.dashboard_button_colour_creation -> startActivity(Intent(this, ColourCreationActivity::class.java))
+            R.id.dashboard_button_gallery -> startActivity(Intent(this, ColourListActivity::class.java))
         }
     }
 
