@@ -14,34 +14,33 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
 abstract class ColourDao {
-
     /**
      * Retrieves all the colours stored in the SQLite Db.
      *
      * @return array of all the {@link CustomColour}s stored in the Db.
      */
-    @Query("SELECT * FROM " + CustomColour.TABLE)
+    @Query("SELECT * FROM " + CustomColourKt.TABLE)
     protected abstract LiveData<List<CustomColour>> getAllColours();
 
     /**
      * Retrieves all colors marked as 'favourite' from the SQLite Db.
      * @return array of all the colours marked as favourite.
      */
-    @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_IS_FAVOURITE + " = 1 ")
+    @Query("SELECT * FROM " + CustomColourKt.TABLE + " WHERE " + CustomColourKt.COLUMN_IS_FAVOURITE + " = 1 ")
     protected abstract CustomColour[] getFavouriteColours();
 
 
-    @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_PK + " = :value")
+    @Query("SELECT * FROM " + CustomColourKt.TABLE + " WHERE " + CustomColourKt.COLUMN_PK + " = :value")
     protected abstract CustomColour getColour(int value);
 
-    @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_NAME + " = :name")
+    @Query("SELECT * FROM " + CustomColourKt.TABLE + " WHERE " + CustomColourKt.COLUMN_NAME + " = :name")
     protected abstract CustomColour getColour(String name);
 
-    @Query("SELECT * FROM " + CustomColour.TABLE + " WHERE " + CustomColour.COLUMN_NAME + " LIKE '%' || :name || '%'")
+    @Query("SELECT * FROM " + CustomColourKt.TABLE + " WHERE " + CustomColourKt.COLUMN_NAME + " LIKE '%' || :name || '%'")
     protected abstract CustomColour[] searchForColours(String name);
 
 
-    @Query("DELETE FROM " + CustomColour.TABLE)
+    @Query("DELETE FROM " + CustomColourKt.TABLE)
     protected abstract void deleteAllColours();
 
     /**
