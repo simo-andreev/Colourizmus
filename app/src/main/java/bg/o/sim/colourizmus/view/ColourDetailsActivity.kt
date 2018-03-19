@@ -75,7 +75,7 @@ class ColourDetailsActivity : AppCompatActivity() {
         Color.colorToHSV(dominantCol.value, colInHSV)
         colInHSV[2] = 0.2f // Value element of HSV to 0.2, to allow for progression, but avoid starting at black
 
-        return Array(5){
+        return Array(3){
             colInHSV[0] = (colInHSV[0] + 120) % 360
             CustomColour(Color.HSVToColor(colInHSV), "")
         }
