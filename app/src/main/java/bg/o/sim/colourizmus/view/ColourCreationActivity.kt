@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import bg.o.sim.colourizmus.R
+import bg.o.sim.colourizmus.model.CustomColour
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
 import bg.o.sim.colourizmus.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,7 +56,9 @@ class ColourCreationActivity : AppCompatActivity() {
         }
 
         LIVE_COLOUR.observe(this, Observer<Int> {
-            col -> colour_creation_pager.setBackgroundColor(col?: -1)
+            colour_creation_pager.setBackgroundColor(it!!)
+            colour_creation_hexadec_preview.text = "#${Integer.toHexString(it)}"
+            colour_creation_hexadec_preview.setTextColor(getComplimentaryColour(CustomColour(it, "")).value)
         })
 
         main_fab_save_colour.setOnClickListener {
@@ -64,7 +67,9 @@ class ColourCreationActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this, ColourListActivity::class.java))
+        when (item.itemId) {
+            R.id.action_settings -> startActivity(Intent(this, ColourListActivity::class.java))
+        }
         return true
     }
 
@@ -93,7 +98,7 @@ class ColourCreationActivity : AppCompatActivity() {
             REQUEST_PERMISSION_IMAGE_CAPTURE ->
                 if (PERMISSION_GRANTED in grantResults) takePhoto()
                 else this.toastLong("Y U NO GIB PRMISHNZ? :@")
-            // other cases can go here at a later point
+        // other cases can go here at a later point
         }
     }
 
@@ -106,7 +111,7 @@ class ColourCreationActivity : AppCompatActivity() {
                     showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
                     startActivity(showPicResult)
                 }
-            // other cases can go here at a later point
+        // other cases can go here at a later point
         }
     }
 }

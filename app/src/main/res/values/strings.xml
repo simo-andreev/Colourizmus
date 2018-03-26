@@ -33,6 +33,9 @@
 
 
     <string name="colour_name">Colour name</string>
+    <string name="label_saved_colours">Saved colours</string>
+    <string name="label_show_hexadec_values">Show hexadec values</string>
+    <string name="label_show_hexadec_values_condensed">Hexadec values</string>
 
 
 </resources>
