@@ -104,14 +104,13 @@ class ColourCreationActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         when (requestCode) {
-            REQUEST_IMAGE_CAPTURE ->
-                if (resultCode == RESULT_OK) {
-                    val showPicResult = Intent(this, ColourDetailsActivity::class.java)
-                    showPicResult.putExtra(EXTRA_PICTURE_URI, mImageUri)
-                    showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
-                    startActivity(showPicResult)
-                }
-        // other cases can go here at a later point
+            REQUEST_IMAGE_CAPTURE -> if (resultCode == RESULT_OK) {
+                val showPicResult = Intent(this, ColourDetailsActivity::class.java)
+                showPicResult.putExtra(EXTRA_PICTURE_URI, mImageUri)
+                showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
+                startActivity(showPicResult)
+            }
+            // other cases can go here at a later point
         }
     }
 }
