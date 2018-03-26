@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import bg.o.sim.colourizmus.R
 import bg.o.sim.colourizmus.model.CustomColour
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
@@ -32,11 +34,29 @@ class ColourCreationActivity : AppCompatActivity() {
 
         this.setSupportActionBar(allahu_appbar as Toolbar)
 
-        release_da_kamrakken.setOnClickListener {
+        main_fab_hexadec_input.setOnClickListener {
+            val inputDialogue = EditTextDialogue()
+            //todo - titles 'n' shit
+            inputDialogue.onCancel = { dialogue, _ -> dialogue.dismiss() }
+            inputDialogue.onSave = { dialogue, input ->
+                //todo - handle bad input. Also block bad input from actually happening. But still check for bad input... shit happens ya' kno'
+                LIVE_COLOUR.set(Color.parseColor(input))
+                toastShort("input: $input")
+                toastShort("parse: ${Color.parseColor(input)}")
+                dialogue.dismiss()
+            }
+            inputDialogue.show(fragmentManager, EditTextDialogue.TAG)
+        }
+
+        main_fab_release_da_kamrakken.setOnClickListener {
             if (this.havePermission(CAMERA))
                 takePhoto()
             else
                 ActivityCompat.requestPermissions(this, arrayOf(CAMERA), REQUEST_PERMISSION_IMAGE_CAPTURE)
+        }
+
+        main_fab_save_colour.setOnClickListener {
+            SaveColourDialogue().show(fragmentManager, SaveColourDialogue.TAG)
         }
 
         colour_creation_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
@@ -60,10 +80,6 @@ class ColourCreationActivity : AppCompatActivity() {
             colour_creation_hexadec_preview.text = "#${Integer.toHexString(it)}"
             colour_creation_hexadec_preview.setTextColor(getComplimentaryColour(CustomColour(it, "")).value)
         })
-
-        main_fab_save_colour.setOnClickListener {
-            SaveColourDialogue().show(fragmentManager, SaveColourDialogue.TAG)
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -110,7 +126,7 @@ class ColourCreationActivity : AppCompatActivity() {
                 showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
                 startActivity(showPicResult)
             }
-            // other cases can go here at a later point
+        // other cases can go here at a later point
         }
     }
 }
