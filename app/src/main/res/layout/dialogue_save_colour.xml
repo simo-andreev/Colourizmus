@@ -1,67 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/spectre_gradient"
     android:gravity="center"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_med_high"
+        android:padding="@dimen/spacing_medium"
         android:text="Save active colour?"
-        android:padding="@dimen/spacing_medium"/>
+        android:textColor="@color/colorTextWhite"
+        android:textSize="@dimen/text_med_high" />
 
-    <android.support.constraint.ConstraintLayout
+    <EditText
+        android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:padding="@dimen/spacing_small">
-
-        <View
-            android:id="@+id/colour_preview"
-            android:layout_width="@dimen/preview_window_normal"
-            android:layout_height="@dimen/preview_window_normal"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-
-        <EditText
-            android:id="@+id/colour_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/colour_favourite"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <CheckBox
-            android:id="@+id/colour_favourite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/checkbox_favourite"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-
-    </android.support.constraint.ConstraintLayout>
+        android:textColor="@color/colorTextWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/colour_favourite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/colour_cancel"
-            android:text="@string/action_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/spectre_gradient2"
+            android:foreground="@drawable/ripple_black"
+            android:text="@string/action_cancel"
+            android:textColor="@color/colorTextWhite" />
+
         <Button
             android:id="@+id/colour_save"
-            android:text="@string/action_save"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/spectre_gradient"
+            android:foreground="@drawable/ripple_black"
+            android:text="@string/action_save"
+            android:textColor="@color/colorTextWhite" />
     </LinearLayout>
 
 </LinearLayout>
