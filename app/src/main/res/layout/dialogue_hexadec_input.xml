@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/spectre_gradient"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium"
+        android:text="Save active colour?"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="@dimen/text_med_high" />
+
+    <LinearLayout
+        android:padding="@dimen/spacing_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--todo - 26.06.2018 - currency set to accept up to 6 chars for RRGGBB, add more options like AARRGGBB-->
+        <EditText
+            android:id="@+id/input"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:maxLength="6"
+            android:inputType="textCapCharacters"
+            android:layout_height="50dp"
+            android:textColor="@color/colorTextWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/colour_favourite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="#ff0099ff" />
+
+
+        <ImageView
+            android:id="@+id/hexadec_input_preview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            tools:background="@drawable/ripple_orange" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/colour_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/spectre_gradient2"
+            android:foreground="@drawable/ripple_black"
+            android:text="@string/action_cancel"
+            android:textColor="@color/colorTextWhite" />
+
+        <Button
+            android:id="@+id/colour_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/spectre_gradient"
+            android:foreground="@drawable/ripple_black"
+            android:text="@string/action_save"
+            android:textColor="@color/colorTextWhite" />
+    </LinearLayout>
+
+</LinearLayout>
