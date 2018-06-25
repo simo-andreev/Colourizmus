@@ -21,6 +21,7 @@ import android.widget.Toast
 import bg.o.sim.colourizmus.R
 import bg.o.sim.colourizmus.model.CustomColour
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
+import bg.o.sim.colourizmus.model.LiveColour
 import bg.o.sim.colourizmus.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -35,17 +36,7 @@ class ColourCreationActivity : AppCompatActivity() {
         this.setSupportActionBar(allahu_appbar as Toolbar)
 
         main_fab_hexadec_input.setOnClickListener {
-            val inputDialogue = EditTextDialogue()
-            //todo - titles 'n' shit
-            inputDialogue.onCancel = { dialogue, _ -> dialogue.dismiss() }
-            inputDialogue.onSave = { dialogue, input ->
-                //todo - handle bad input. Also block bad input from actually happening. But still check for bad input... shit happens ya' kno'
-                LIVE_COLOUR.set(Color.parseColor(input))
-                toastShort("input: $input")
-                toastShort("parse: ${Color.parseColor(input)}")
-                dialogue.dismiss()
-            }
-            inputDialogue.show(fragmentManager, EditTextDialogue.TAG)
+            MainScreenHexInput().show(fragmentManager, "HexadecInputDialog")
         }
 
         main_fab_release_da_kamrakken.setOnClickListener {
@@ -128,5 +119,12 @@ class ColourCreationActivity : AppCompatActivity() {
             }
         // other cases can go here at a later point
         }
+    }
+}
+
+class MainScreenHexInput : HexadecInputDialog() {
+    override fun onSave(dialogue: HexadecInputDialog, colour: LiveColour) {
+        LIVE_COLOUR.set(colour)
+        dialogue.dismiss()
     }
 }
