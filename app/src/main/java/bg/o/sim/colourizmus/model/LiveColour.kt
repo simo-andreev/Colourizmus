@@ -25,7 +25,25 @@ class LiveColour : LiveData<Int>() {
     fun setGreen(green: Int) { value = Color.rgb(getRed(), green, getBlue()) }
     fun setBlue(blue: Int) { value = Color.rgb(getRed(), getGreen(), blue) }
 
+    val r = getRed()
+    val g = getGreen()
+    val b = getBlue()
+
+    val rgb = arrayOf(r, g, b)
+
     fun set(red: Int = getRed(), green: Int = getGreen(), blue: Int = getBlue()) {
         value = Color.rgb(red, green, blue)
+    }
+
+    fun set(rgb: Array<Int>) {
+
+        if (rgb.size != 3) throw IllegalArgumentException("The rgb array MUST contain EXACTLY 3 items " +
+                "for red, green and blue respectively. Passed array was : ${rgb.fold("") { acc, i -> "$acc, $i" }}.")
+
+        value = Color.rgb(rgb[0],rgb[1],rgb[2])
+    }
+
+    fun set(liveColour: LiveColour){
+        this.value = liveColour.value
     }
 }
