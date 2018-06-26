@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,8 +17,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import bg.o.sim.colourizmus.R
+import bg.o.sim.colourizmus.model.CustomColour
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
+import bg.o.sim.colourizmus.model.LiveColour
 import bg.o.sim.colourizmus.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,11 +35,19 @@ class ColourCreationActivity : AppCompatActivity() {
 
         this.setSupportActionBar(allahu_appbar as Toolbar)
 
-        release_da_kamrakken.setOnClickListener {
+        main_fab_hexadec_input.setOnClickListener {
+            MainScreenHexInput().show(fragmentManager, "HexadecInputDialog")
+        }
+
+        main_fab_release_da_kamrakken.setOnClickListener {
             if (this.havePermission(CAMERA))
                 takePhoto()
             else
                 ActivityCompat.requestPermissions(this, arrayOf(CAMERA), REQUEST_PERMISSION_IMAGE_CAPTURE)
+        }
+
+        main_fab_save_colour.setOnClickListener {
+            SaveColourDialogue().show(fragmentManager, SaveColourDialogue.TAG)
         }
 
         colour_creation_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
@@ -55,16 +67,16 @@ class ColourCreationActivity : AppCompatActivity() {
         }
 
         LIVE_COLOUR.observe(this, Observer<Int> {
-            col -> colour_creation_pager.setBackgroundColor(col?: -1)
+            colour_creation_pager.setBackgroundColor(it!!)
+            colour_creation_hexadec_preview.text = "#${Integer.toHexString(it)}"
+            colour_creation_hexadec_preview.setTextColor(getComplimentaryColour(CustomColour(it, "")).value)
         })
-
-        main_fab_save_colour.setOnClickListener {
-            SaveColourDialogue().show(fragmentManager, SaveColourDialogue.TAG)
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this, ColourListActivity::class.java))
+        when (item.itemId) {
+            R.id.action_settings -> startActivity(Intent(this, ColourListActivity::class.java))
+        }
         return true
     }
 
@@ -93,20 +105,26 @@ class ColourCreationActivity : AppCompatActivity() {
             REQUEST_PERMISSION_IMAGE_CAPTURE ->
                 if (PERMISSION_GRANTED in grantResults) takePhoto()
                 else this.toastLong("Y U NO GIB PRMISHNZ? :@")
-            // other cases can go here at a later point
+        // other cases can go here at a later point
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         when (requestCode) {
-            REQUEST_IMAGE_CAPTURE ->
-                if (resultCode == RESULT_OK) {
-                    val showPicResult = Intent(this, ColourDetailsActivity::class.java)
-                    showPicResult.putExtra(EXTRA_PICTURE_URI, mImageUri)
-                    showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
-                    startActivity(showPicResult)
-                }
-            // other cases can go here at a later point
+            REQUEST_IMAGE_CAPTURE -> if (resultCode == RESULT_OK) {
+                val showPicResult = Intent(this, ColourDetailsActivity::class.java)
+                showPicResult.putExtra(EXTRA_PICTURE_URI, mImageUri)
+                showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
+                startActivity(showPicResult)
+            }
+        // other cases can go here at a later point
         }
+    }
+}
+
+class MainScreenHexInput : HexadecInputDialog() {
+    override fun onSave(dialogue: HexadecInputDialog, colour: LiveColour) {
+        LIVE_COLOUR.set(colour)
+        dialogue.dismiss()
     }
 }
