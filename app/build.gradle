@@ -13,7 +13,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 25 // My phone is at Android 7.1 - i.e. API 25 ¯\_(ツ)_/¯
         versionCode 2
-        versionName "alpha-0.1.0-bergenia"
+        versionName "alpha-0.1.1-bergenia"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
