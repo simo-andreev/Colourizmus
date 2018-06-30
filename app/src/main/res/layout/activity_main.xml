@@ -76,6 +76,7 @@
         android:gravity="center"
         android:padding="@dimen/spacing_small"
         android:textAllCaps="true"
+        android:textIsSelectable="true"
         android:textSize="@dimen/text_large"
         app:layout_constraintBottom_toTopOf="@+id/main_fab_release_da_kamrakken"
         app:layout_constraintEnd_toEndOf="parent"

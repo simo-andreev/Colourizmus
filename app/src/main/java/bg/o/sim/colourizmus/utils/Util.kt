@@ -1,17 +1,17 @@
 package bg.o.sim.colourizmus.utils
 
-import android.Manifest
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.media.Image
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.widget.Toast
-import bg.o.sim.colourizmus.BuildConfig
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,15 +21,13 @@ import java.util.*
  * providing non-class-specific objects and utility methods.
  */
 
-// String consts
-const val LOG_TAG_DEV: String = "DEV_LOG"
-const val LOG_TAG_ERR: String = "ERR_LOG"
+// String constants
 const val DB_NAME: String = "bg.o.sim.colourizmus.db"
 const val EXTRA_COLOUR: String = "EXTRA_COLOUR"
 const val EXTRA_PICTURE_URI: String = "EXTRA_PICTURE_URI"
 const val EXTRA_PICTURE_THUMB: String = "EXTRA_PICTURE_THUMB"
 
-// Numeric consts
+// Numeric constants
 const val REQUEST_IMAGE_CAPTURE: Int = 0b0000_0000
 const val REQUEST_PERMISSION_IMAGE_CAPTURE: Int = 0b0000_0010
 const val REQUEST_IMAGE_PERMISSION: Int = 0b0000_1000
@@ -44,7 +42,7 @@ fun Context.toastLong(message: String) {
 
 /** When you just *have* to call a [Toast] from a background [Thread]*/
 fun Activity.toastOnUiThreadExplicit(message: String) {
-    this.runOnUiThread({ toastLong(message) })
+    this.runOnUiThread { toastLong(message) }
 }
 
 @Throws(IOException::class)
@@ -65,5 +63,25 @@ fun requestStoragePermission(activity: Activity) {
 
     if (ContextCompat.checkSelfPermission(activity, WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED)
         ActivityCompat.requestPermissions(activity, arrayOf(WRITE_EXTERNAL_STORAGE), 1)
+}
+
+/** Saves a JPEG [Image] into the specified [File]. */
+class ImageSaver(private val mImage: Image, private val mFile: File) : Runnable {
+
+    override fun run() {
+        val buffer = mImage.planes[0].buffer
+        val bytes = ByteArray(buffer.remaining())
+
+        buffer.get(bytes)
+
+        val output = FileOutputStream(mFile)
+
+        try {
+            output.write(bytes)
+        } finally {
+            mImage.close()
+            output.close()
+        }
+    }
 }
 

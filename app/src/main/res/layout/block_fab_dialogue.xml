@@ -8,7 +8,10 @@
     android:layout_margin="@dimen/spacing_small"
     android:background="@drawable/spectre_gradient"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    tools:keep="@layout/block_fab_dialogue">
+
+    <!--todo - use in actual dialogue -->
 
     <!--SAVE BUTTON-->
     <android.support.design.widget.FloatingActionButton

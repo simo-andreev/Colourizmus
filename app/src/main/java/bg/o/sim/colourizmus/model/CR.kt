@@ -5,6 +5,8 @@ package bg.o.sim.colourizmus.model
 import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
 
+// todo - review whole file and stroage/db systems
+
 /**
  * This class offers access to true-data in a clean abstracted way to the rest of the application.
  * It handles retrieving and caching data and provides an access-point to the persistence model.
@@ -14,9 +16,9 @@ import android.os.AsyncTask
 
 // TODO: 16/02/18 - can this be handled better (as in not using @JvmField)? Can't const because not primitive
 @JvmField val LIVE_COLOUR: LiveColour = LiveColour()
-// TODO: 16/02/18 - take advantage of Kotlin's null-safety and init mumbo-jumbo voodoo
-private var sDatabase: ColourDatabase? = null
 @JvmField var sCachedColours: LiveData<MutableList<CustomColour>>? = null
+
+private lateinit var sDatabase: ColourDatabase
 
 /** Initialize the Repository by passing a database instance and start a query to pull data into cache */
 fun init(database: ColourDatabase) {

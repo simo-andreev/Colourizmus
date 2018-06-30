@@ -41,7 +41,7 @@ class SeekerFragment : Fragment() {
         seeker_blue.setOnSeekBarChangeListener(ChannelListener{ progress, fromUser -> if (fromUser) LIVE_COLOUR.setBlue(progress) })
     }
 
-    /** I know this seems pointless *BUT* it allows me to lambdize the listeners abouve! ( ͡° ͜ʖ ͡°)  */
+    /** I know this seems pointless *BUT* it allows me to lambdize the listeners above! ( ͡° ͜ʖ ͡°)  */
     class ChannelListener(private val onProgressChanged: (Int, Boolean) -> Unit) : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) = onProgressChanged(progress, fromUser)
         override fun onStartTrackingTouch(seekBar: SeekBar) { /*do nothing at-all*/ }

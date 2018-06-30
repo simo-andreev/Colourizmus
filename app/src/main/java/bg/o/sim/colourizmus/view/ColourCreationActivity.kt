@@ -5,7 +5,6 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,7 +16,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import bg.o.sim.colourizmus.R
 import bg.o.sim.colourizmus.model.CustomColour
 import bg.o.sim.colourizmus.model.LIVE_COLOUR

@@ -12,6 +12,7 @@ import java.util.List;
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
+@SuppressWarnings("UnusedReturnValue")
 @Dao
 abstract class ColourDao {
     /**

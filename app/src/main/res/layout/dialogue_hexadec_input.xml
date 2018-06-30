@@ -23,13 +23,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!--todo - 26.06.2018 - currency set to accept up to 6 chars for RRGGBB, add more options like AARRGGBB-->
+        <!--todo - 26.06.2018 - currently set to accept up to 6 chars for RRGGBB, add more options like AARRGGBB-->
         <EditText
             android:id="@+id/input"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:maxLength="6"
             android:inputType="textCapCharacters"
+            android:hint="@string/rrggbb"
             android:layout_height="50dp"
             android:textColor="@color/colorTextWhite"
             app:layout_constraintBottom_toBottomOf="parent"

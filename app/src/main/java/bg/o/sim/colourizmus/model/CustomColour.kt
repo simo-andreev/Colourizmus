@@ -7,10 +7,10 @@ import android.arch.persistence.room.PrimaryKey
 import android.support.annotation.ColorInt
 import java.io.Serializable
 
-const val TABLE = "colour"
-const val COLUMN_PK = "value"
-const val COLUMN_NAME = "name"
-const val COLUMN_IS_FAVOURITE = "is_favourite"
+const val TABLE: String = "colour"
+const val COLUMN_PK: String = "value"
+const val COLUMN_NAME: String = "name"
+const val COLUMN_IS_FAVOURITE: String = "is_favourite"
 
 /**
  * The [CustomColour] represents a single, named, colour that

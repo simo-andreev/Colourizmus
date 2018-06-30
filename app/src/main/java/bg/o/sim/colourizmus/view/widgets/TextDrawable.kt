@@ -6,8 +6,6 @@ import android.graphics.PixelFormat.OPAQUE
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorInt
 import android.text.TextPaint
-import android.util.Log
-import android.databinding.adapters.TextViewBindingAdapter.setTextSize
 import kotlin.math.min
 
 
@@ -31,7 +29,6 @@ class CharDrawable(
 
 
     override fun draw(canvas: Canvas?) {
-        Log.wtf("TAAAG", "On Draw ======================================================================")
         canvas!! // assert that canvas is non-null
 
         canvas.drawColor(backgroundColour) // set background

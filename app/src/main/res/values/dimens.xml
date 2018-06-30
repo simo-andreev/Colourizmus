@@ -42,7 +42,7 @@
 
 
 
-    <!--:::::::::::::::::APPBARU-AKBAR::::::::::::::::::-->
+    <!--:::::::::::::::::ALLAHU-APPBAR::::::::::::::::::-->
     <dimen name="allahu_appbar_elevation">4dp</dimen>
     <dimen name="allahu_appbar_height">56dp</dimen>
     <!--=================APPBARU-AKBAR==================-->
@@ -53,6 +53,7 @@
     <dimen name="preview_window_small">24dp</dimen>
     <dimen name="preview_window_normal">40dp</dimen>
     <dimen name="preview_window_large">64dp</dimen>
+    <dimen name="colour_control_height">125dp</dimen>
 
     <!--::::::::::::::::::VIEW-SIZING:::::::::::::::::::-->
 

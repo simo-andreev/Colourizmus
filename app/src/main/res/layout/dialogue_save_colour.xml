@@ -18,13 +18,15 @@
 
     <EditText
         android:id="@+id/input"
+        android:hint="@string/label_colour_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/colour_favourite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text" />
 
     <LinearLayout
         android:layout_width="match_parent"
