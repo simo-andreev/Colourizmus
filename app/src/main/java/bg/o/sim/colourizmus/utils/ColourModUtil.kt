@@ -54,7 +54,7 @@ fun getColourTriade(dominantCol: CustomColour): Array<CustomColour> {
 fun getHueSwatch(dominantCol: CustomColour): Array<CustomColour> {
     val colInHSV = FloatArray(3)
     Color.colorToHSV(dominantCol.value, colInHSV)
-    val hueSwatch = Array(6, { CustomColour(-1, "") }) // default unless objects, so the GC has something to do... (-_-)
+    val hueSwatch = Array(6, { CustomColour(-1, "") }) // default useless objects, so the GC has something to do... (-_-)
 
     colInHSV[0] = (colInHSV[0] - 10) % 360
     hueSwatch[0] = CustomColour(Color.HSVToColor(colInHSV), "")

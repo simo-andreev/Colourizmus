@@ -11,6 +11,7 @@ android {
     defaultConfig {
         applicationId "bg.o.sim.colourizmus"
         minSdkVersion 21
+        //noinspection OldTargetApi
         targetSdkVersion 25 // My phone is at Android 7.1 - i.e. API 25 ¯\_(ツ)_/¯
         versionCode 2
         versionName "alpha-0.1.1-bergenia"
@@ -39,12 +40,10 @@ android {
 
 ext.stableDepVersion = '27.1.1'
 ext.archLifecycleVersion = '1.1.1'
+ext.jUnitVersion = '5.1.0'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
     // Koooler Kode with Kotlin - kotlin standard lib
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -73,5 +72,10 @@ dependencies {
     // Paging
     implementation "android.arch.paging:runtime:1.0.0"
 
-    testCompile 'junit:junit:4.12'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jUnitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jUnitVersion"
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
 }

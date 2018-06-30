@@ -32,9 +32,6 @@
         <activity android:name=".view.EpilepticaActivity" />
         <activity android:name=".view.ColourListActivity" />
         <activity android:name=".view.ColourDetailsActivity" />
-        <activity android:name=".view.CameraActivity">
-            <!-- TODO - add a camera intent filter -->
-        </activity>
 
 
         <provider
