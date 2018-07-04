@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.TextInputEditText
 import android.widget.Button
 import android.widget.EditText
 import bg.o.sim.colourizmus.R
@@ -20,12 +22,12 @@ class SaveColourDialogue : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val contentView = activity.layoutInflater.inflate(R.layout.dialogue_save_colour, null)
+        val contentView = activity.layoutInflater.inflate(R.layout.block_fab_dialogue, null)
         val dialog = AlertDialog.Builder(activity).setView(contentView).create()
 
-        val nameInput = contentView.findViewById<EditText>(R.id.input)
-        val cancel = contentView.findViewById<Button>(R.id.colour_cancel)
-        val save = contentView.findViewById<Button>(R.id.colour_save)
+        val nameInput = contentView.findViewById<TextInputEditText>(R.id.fab_dialogue_input_layout)
+        val cancel = contentView.findViewById<FloatingActionButton>(R.id.fab_dialogue_cancel)
+        val save = contentView.findViewById<FloatingActionButton>(R.id.fab_dialogue_save)
 
         cancel.setOnClickListener { dialog.cancel() }
         save.setOnClickListener {
