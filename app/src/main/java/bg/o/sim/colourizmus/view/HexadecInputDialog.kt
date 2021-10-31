@@ -3,7 +3,7 @@ package bg.o.sim.colourizmus.view
 import android.app.DialogFragment
 import android.graphics.Color
 import android.os.Bundle
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater

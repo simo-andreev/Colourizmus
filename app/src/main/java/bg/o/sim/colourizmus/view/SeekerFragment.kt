@@ -1,15 +1,14 @@
 package bg.o.sim.colourizmus.view
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import bg.o.sim.colourizmus.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import bg.o.sim.colourizmus.databinding.FragmentSeekerBinding
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
-import kotlinx.android.synthetic.main.fragment_seeker.*
 
 class SeekerFragment : Fragment() {
 
@@ -21,30 +20,36 @@ class SeekerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         LIVE_COLOUR.observe(this, Observer {
-            seeker_red.progress = LIVE_COLOUR.getRed()
-            seeker_green.progress = LIVE_COLOUR.getGreen()
-            seeker_blue.progress = LIVE_COLOUR.getBlue()
+            binding.seekerRed.progress = LIVE_COLOUR.getRed()
+            binding.seekerGreen.progress = LIVE_COLOUR.getGreen()
+            binding.seekerBlue.progress = LIVE_COLOUR.getBlue()
         })
     }
 
+
+    private lateinit var binding: FragmentSeekerBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_seeker, container, false)
+        binding = FragmentSeekerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        seeker_red.max = 255
-        seeker_green.max = 255
-        seeker_blue.max = 255
+        binding.seekerRed.max = 255
+        binding.seekerGreen.max = 255
+        binding.seekerBlue.max = 255
 
-        seeker_red.setOnSeekBarChangeListener(ChannelListener{ progress, fromUser -> if (fromUser) LIVE_COLOUR.setRed(progress) })
-        seeker_green.setOnSeekBarChangeListener(ChannelListener{ progress, fromUser -> if (fromUser) LIVE_COLOUR.setGreen(progress) })
-        seeker_blue.setOnSeekBarChangeListener(ChannelListener{ progress, fromUser -> if (fromUser) LIVE_COLOUR.setBlue(progress) })
+        binding.seekerRed.setOnSeekBarChangeListener(ChannelListener { progress, fromUser -> if (fromUser) LIVE_COLOUR.setRed(progress) })
+        binding.seekerGreen.setOnSeekBarChangeListener(ChannelListener { progress, fromUser -> if (fromUser) LIVE_COLOUR.setGreen(progress) })
+        binding.seekerBlue.setOnSeekBarChangeListener(ChannelListener { progress, fromUser -> if (fromUser) LIVE_COLOUR.setBlue(progress) })
     }
 
     /** I know this seems pointless *BUT* it allows me to lambdize the listeners above! ( ͡° ͜ʖ ͡°)  */
     class ChannelListener(private val onProgressChanged: (Int, Boolean) -> Unit) : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) = onProgressChanged(progress, fromUser)
-        override fun onStartTrackingTouch(seekBar: SeekBar) { /*do nothing at-all*/ }
-        override fun onStopTrackingTouch(seekBar: SeekBar) { /*do nothing at-all*/ }
+        override fun onStartTrackingTouch(seekBar: SeekBar) { /*do nothing at-all*/
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar) { /*do nothing at-all*/
+        }
     }
 }

@@ -4,16 +4,16 @@ import android.graphics.Canvas
 import android.graphics.ColorFilter
 import android.graphics.PixelFormat.OPAQUE
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
 import android.text.TextPaint
+import androidx.annotation.ColorInt
 import kotlin.math.min
 
 
 class CharDrawable(
-        val char: Char,
-        @ColorInt private val backgroundColour: Int,
-        @ColorInt private val textColour: Int,
-        private val textPaint: TextPaint = TextPaint()
+    private val char: Char,
+    @ColorInt private val backgroundColour: Int,
+    @ColorInt private val textColour: Int,
+    private val textPaint: TextPaint = TextPaint()
 ) : Drawable() {
     override fun setAlpha(alpha: Int) {
         textPaint.alpha = alpha
@@ -28,9 +28,7 @@ class CharDrawable(
     }
 
 
-    override fun draw(canvas: Canvas?) {
-        canvas!! // assert that canvas is non-null
-
+    override fun draw(canvas: Canvas) {
         canvas.drawColor(backgroundColour) // set background
         textPaint.color = textColour
 

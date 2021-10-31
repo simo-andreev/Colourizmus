@@ -1,12 +1,8 @@
 package bg.o.sim.colourizmus.view
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,27 +10,33 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import bg.o.sim.colourizmus.R
+import bg.o.sim.colourizmus.databinding.ActivityColourListBinding
 import bg.o.sim.colourizmus.model.*
 import bg.o.sim.colourizmus.utils.EXTRA_COLOUR
 import bg.o.sim.colourizmus.utils.toastLong
-import kotlinx.android.synthetic.main.activity_colour_list.*
 import java.io.Serializable
 import java.util.*
 
 class ColourListActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
 
+    private lateinit var binding: ActivityColourListBinding
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         setColourFavorite(buttonView!!.tag as CustomColour, isChecked)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_colour_list)
+        binding = ActivityColourListBinding.inflate(layoutInflater);
+        setContentView(binding.root)
 
-        list_recycler.adapter = RecyclerAdapter(this, layoutInflater)
+        binding.listRecycler.adapter = RecyclerAdapter(this, layoutInflater)
 
-        TEST_DATA_GEN_BUTTON.setOnClickListener {
+        binding.TESTDATAGENBUTTON.setOnClickListener {
             val rand = Random()
 
             for (i in 0..99) {

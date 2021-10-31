@@ -4,8 +4,8 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.TextInputEditText
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import android.widget.Button
 import android.widget.EditText
 import bg.o.sim.colourizmus.R
@@ -31,7 +31,7 @@ class SaveColourDialogue : DialogFragment() {
 
         cancel.setOnClickListener { dialog.cancel() }
         save.setOnClickListener {
-            if (nameInput.text.length < 4) {
+            if (nameInput.text!!.length < 4) {
                 nameInput.error = getString(R.string.err_invalid_name)
                 nameInput.requestFocus()
             } else {

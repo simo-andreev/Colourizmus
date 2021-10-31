@@ -1,58 +1,59 @@
 package bg.o.sim.colourizmus.view
 
 import android.Manifest.permission.CAMERA
-import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.content.FileProvider
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Observer
 import bg.o.sim.colourizmus.R
+import bg.o.sim.colourizmus.databinding.ActivityMainBinding
 import bg.o.sim.colourizmus.model.CustomColour
 import bg.o.sim.colourizmus.model.LIVE_COLOUR
 import bg.o.sim.colourizmus.model.LiveColour
 import bg.o.sim.colourizmus.utils.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class ColourCreationActivity : AppCompatActivity() {
 
     private var mImageUri: Uri? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        this.setSupportActionBar(allahu_appbar as Toolbar)
+        this.setSupportActionBar(binding.allahuAppbar.allahuAppbar)
 
-        main_fab_hexadec_input.setOnClickListener {
+        binding.mainFabHexadecInput.setOnClickListener {
             MainScreenHexInput().show(fragmentManager, "HexadecInputDialog")
         }
 
-        main_fab_release_da_kamrakken.setOnClickListener {
+        binding.mainFabReleaseDaKamrakken.setOnClickListener {
             if (this.havePermission(CAMERA))
                 takePhoto()
             else
                 ActivityCompat.requestPermissions(this, arrayOf(CAMERA), REQUEST_PERMISSION_IMAGE_CAPTURE)
         }
 
-        main_fab_save_colour.setOnClickListener {
+        binding.mainFabSaveColour.setOnClickListener {
             SaveColourDialogue().show(fragmentManager, SaveColourDialogue.TAG)
         }
 
-        colour_creation_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment? = when (position) {
+        binding.colourCreationPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+            override fun getItem(position: Int): Fragment = when (position) {
                 0 -> SeekerFragment.newInstance()
                 1 -> PickerFragment.newInstance()
-                else -> null
+                else -> throw IllegalArgumentException()
             }
 
             override fun getCount() = 2
@@ -65,9 +66,9 @@ class ColourCreationActivity : AppCompatActivity() {
         }
 
         LIVE_COLOUR.observe(this, Observer<Int> {
-            colour_creation_pager.setBackgroundColor(it!!)
-            colour_creation_hexadec_preview.text = "#${Integer.toHexString(it)}"
-            colour_creation_hexadec_preview.setTextColor(getComplimentaryColour(CustomColour(it, "")).value)
+            binding.colourCreationPager.setBackgroundColor(it!!)
+            binding.colourCreationHexadecPreview.text = "#${Integer.toHexString(it)}"
+            binding.colourCreationHexadecPreview.setTextColor(getComplimentaryColour(CustomColour(it, "")).value)
         })
     }
 
@@ -99,6 +100,7 @@ class ColourCreationActivity : AppCompatActivity() {
 
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_PERMISSION_IMAGE_CAPTURE ->
                 if (PERMISSION_GRANTED in grantResults) takePhoto()
@@ -107,15 +109,16 @@ class ColourCreationActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> if (resultCode == RESULT_OK) {
                 val showPicResult = Intent(this, ColourDetailsActivity::class.java)
                 showPicResult.putExtra(EXTRA_PICTURE_URI, mImageUri)
-                showPicResult.putExtra(EXTRA_PICTURE_THUMB, data.extras["data"] as Bitmap)
+                showPicResult.putExtra(EXTRA_PICTURE_THUMB, data!!.extras!!["data"] as Bitmap)
                 startActivity(showPicResult)
             }
-        // other cases can go here at a later point
+            // other cases can go here at a later point
         }
     }
 }

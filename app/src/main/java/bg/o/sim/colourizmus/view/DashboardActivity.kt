@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import bg.o.sim.colourizmus.R
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import bg.o.sim.colourizmus.databinding.ActivityDashboardBinding
 
 class DashboardActivity : Activity() {
+
+    private lateinit var binding: ActivityDashboardBinding
 
     private val mClickListener = View.OnClickListener { v ->
         when (v.id) {
@@ -18,10 +20,11 @@ class DashboardActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        binding = ActivityDashboardBinding.inflate(layoutInflater);
+        setContentView(binding.root)
 
-        dashboard_button_colour_creation.setOnClickListener(mClickListener)
-        dashboard_button_gallery.setOnClickListener(mClickListener)
+        binding.dashboardButtonColourCreation.setOnClickListener(mClickListener)
+        binding.dashboardButtonGallery.setOnClickListener(mClickListener)
 
 //        dashboard_button_gallery.background = CharDrawable('c', Color.rgb(180, 10, 10), Color.rgb(10, 10, 180))
 //        dashboard_button_colour_creation.background = CharDrawable('T', Color.rgb(10, 180, 10), Color.rgb(180, 10, 180))

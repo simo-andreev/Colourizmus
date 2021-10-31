@@ -38,7 +38,7 @@
                 android:id="@+id/paletteD"
                 layout="@layout/card_colour_list_preview" />
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_medium"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:drawingCacheQuality="low"
                     android:adjustViewBounds="true"/>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <include
                 android:id="@+id/photo_swatch"

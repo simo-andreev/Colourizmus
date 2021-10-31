@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
@@ -13,7 +13,7 @@
         android:id="@+id/allahu_appbar"
         layout="@layout/appbar" />
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/colour_creation_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,14 +22,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/allahu_appbar">
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/colour_creation_tab_layout"
             style="@style/TabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </android.support.v4.view.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_fab_hexadec_input"
         android:layout_width="@dimen/preview_window_large"
         android:layout_height="@dimen/preview_window_large"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toEndOf="@+id/colour_creation_pager"
         app:layout_constraintStart_toStartOf="@+id/colour_creation_pager" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_fab_release_da_kamrakken"
         android:layout_width="@dimen/preview_window_large"
         android:layout_height="@dimen/preview_window_large"
@@ -54,7 +54,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@+id/main_fab_hexadec_input" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_fab_save_colour"
         android:layout_width="@dimen/preview_window_large"
         android:layout_height="@dimen/preview_window_large"
@@ -84,4 +84,4 @@
         tools:text="#AABBCC" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

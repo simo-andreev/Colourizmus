@@ -2,7 +2,7 @@
 
 package bg.o.sim.colourizmus.model
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import android.os.AsyncTask
 
 // todo - review whole file and stroage/db systems

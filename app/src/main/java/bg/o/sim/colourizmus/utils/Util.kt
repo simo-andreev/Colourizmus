@@ -7,8 +7,8 @@ import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.media.Image
 import android.os.Build
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
@@ -50,7 +50,7 @@ fun Activity.getImageFile(): File {
     requestStoragePermission(this)    // rand locale for consistency
     val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.GERMANY).format(Date())
     val imageFileName = "COLOURIZMUS_$timestamp"
-    val storageDir: File = this.getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES)
+    val storageDir: File = this.getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES)!!
 
     return File.createTempFile(imageFileName, ".jpg", storageDir)
 }

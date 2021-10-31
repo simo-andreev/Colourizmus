@@ -1,6 +1,6 @@
 package bg.o.sim.colourizmus.model
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import android.graphics.Color
 import java.util.*
 

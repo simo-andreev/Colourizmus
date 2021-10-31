@@ -1,7 +1,7 @@
 package bg.o.sim.colourizmus.model
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import bg.o.sim.colourizmus.utils.DB_NAME
 
 class DasApplication: Application() {
