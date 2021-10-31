@@ -1,0 +1,18 @@
+## Format based on https://github.com/matthewpalmer/.todo
+## * With some added spice:
+##      - `~` box-mark - marks a `To` that is being actively 'Do'-ed
+##      - `-` line prefix - defines a MUST-do to-do
+##      - `+` line prefix - defines a MIGHT-do to-do
+##      - `##` line prefix - defines a section and should contain a title sting
+## --------------------------------------------------------------------------------------##
+## TODOs for the whole project in general -i.e. features, refactor and version goals etc ##
+
+## Chores:
+ - []  Add todo-s
+ - []  Add GaF
+
+## Patch goals:
+
+## Minor-v goals:
+
+## Major-v goals:
