@@ -29,12 +29,15 @@
             android:layout_height="wrap_content" />
     </androidx.viewpager.widget.ViewPager>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+    <ImageButton
         android:id="@+id/main_fab_hexadec_input"
-        android:layout_width="@dimen/preview_window_large"
-        android:layout_height="@dimen/preview_window_large"
-        android:layout_margin="@dimen/spacing_large"
-        android:adjustViewBounds="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="@drawable/round_button"
+        android:contentDescription="@string/button_hexadec_input"
         android:src="@drawable/ic_pound_sign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/main_fab_release_da_kamrakken"
@@ -42,29 +45,42 @@
         app:layout_constraintStart_toEndOf="@+id/colour_creation_pager"
         app:layout_constraintStart_toStartOf="@+id/colour_creation_pager" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/main_fab_release_da_kamrakken"
-        android:layout_width="@dimen/preview_window_large"
-        android:layout_height="@dimen/preview_window_large"
-        android:layout_margin="@dimen/spacing_medium"
-        android:adjustViewBounds="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:contentDescription="@string/button_take_photo"
         android:src="@drawable/ic_camera_purple"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/main_fab_save_colour"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toEndOf="@+id/main_fab_hexadec_input" />
+        app:layout_constraintBottom_toBottomOf="@id/main_fab_hexadec_input"
+        app:layout_constraintEnd_toStartOf="@+id/main_fab_plunder_yer_gallery"
+        app:layout_constraintStart_toEndOf="@+id/main_fab_hexadec_input"
+        app:layout_constraintTop_toTopOf="@id/main_fab_hexadec_input" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
+        android:id="@+id/main_fab_plunder_yer_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:contentDescription="@string/button_take_photo"
+        android:src="@drawable/ic_directory"
+        app:layout_constraintBottom_toBottomOf="@id/main_fab_hexadec_input"
+        app:layout_constraintEnd_toStartOf="@+id/main_fab_save_colour"
+        app:layout_constraintStart_toEndOf="@+id/main_fab_release_da_kamrakken"
+        app:layout_constraintTop_toTopOf="@id/main_fab_hexadec_input" />
+
+    <ImageButton
         android:id="@+id/main_fab_save_colour"
-        android:layout_width="@dimen/preview_window_large"
-        android:layout_height="@dimen/preview_window_large"
-        android:layout_margin="@dimen/spacing_large"
-        android:adjustViewBounds="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:background="@drawable/round_button"
+        android:contentDescription="@string/button_save"
         android:src="@drawable/ic_save"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/main_fab_hexadec_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toEndOf="@+id/main_fab_release_da_kamrakken" />
+        app:layout_constraintStart_toEndOf="@+id/main_fab_plunder_yer_gallery"
+        app:layout_constraintTop_toTopOf="@id/main_fab_hexadec_input" />
 
     <TextView
         android:id="@+id/colour_creation_hexadec_preview"

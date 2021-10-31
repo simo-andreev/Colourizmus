@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
@@ -22,15 +24,29 @@ import bg.o.sim.colourizmus.model.LIVE_COLOUR
 import bg.o.sim.colourizmus.model.LiveColour
 import bg.o.sim.colourizmus.utils.*
 
+
 class ColourCreationActivity : AppCompatActivity() {
 
     private var mImageUri: Uri? = null
     private lateinit var binding: ActivityMainBinding
+    private lateinit var getContent: ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        getContent = registerForActivityResult(GetContent()) { uri: Uri? ->
+            if (uri == null) {
+                toastLong("No Image selected")
+                return@registerForActivityResult;
+            }
+
+            startActivity(Intent(this, ColourDetailsActivity::class.java).apply {
+                putExtra(EXTRA_PICTURE_URI, uri)
+            })
+        }
 
         this.setSupportActionBar(binding.allahuAppbar.allahuAppbar)
 
@@ -41,6 +57,13 @@ class ColourCreationActivity : AppCompatActivity() {
         binding.mainFabReleaseDaKamrakken.setOnClickListener {
             if (this.havePermission(CAMERA))
                 takePhoto()
+            else
+                ActivityCompat.requestPermissions(this, arrayOf(CAMERA), REQUEST_PERMISSION_IMAGE_CAPTURE)
+        }
+
+        binding.mainFabPlunderYerGallery.setOnClickListener {
+            if (this.havePermission(CAMERA))
+                openGallery()
             else
                 ActivityCompat.requestPermissions(this, arrayOf(CAMERA), REQUEST_PERMISSION_IMAGE_CAPTURE)
         }
@@ -70,6 +93,10 @@ class ColourCreationActivity : AppCompatActivity() {
             binding.colourCreationHexadecPreview.text = "#${Integer.toHexString(it)}"
             binding.colourCreationHexadecPreview.setTextColor(getComplimentaryColour(CustomColour(it, "")).value)
         })
+    }
+
+    private fun openGallery() {
+        getContent.launch("image/*")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -105,7 +132,7 @@ class ColourCreationActivity : AppCompatActivity() {
             REQUEST_PERMISSION_IMAGE_CAPTURE ->
                 if (PERMISSION_GRANTED in grantResults) takePhoto()
                 else this.toastLong("Y U NO GIB PRMISHNZ? :@")
-        // other cases can go here at a later point
+            // other cases can go here at a later point
         }
     }
 
