@@ -12,7 +12,7 @@ fun LinearLayout.bindColourList(vararg colours: CustomColour) {
     val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
     val context = this.context
 
-    for(col in colours){
+    for (col in colours.filter { it.value != -1 }) {
         val colView = View(context)
         colView.setBackgroundColor(col.value)
 

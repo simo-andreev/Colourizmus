@@ -54,7 +54,15 @@
             </androidx.cardview.widget.CardView>
 
             <include
-                android:id="@+id/photo_swatch"
+                android:id="@+id/photo_swatch_default"
+                layout="@layout/card_colour_list_preview" />
+
+            <include
+                android:id="@+id/photo_swatch_light"
+                layout="@layout/card_colour_list_preview" />
+
+            <include
+                android:id="@+id/photo_swatch_dark"
                 layout="@layout/card_colour_list_preview" />
 
         </LinearLayout>

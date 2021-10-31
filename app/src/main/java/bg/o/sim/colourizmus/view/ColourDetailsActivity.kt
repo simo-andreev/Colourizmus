@@ -4,11 +4,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
-import androidx.palette.graphics.Palette
-import androidx.cardview.widget.CardView
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.palette.graphics.Palette
 import bg.o.sim.colourizmus.R
 import bg.o.sim.colourizmus.databinding.ActivityColourDetailsBinding
 import bg.o.sim.colourizmus.model.CustomColour
@@ -24,7 +24,7 @@ class ColourDetailsActivity : AppCompatActivity() {
         binding = ActivityColourDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dominantCol: CustomColour  = when {
+        val dominantCol: CustomColour = when {
             intent.hasExtra(EXTRA_COLOUR) -> intent.getSerializableExtra(EXTRA_COLOUR) as CustomColour
             intent.hasExtra(EXTRA_PICTURE_URI) -> loadPassedPhoto(intent)
             else -> CustomColour(LIVE_COLOUR.value!!, "")
@@ -40,16 +40,32 @@ class ColourDetailsActivity : AppCompatActivity() {
         bind(binding.paletteC.root, *getColourTriade(dominantCol))
         bind(binding.paletteD.root, *getHueSwatch(dominantCol))
     }
-    
+
     private fun loadPassedPhoto(intent: Intent): CustomColour {
         val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, intent.getParcelableExtra(EXTRA_PICTURE_URI)!!)
         val palette = Palette.Builder(bitmap).generate()
         binding.photoPreview.setImageBitmap(bitmap)
 
-        val default = ContextCompat.getColor(this, R.color.error_red)
-        bind(binding.photoSwatch.root, CustomColour(palette.getMutedColor(default), ""),
-                CustomColour(palette.getDominantColor(default), ""),
-                CustomColour(palette.getVibrantColor(default), "")
+        @ColorInt
+        val default = -1
+
+        bind(
+            binding.photoSwatchDefault.root,
+            CustomColour(palette.getMutedColor(default), ""),
+            CustomColour(palette.getDominantColor(default), ""),
+            CustomColour(palette.getVibrantColor(default), ""),
+        )
+        bind(
+            binding.photoSwatchLight.root,
+            CustomColour(palette.getLightMutedColor(default), ""),
+            CustomColour(palette.getDominantColor(default), ""),
+            CustomColour(palette.getLightVibrantColor(default), ""),
+        )
+        bind(
+            binding.photoSwatchDark.root,
+            CustomColour(palette.getDarkMutedColor(default), ""),
+            CustomColour(palette.getDominantColor(default), ""),
+            CustomColour(palette.getDarkVibrantColor(default), ""),
         )
 
         return CustomColour(palette.getDominantColor(default), "prime")
