@@ -3,6 +3,7 @@ package bg.o.sim.colourizmus.view
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import androidx.palette.graphics.Palette
@@ -41,7 +42,7 @@ class ColourDetailsActivity : AppCompatActivity() {
     }
     
     private fun loadPassedPhoto(intent: Intent): CustomColour {
-        val bitmap: Bitmap = intent.getParcelableExtra(EXTRA_PICTURE_THUMB)!!
+        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, intent.getParcelableExtra(EXTRA_PICTURE_URI)!!)
         val palette = Palette.Builder(bitmap).generate()
         binding.photoPreview.setImageBitmap(bitmap)
 

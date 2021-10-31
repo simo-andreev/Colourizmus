@@ -38,6 +38,9 @@
     <string name="label_show_hexadec_values_condensed">Hexadec values</string>
     <string name="label_colour_name">coulour name</string>
     <string name="rrggbb">RRGGBB</string>
+    <string name="button_save">button : save</string>
+    <string name="button_take_photo">button : take photo</string>
+    <string name="button_hexadec_input">button : hexadec input</string>
 
 
 </resources>
